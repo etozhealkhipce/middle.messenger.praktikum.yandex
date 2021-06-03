@@ -2,19 +2,20 @@
   "name": "middle.messenger.praktikum.yandex",
   "version": "1.0.0",
   "description": "Мессенджер на JavaScript.",
-  "dependencies": {},
+  "dependencies": {
+    "normalize.css": "^8.0.1"
+  },
   "devDependencies": {
-    "@parcel/transformer-pug": "^2.0.0-beta.2",
     "express": "^4.17.1",
-    "parcel": "^2.0.0-beta.2",
+    "parcel-bundler": "^1.12.5",
     "pug": "^3.0.2",
     "sass": "^1.34.0"
   },
   "scripts": {
     "express": "node express.js",
-    "build": "parcel build src/index.pug --public-url dist/",
-    "start": "parcel build src/index.pug --public-url dist/ && npm run express",
-    "serve": "parcel src/index.pug"
+    "build": "parcel build src/views/index.pug --no-cache --public-url dist/",
+    "start": "parcel build src/views/index.pug --no-cache --public-url dist/ && npm run express",
+    "serve": "parcel src/views/index.pug --no-cache"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,9 @@
+// Colors
+$gray: #9e9e9e;
+
+@import url("normalize.css/normalize");
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Raleway:wght@500;600&display=swap");
+
+@import url(./../components/ui/Button/_button.scss);
+@import url(./../components/ui/Input/_input.scss);

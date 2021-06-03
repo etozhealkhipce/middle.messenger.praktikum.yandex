@@ -1,0 +1,9 @@
+extends ../layout/empty.pug
+
+block content
+    //- include ../components/ui/Button/button.pug
+    include ../components/ui/Input/input.pug
+    +input('text', '1', 'login', '', 'Введите логин')
+    +input('text', '2', 'password', '', 'Введите пароль')
+    
+    //- a(href="./register.pug") Register
