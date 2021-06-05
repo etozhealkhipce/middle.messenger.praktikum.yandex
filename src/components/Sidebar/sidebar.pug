@@ -74,16 +74,16 @@
 
 aside.sidebar
     .search
-    //-     include ../ui/Input/input.pug
-    //-     +input('text', '1', 'search', 'Поиск')(class="search__input")
-    //- include ./../ui/UserPreview/userPreview.pug
-    //- a(href="./chat.pug")
-    //- if users
-    //-     each user, id in users
-    //-         +userPreview(user.name, user.avatar, user.messagePreview, user.messageTime, user.messageCounter, id)
-    //- else
-    //-     h3.empty Список чатов пуст
-    //- a(href="./profile.pug")
-    //- include ../ui/Button/button.pug
-    //- +button('button', '1', 'Профиль')(class="profile")
+        include ../ui/Input/input.pug
+        +input('text', '1', 'search', 'Поиск')(class="search__input")
+    include ../ui/UserPreview/userPreview.pug
+    a(href="./chat.pug")
+    if users
+        each user, id in users
+            +userPreview(user.name, user.avatar, user.messagePreview, user.messageTime, user.messageCounter, id)
+    else
+        h3.empty Список чатов пуст
+    a(href="./profile.pug")
+    include ../ui/Button/button.pug
+    +button('button', '1', 'Профиль')(class="profile")
         
