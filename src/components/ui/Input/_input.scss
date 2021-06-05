@@ -1,13 +1,20 @@
+$gray: #9e9e9e;
+
 .input {
   width: 100%;
   font-family: "Raleway", sans-serif;
-  font-size: 18px;
+  font-size: 1rem;
   padding: 15px 0 15px 0;
-  //   box-shadow: none;
+  box-shadow: none;
   border-width: 0 0 1px;
-  // border-color: $gray;
+  border-color: $gray;
 
   &:focus {
     outline: none;
+  }
+
+  &:disabled {
+    background-color: white;
+    color: $gray;
   }
 }

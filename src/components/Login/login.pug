@@ -1,0 +1,11 @@
+.login-cart
+    h1.login-cart__title Вход
+    include ../ui/Input/input.pug
+    +input('text', '1', 'login', 'Введите логин')(class="login-cart__input")
+    p.login-cart__error Неверный логин
+    +input('password', '2', 'password', 'Введите пароль')(class="login-cart__input")
+    p.login-cart__error Неверный пароль
+    include ../ui/Button/button.pug
+    +button('button', '1', 'Авторизоваться')(class="loginButton")
+    a(href="./messenger.pug").login-cart__link Забыли пароль?
+    +button('button', '2', 'Регистрация')(class="login-cart__button_gray registerBtn")

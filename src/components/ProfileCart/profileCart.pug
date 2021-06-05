@@ -1,0 +1,48 @@
+block variables
+
+main.content-wrapper__content.content-wrapper__content_profile
+    .profile-cart
+        include ../ui/Input/input.pug
+
+        .user
+            if edit
+                .user__first-wrapper.user__first-wrapper_edit
+                    label(for="avatar-input").user__avatar-input
+                        img().user__image
+                    +input('file', 'avatar-input', 'avatar', '', '')(class="profile-cart__input_file")
+            else
+                .user__first-wrapper
+                    img().user__image
+
+            .user__second-wrapper
+                span.user__title Илья
+                p.user__surname Фамилия
+        
+
+        if !changePassword
+            +input('text', '4', 'login', 'Введите логин', 'alkhipce', edit ? false : true)(class="profile-cart__input")
+            p.profile-cart__error Неверный логин
+            +input('email', '5', 'email', 'Введите email', 'alkhipce@mail.ru', edit ? false : true)(class="profile-cart__input")
+            p.profile-cart__error Неверный формат email
+            +input('phone', '6', 'phone', 'Введите телефон', '+7 777 555 1234', edit ? false : true)(class="profile-cart__input")
+            p.profile-cart__error Неверный формат телефона
+            if edit
+                +input('text', '7', 'name', 'Введите имя', 'Илья')(class="register-cart__input")
+                +input('text', '8', 'surname', 'Введите фамилию')(class="register-cart__input")
+        else
+            +input('password', '9', 'password', 'Введите текущий пароль')(class="profile-cart__input")
+            p.profile-cart__error Неверный пароль 
+            +input('password', '10', 'password-new', 'Введите новый пароль')(class="profile-cart__input")
+            p.profile-cart__error Неверный пароль 
+            +input('password', '11', 'password-new-repeat', 'Повторите новый пароль')(class="profile-cart__input")
+            p.profile-cart__error Неверный пароль 
+        
+        .actions
+            if !edit && !changePassword
+                .actions__left
+                    a(href="./profileEdit.pug").actions__link Изменить даннные
+                    a(href="./passwordChange.pug").actions__link Изменить пароль
+                .actions__right
+                    a(href="./error.pug").actions__link.logout Выйти
+            else
+                +button('button', '1', 'Сохранить')(class="saveButton")

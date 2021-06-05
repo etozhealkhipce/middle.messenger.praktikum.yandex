@@ -1,0 +1,42 @@
+main.content-wrapper__content
+    .chat
+        .header
+            h3.header__title Иван
+            img(src="../assets/icons/trash.svg").header__delete
+        .body
+            span.body__data 28 мая
+            
+            .body__left-message
+                .body__message-wrapper
+                    .body__message
+                        | Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.
+                        | Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
+                        | Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
+                        
+                    span.body__time 09:49
+
+            .body__right-message
+                .body__message-wrapper
+                    .body__message ого!                    
+                    span.body__time 10:02
+            .body__right-message
+                .body__message-wrapper
+                    .body__message ого!                    
+                    span.body__time 10:02
+            .body__right-message
+                .body__message-wrapper
+                    .body__message ого!                    
+                    span.body__time 10:02
+            .body__right-message
+                .body__message-wrapper
+                    .body__message ого!                    
+                    span.body__time 10:02
+            .body__right-message
+                .body__message-wrapper
+                    .body__message ого!                    
+                    span.body__time 10:02
+        .type
+            include ../ui/Input/input.pug
+            +input('text', '2', 'message', 'Введите сообщение')(class="type__input")
+            include ../ui/Button/button.pug
+            +button('button', '1', '')(class="type__button")

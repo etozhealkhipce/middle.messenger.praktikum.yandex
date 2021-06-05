@@ -1,0 +1,54 @@
+$red: #f33333;
+$gray: #9e9e9e;
+
+.register-cart {
+  width: 500px;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+
+  &__title {
+    color: black;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
+    font-size: 2.7rem;
+    margin-top: 0;
+  }
+
+  &__input {
+    margin-bottom: 40px;
+  }
+
+  &__error {
+    color: $red;
+    margin-top: -25px;
+    font-size: 0.7rem;
+    display: none;
+  }
+
+  &__link {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    color: black;
+    text-decoration: none;
+    font-size: 1rem;
+
+    &:hover {
+      transition: 0.3s;
+      color: $gray;
+    }
+  }
+
+  &__button_gray {
+    margin-top: 20px;
+    background-color: $gray;
+
+    &:hover {
+      transition: 0.3;
+      background-color: black;
+    }
+  }
+}
