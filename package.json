@@ -15,8 +15,8 @@
   },
   "scripts": {
     "express": "node express.js",
-    "build": "parcel build ./src/views/index.pug --public-url dist/",
-    "start": "parcel build ./src/views/index.pug --no-cache --public-url dist/ && npm run express",
+    "build": "parcel build ./src/views/index.pug --dist-dir dist/ --no-cache --public-url /",
+    "start": "parcel build ./src/views/index.pug --dist-dir dist/ --no-cache --public-url / && npm run express",
     "serve": "parcel ./src/views/index.pug --no-cache"
   },
   "repository": {
