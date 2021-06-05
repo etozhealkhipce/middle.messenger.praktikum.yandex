@@ -2,7 +2,7 @@ const registerButton = document.querySelector(".registerBtn");
 const loginButton = document.querySelector(".loginButton");
 
 registerButton.addEventListener("click", () => {
-  window.location = "register.html";
+  window.location = "./register.html";
 });
 
 loginButton.addEventListener("click", () => {
