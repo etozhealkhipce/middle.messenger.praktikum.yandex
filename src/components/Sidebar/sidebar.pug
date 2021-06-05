@@ -76,7 +76,7 @@ aside.sidebar
     .search
         include ../ui/Input/input.pug
         +input('text', '1', 'search', 'Поиск')(class="search__input")
-    include ../ui/UserPreview/userPreview.pug
+    include ../ui/userPreview/userPreview.pug
     a(href="./chat.pug")
     if users
         each user, id in users
