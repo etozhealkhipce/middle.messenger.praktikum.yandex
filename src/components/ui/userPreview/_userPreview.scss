@@ -1,0 +1,92 @@
+$light-gray: #c4c4c4;
+$soft-gray: #f5f5f5;
+$gray: #9e9e9e;
+
+.user-preview {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 25px;
+  height: 65px;
+  border-bottom: 1px solid $soft-gray;
+  cursor: pointer;
+
+  &:hover {
+    transition: 0.1s;
+    background-color: $soft-gray;
+  }
+
+  &__image {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: $light-gray;
+  }
+
+  &__first-wrapper {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    width: 20%;
+  }
+
+  &__second-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-right: 20px;
+  }
+
+  &__third-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 20%;
+  }
+
+  &__title {
+    font-weight: 600;
+    min-height: 18px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__message {
+    font-size: 14px;
+    color: $gray;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__time {
+    font-size: 14px;
+    color: $gray;
+  }
+
+  &__counter-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    background-color: red;
+    padding: 3px;
+    height: 20px;
+    min-width: 20px;
+    max-width: 100%;
+    width: auto;
+    max-width: 30px;
+  }
+
+  &__counter {
+    color: white;
+    font-size: 14px;
+    height: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

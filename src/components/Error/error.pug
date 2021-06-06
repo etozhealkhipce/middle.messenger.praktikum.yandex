@@ -1,0 +1,7 @@
+- errorCode = "404"
+
+.error-cart
+    h1.error-cart__title=errorCode
+    p.error-message Страница не существует
+    include ../ui/Button/button.pug
+    +button('button', '2', 'Вернуться')(class="error-cart__button back")
