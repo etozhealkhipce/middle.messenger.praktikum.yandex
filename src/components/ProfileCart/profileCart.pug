@@ -20,21 +20,29 @@ main.content-wrapper__content.content-wrapper__content_profile
         
 
         if !changePassword
-            +input('text', '4', 'login', 'Введите логин', 'alkhipce', edit ? false : true)(class="profile-cart__input")
+            label(for="login").label Логин
+            +input('text', 'login', 'login', 'Введите логин', 'alkhipce', edit ? false : true)(class="profile-cart__input")
             p.profile-cart__error Неверный логин
-            +input('email', '5', 'email', 'Введите email', 'alkhipce@mail.ru', edit ? false : true)(class="profile-cart__input")
+            label(for="email").label Почта
+            +input('email', 'email', 'email', 'Введите email', 'alkhipce@mail.ru', edit ? false : true)(class="profile-cart__input")
             p.profile-cart__error Неверный формат email
-            +input('phone', '6', 'phone', 'Введите телефон', '+7 777 555 1234', edit ? false : true)(class="profile-cart__input")
+            label(for="phone").label Телефон
+            +input('phone', 'phone', 'phone', 'Введите телефон', '+7 777 555 1234', edit ? false : true)(class="profile-cart__input")
             p.profile-cart__error Неверный формат телефона
             if edit
-                +input('text', '7', 'name', 'Введите имя', 'Илья')(class="register-cart__input")
-                +input('text', '8', 'surname', 'Введите фамилию')(class="register-cart__input")
+                label(for="name").label Имя
+                +input('text', 'name', 'name', 'Введите имя', 'Илья')(class="register-cart__input")
+                label(for="surname").label Фамилия
+                +input('text', 'surname', 'surname', 'Введите фамилию')(class="register-cart__input")
         else
-            +input('password', '9', 'password', 'Введите текущий пароль')(class="profile-cart__input")
+            label(for="password").label Пароль
+            +input('password', 'password', 'password', 'Введите текущий пароль')(class="profile-cart__input")
             p.profile-cart__error Неверный пароль 
-            +input('password', '10', 'password-new', 'Введите новый пароль')(class="profile-cart__input")
+            label(for="password-new").label Новый пароль
+            +input('password', 'password-new', 'password-new', 'Введите новый пароль')(class="profile-cart__input")
             p.profile-cart__error Неверный пароль 
-            +input('password', '11', 'password-new-repeat', 'Повторите новый пароль')(class="profile-cart__input")
+            label(for="password-new-repeat").label Повторение нового пароля
+            +input('password', 'password-new-repeat', 'password-new-repeat', 'Повторите новый пароль')(class="profile-cart__input")
             p.profile-cart__error Неверный пароль 
         
         .actions
@@ -45,4 +53,4 @@ main.content-wrapper__content.content-wrapper__content_profile
                 .actions__right
                     a(href="./error.pug").actions__link.logout Выйти
             else
-                +button('button', '1', 'Сохранить')(class="saveButton")
+                +button('button', 'saveBtn', 'Сохранить', 'saveBtn')(class="saveBtn")

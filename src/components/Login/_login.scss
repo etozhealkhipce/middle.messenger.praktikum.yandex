@@ -1,5 +1,4 @@
-$red: #f33333;
-$gray: #9e9e9e;
+@use '../../styles/variablles.scss' as *;
 
 .login-cart {
   width: 500px;

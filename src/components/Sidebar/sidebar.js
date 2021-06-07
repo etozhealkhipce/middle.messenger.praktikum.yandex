@@ -1,5 +1,5 @@
 const sidebar = document.querySelector(".sidebar");
-const profileButton = document.querySelector(".profile");
+const profileButton = document.getElementById("profileBtn");
 
 profileButton.addEventListener("click", () => {
   window.location = "./profile.html";

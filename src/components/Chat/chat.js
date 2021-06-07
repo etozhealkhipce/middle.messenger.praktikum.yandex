@@ -1,6 +1,6 @@
-const deleteButton = document.querySelector(".header__delete");
-const sendButton = document.querySelector(".type__button");
-const profileButton = document.querySelector(".profile");
+const deleteButton = document.getElementById("deleteBtn");
+const sendButton = document.getElementById("sendMessageButton");
+const profileButton = document.getElementById("profileBtn");
 
 profileButton.addEventListener("click", () => {
   window.location = "./profile.html";
@@ -11,6 +11,8 @@ deleteButton.addEventListener("click", () => {
 });
 
 sendButton.addEventListener("click", () => {
-  const typedMessage = document.getElementsByName("message")[0].value;
-  console.log(typedMessage);
+  const typedMessage = document.getElementById("messageInput").value;
+  console.log({
+    typedMessage,
+  });
 });

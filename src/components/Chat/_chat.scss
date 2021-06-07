@@ -1,6 +1,4 @@
-$red: #f33333;
-$gray: #9e9e9e;
-$light-gray: #f5f5f5;
+@use '../../styles/variablles.scss' as *;
 
 .chat {
   .header {
@@ -10,17 +8,18 @@ $light-gray: #f5f5f5;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
-    background-color: $light-gray;
-    padding: 25px;
+    background-color: $soft-gray;
+    padding: 22px;
 
     &__title {
       display: inline-block;
       font-weight: 500;
-      line-height: 20px;
       margin: 0;
     }
 
     &__delete {
+      border: none;
+      background: none;
       cursor: pointer;
     }
   }
@@ -28,7 +27,7 @@ $light-gray: #f5f5f5;
   .body {
     width: 100%;
 
-    &__data {
+    &__date {
       margin-top: 3rem;
       text-align: center;
       display: block;
@@ -48,7 +47,7 @@ $light-gray: #f5f5f5;
 
     &__message {
       width: auto;
-      background-color: $light-gray;
+      background-color: $soft-gray;
       padding: 15px;
       font-size: 1rem;
       border-radius: 10px;
@@ -71,7 +70,7 @@ $light-gray: #f5f5f5;
 
     &__input {
       width: 100%;
-      background-color: $light-gray;
+      background-color: $soft-gray;
       font-family: "Raleway", sans-serif;
       font-size: 1rem;
       padding: 20px 50px 20px 20px;
