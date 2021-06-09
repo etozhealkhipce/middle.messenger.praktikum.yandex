@@ -1,11 +1,13 @@
 const registerButton = document.getElementById("registerBtn");
-const loginButton = document.getElementById("loginBtn");
+const loginForm = document.getElementById("loginForm");
 
 registerButton.addEventListener("click", () => {
   window.location = "./register.html";
 });
 
-loginButton.addEventListener("click", () => {
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const login = document.getElementById("login").value;
   const password = document.getElementById("password").value;
 

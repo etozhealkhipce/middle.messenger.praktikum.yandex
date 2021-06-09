@@ -1,4 +1,4 @@
-.login-cart
+form.login-cart#loginForm
     h1.login-cart__title Вход
     include ../ui/Input/input.pug
     label(for="login").label Логин
@@ -8,7 +8,7 @@
     +input('password', 'password', 'password', 'Введите пароль')(class="login-cart__input")
     p.login-cart__error Неверный пароль
     include ../ui/Button/button.pug
-    +button('button', 'loginBtn', 'Авторизоваться', 'loginBtn')(class="loginBtn")
+    +button('submit', 'loginBtn', 'Авторизоваться', 'loginBtn')(class="loginBtn")
     a(href="./messenger.pug").login-cart__link Забыли пароль?
     a(href="./register.pug")
     +button('button', 'registerBtn', 'Регистрация', 'registerBtn')(class="login-cart__button_gray registerBtn")

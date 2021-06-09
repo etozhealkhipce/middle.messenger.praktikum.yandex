@@ -1,5 +1,5 @@
 const deleteButton = document.getElementById("deleteBtn");
-const sendButton = document.getElementById("sendMessageButton");
+const messageForm = document.getElementById("messageForm");
 const profileButton = document.getElementById("profileBtn");
 
 profileButton.addEventListener("click", () => {
@@ -10,7 +10,9 @@ deleteButton.addEventListener("click", () => {
   confirm("Удалить пользователя?");
 });
 
-sendButton.addEventListener("click", () => {
+messageForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const typedMessage = document.getElementById("messageInput").value;
   console.log({
     typedMessage,

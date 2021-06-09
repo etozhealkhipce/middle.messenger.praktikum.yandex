@@ -1,6 +1,8 @@
-const registerButton = document.getElementById("registerBtn");
+const registerForm = document.getElementById("registerForm");
 
-registerButton.addEventListener("click", () => {
+registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
   const response = {
     email: document.getElementById("email").value,
     login: document.getElementById("login").value,

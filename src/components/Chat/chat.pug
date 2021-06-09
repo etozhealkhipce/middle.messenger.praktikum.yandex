@@ -37,8 +37,8 @@ main.content-wrapper__content
                 .body__message-wrapper
                     .body__message ого!                    
                     span.body__time 10:02
-        .type
+        form.type#messageForm
             include ../ui/Input/input.pug
             +input('text', 'messageInput', 'messageInput', 'Введите сообщение')(class="type__input")
             include ../ui/Button/button.pug
-            +button('button', 'sendMessageButton', '', 'sendMessageButton')(class="type__button")
+            +button('submit', 'sendMessageButton', '', 'sendMessageButton')(class="type__button")

@@ -1,4 +1,4 @@
-form.register-cart
+form.register-cart#registerForm
     h1.register-cart__title Регистрация
     include ../ui/Input/input.pug
     label(for="email").label Почта
@@ -21,5 +21,5 @@ form.register-cart
     +input('password', 'password-repeat', 'password-repeat', 'Введите пароль ещё раз')(class="register-cart__input")
     p.register-cart__error Пароли не совпадают
     include ../ui/Button/button.pug
-    +button('button', 'registerBtn', 'Зарегистрироваться', 'registerBtn')(class="registerBtn")
+    +button('submit', 'registerBtn', 'Зарегистрироваться', 'registerBtn')(class="registerBtn")
     a(href="/").register-cart__link Войти

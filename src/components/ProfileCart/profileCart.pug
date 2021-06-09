@@ -1,7 +1,7 @@
 block variables
 
 main.content-wrapper__content.content-wrapper__content_profile
-    .profile-cart
+    form.profile-cart#profileForm
         include ../ui/Input/input.pug
 
         .user
@@ -53,4 +53,4 @@ main.content-wrapper__content.content-wrapper__content_profile
                 .actions__right
                     a(href="./error.pug").actions__link.logout Выйти
             else
-                +button('button', 'saveBtn', 'Сохранить', 'saveBtn')(class="saveBtn")
+                +button('submit', 'saveBtn', 'Сохранить', 'saveBtn')(class="saveBtn")
