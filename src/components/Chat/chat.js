@@ -7,7 +7,7 @@ profileButton.addEventListener("click", () => {
 });
 
 deleteButton.addEventListener("click", () => {
-  confirm("Удалить пользователя?");
+  window.confirm("Удалить пользователя?");
 });
 
 messageForm.addEventListener("submit", (e) => {

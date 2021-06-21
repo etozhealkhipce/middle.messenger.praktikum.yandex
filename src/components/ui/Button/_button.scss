@@ -1,23 +1,23 @@
 @use '../../../styles/variables.scss' as *;
 
 .button {
-  font-family: "Raleway", sans-serif;
-  background-color: black;
-  color: white;
-  font-size: 1rem;
-  padding: 20px 0 20px 0;
-  box-shadow: none;
-  border: none;
-  width: 100%;
-  box-sizing: border-box;
-  font-weight: 400;
-  cursor: pointer;
-  margin-top: 10px;
+	background-color: #000;
+	border: 0;
+	box-shadow: none;
+	box-sizing: border-box;
+	color: #fff;
+	cursor: pointer;
+	font-family: "Raleway", sans-serif;
+	font-size: 1rem;
+	font-weight: 400;
+	margin-top: 10px;
+	padding: 20px 0;
+	width: 100%;
 
-  &:hover,
-  &:focus {
-    background-color: $gray;
-    transition: 0.3s;
-    color: white;
-  }
+	&:hover,
+	&:focus {
+		background-color: $gray;
+		color: #fff;
+		transition: 0.3s;
+	}
 }

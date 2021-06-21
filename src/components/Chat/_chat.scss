@@ -1,105 +1,105 @@
 @use '../../styles/variables.scss' as *;
 
 .chat {
-  .header {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-    display: flex;
-    justify-content: space-between;
-    box-sizing: border-box;
-    background-color: $soft-gray;
-    padding: 22px;
+	.header {
+		background-color: $soft-gray;
+		box-sizing: border-box;
+		display: flex;
+		justify-content: space-between;
+		padding: 22px;
+		position: sticky;
+		top: 0;
+		z-index: 999;
 
-    &__title {
-      display: inline-block;
-      font-weight: 500;
-      margin: 0;
-    }
+		&__title {
+			display: inline-block;
+			font-weight: 500;
+			margin: 0;
+		}
 
-    &__delete {
-      border: none;
-      background: none;
-      cursor: pointer;
-    }
-  }
+		&__delete {
+			background: none;
+			border: 0;
+			cursor: pointer;
+		}
+	}
 
-  .body {
-    width: 100%;
+	.body {
+		width: 100%;
 
-    &__date {
-      margin-top: 3rem;
-      text-align: center;
-      display: block;
-      color: $gray;
-    }
+		&__date {
+			color: $gray;
+			display: block;
+			margin-top: 3rem;
+			text-align: center;
+		}
 
-    &__right-message {
-      width: 100%;
-      display: flex;
-      justify-content: flex-end;
-    }
+		&__right-message {
+			display: flex;
+			justify-content: flex-end;
+			width: 100%;
+		}
 
-    &__message-wrapper {
-      max-width: 480px;
-      margin: 50px 25px 20px 25px;
-    }
+		&__message-wrapper {
+			margin: 50px 25px 20px;
+			max-width: 480px;
+		}
 
-    &__message {
-      width: auto;
-      background-color: $soft-gray;
-      padding: 15px;
-      font-size: 1rem;
-      border-radius: 10px;
-    }
+		&__message {
+			background-color: $soft-gray;
+			border-radius: 10px;
+			font-size: 1rem;
+			padding: 15px;
+			width: auto;
+		}
 
-    &__time {
-      display: block;
-      color: $gray;
-      font-size: 14px;
-      text-align: right;
-    }
-  }
+		&__time {
+			color: $gray;
+			display: block;
+			font-size: 14px;
+			text-align: right;
+		}
+	}
 
-  .type {
-    position: sticky;
-    display: flex;
-    bottom: 0;
-    z-index: 999;
-    margin-top: 20px;
+	.type {
+		bottom: 0;
+		display: flex;
+		margin-top: 20px;
+		position: sticky;
+		z-index: 999;
 
-    &__input {
-      width: 100%;
-      background-color: $soft-gray;
-      font-family: "Raleway", sans-serif;
-      font-size: 1rem;
-      padding: 20px 50px 20px 20px;
-      box-shadow: none;
-      border: none;
-      border-color: $gray;
+		&__input {
+			background-color: $soft-gray;
+			border: 0;
+			border-color: $gray;
+			box-shadow: none;
+			font-family: "Raleway", sans-serif;
+			font-size: 1rem;
+			padding: 20px 50px 20px 20px;
+			width: 100%;
 
-      &:focus {
-        outline: none;
-      }
-    }
+			&:focus {
+				outline: none;
+			}
+		}
 
-    &__button {
-      width: 10%;
-      padding: 20px;
-      margin-top: 0;
-      position: relative;
+		&__button {
+			margin-top: 0;
+			padding: 20px;
+			position: relative;
+			width: 10%;
 
-      &::after {
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: url("../../assets/icons/triangle.svg") no-repeat;
-        z-index: 999;
-        width: 20px;
-        height: 20px;
-      }
-    }
-  }
+			&::after {
+				background: url("../../assets/icons/triangle.svg") no-repeat;
+				content: "";
+				height: 20px;
+				left: 50%;
+				position: absolute;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 20px;
+				z-index: 999;
+			}
+		}
+	}
 }

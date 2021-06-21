@@ -1,90 +1,90 @@
 @use '../../../styles/variables.scss' as *;
 
 .user-preview {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 25px;
-  height: 65px;
-  border-bottom: 1px solid $soft-gray;
-  cursor: pointer;
+	border-bottom: 1px solid $soft-gray;
+	cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	height: 65px;
+	justify-content: space-between;
+	padding: 25px;
 
-  &:hover {
-    transition: 0.1s;
-    background-color: $soft-gray;
-  }
+	&:hover {
+		background-color: $soft-gray;
+		transition: 0.1s;
+	}
 
-  &__image {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: $light-gray;
-  }
+	&__image {
+		background-color: $light-gray;
+		border-radius: 50%;
+		height: 60px;
+		width: 60px;
+	}
 
-  &__first-wrapper {
-    display: flex;
-    align-items: center;
-    margin-right: 20px;
-    width: 20%;
-  }
+	&__first-wrapper {
+		align-items: center;
+		display: flex;
+		margin-right: 20px;
+		width: 20%;
+	}
 
-  &__second-wrapper {
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin-right: 20px;
-  }
+	&__second-wrapper {
+		display: flex;
+		flex-direction: column;
+		margin-right: 20px;
+		width: 60%;
+	}
 
-  &__third-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
-    width: 20%;
-  }
+	&__third-wrapper {
+		align-items: flex-end;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		width: 20%;
+	}
 
-  &__title {
-    font-weight: 600;
-    min-height: 18px;
-    margin-bottom: 15px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+	&__title {
+		font-weight: 600;
+		margin-bottom: 15px;
+		min-height: 18px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 
-  &__message {
-    font-size: 14px;
-    color: $gray;
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+	&__message {
+		color: $gray;
+		font-size: 14px;
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 
-  &__time {
-    font-size: 14px;
-    color: $gray;
-  }
+	&__time {
+		color: $gray;
+		font-size: 14px;
+	}
 
-  &__counter-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 20px;
-    background-color: red;
-    padding: 3px;
-    height: 20px;
-    min-width: 20px;
-    max-width: 100%;
-    width: auto;
-    max-width: 30px;
-  }
+	&__counter-wrapper {
+		align-items: center;
+		background-color: rgb(255, 0, 0);
+		border-radius: 20px;
+		display: flex;
+		height: 20px;
+		justify-content: center;
+		max-width: 100%;
+		max-width: 30px;
+		min-width: 20px;
+		padding: 3px;
+		width: auto;
+	}
 
-  &__counter {
-    color: white;
-    font-size: 14px;
-    height: 20px;
-    display: table-cell;
-    vertical-align: middle;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+	&__counter {
+		color: #fff;
+		display: table-cell;
+		font-size: 14px;
+		height: 20px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		vertical-align: middle;
+	}
 }
