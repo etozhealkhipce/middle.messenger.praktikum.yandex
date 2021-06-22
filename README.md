@@ -18,3 +18,4 @@
 - `npm run start` — запуск проекта
 - `npm run build` — сборка проекта
 - `npm run express` — запуск Express сервера
+- `npm run lint` — запуск линтеров
