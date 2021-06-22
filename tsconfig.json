@@ -6,6 +6,8 @@
 		"declaration": false,
 		"module": "commonjs",
 		"sourceMap": true,
-		"resolveJsonModule": true
+		"resolveJsonModule": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
 	}
 }
