@@ -8,12 +8,9 @@ import ActiveMessenger from "./pages/ActiveMessenger";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 
-let path: string | null = null;
-if (window) {
-	path = window.location.pathname;
-} else {
-	render("#app", new SignIn());
-}
+render("#app", new SignIn());
+
+const path: string = window.location.pathname;
 
 switch (path) {
 	case "/":
