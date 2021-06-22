@@ -3,6 +3,8 @@ import EventBus from "./EventBus";
 class Block {
 	protected props: Record<string, any>;
 
+	protected events: Record<string, Function>;
+
 	protected eventBus: () => EventBus;
 
 	static EVENTS = {
@@ -16,13 +18,15 @@ class Block {
 
 	_meta = null;
 
-	constructor(tagName = "div", props = {}) {
+	constructor(tagName = "div", props = {}, events?: Record<string, Function>) {
 		const eventBus = new EventBus();
 		this._meta = {
 			tagName,
 			props,
+			events,
 		};
 
+		this.events = events;
 		this.props = this._makePropsProxy(props);
 
 		this.eventBus = () => eventBus;
@@ -90,6 +94,10 @@ class Block {
 
 	getContent() {
 		return this.element;
+	}
+
+	getEvents() {
+		return this.events;
 	}
 
 	private _makePropsProxy(props: object) {

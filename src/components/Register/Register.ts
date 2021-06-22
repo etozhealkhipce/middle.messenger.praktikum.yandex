@@ -82,7 +82,7 @@ export default class Register extends Block {
 				inputClass: "register-cart__input",
 			}).render(),
 			registerBtn: new Button({
-				buttonType: "button",
+				buttonType: "submit",
 				buttonId: "registerBtn",
 				buttonText: "Зарегистрироваться",
 				buttonName: "registerBtn",

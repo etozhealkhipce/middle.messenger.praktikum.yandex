@@ -14,7 +14,7 @@ form.login-cart#loginForm
     | !{password} 
     p.login-cart__error Неверный пароль
     | !{loginBtn}
-    a(href="./inactiveMessenger").login-cart__link Забыли пароль?
+    a(href="./inactivechat").login-cart__link Забыли пароль?
     a(href="./register")
     | !{registerBtn}`;
 

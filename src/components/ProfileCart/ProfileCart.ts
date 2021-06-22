@@ -60,8 +60,9 @@ main.content-wrapper__content.content-wrapper__content_profile
             else
                 | !{saveBtn}
 `;
-
 export default class ProfileCart extends Block {
+	events: Record<string, any>;
+
 	constructor(props: { edit: Boolean; changePassword: Boolean }) {
 		super("template", {
 			avatar: new Input({
@@ -141,8 +142,11 @@ export default class ProfileCart extends Block {
 				buttonName: "saveBtn",
 				buttonClass: "saveBtn",
 			}).render(),
-			...props,
 		});
+	}
+
+	getEvents() {
+		return this.events;
 	}
 
 	render() {

@@ -26,7 +26,7 @@ export default class Sidebar extends Block {
 			}).render(),
 			profileButton: new Button({
 				buttonType: "button",
-				buttonId: "1",
+				buttonId: "profileBtn",
 				buttonText: "Профиль",
 				buttonName: "profileBtn",
 				buttonClass: "profile",
