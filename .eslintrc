@@ -19,7 +19,7 @@
 		"class-methods-use-this": 0,
 		"no-underscore-dangle": 0,
 		"no-unused-vars": 2,
-		"max-params": [2, 3],
+		"max-params": [2, 4],
 		"prettier/prettier": "error"
 	}
 }

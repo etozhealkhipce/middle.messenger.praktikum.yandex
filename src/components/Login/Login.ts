@@ -9,10 +9,10 @@ form.login-cart#loginForm
     h1.login-cart__title Вход
     label(for="login").label Логин
     | !{login}
-    p.login-cart__error Неверный логин
+    p.login-cart__error.login-error Неверный логин
     label(for="password").label Пароль
     | !{password} 
-    p.login-cart__error Неверный пароль
+    p.login-cart__error.password-error Минимум восемь символов
     | !{loginBtn}
     a(href="./inactivechat").login-cart__link Забыли пароль?
     a(href="./register")

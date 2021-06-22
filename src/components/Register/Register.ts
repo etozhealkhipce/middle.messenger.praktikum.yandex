@@ -9,23 +9,23 @@ form.register-cart#registerForm
     h1.register-cart__title Регистрация
     label(for="email").label Почта
     | !{email}
-    p.register-cart__error Неверный формат почты
+    p.register-cart__error.email-error Неверный формат почты
     label(for="login").label Логин
     | !{login}
-    p.register-cart__error Неверный логин
+    p.register-cart__error.login-error Неверный логин
     label(for="name").label Имя
     | !{name}
     label(for="surname").label Фамилия
     | !{surname}
     label(for="phone").label Телефон
     | !{phone}
-    p.register-cart__error Неверный формат телефона
+    p.register-cart__error.phone-error Неверный формат телефона
     label(for="password").label Пароль
     | !{password}
-    p.register-cart__error Пароль должен содержать '@/$!1-9'
+    p.register-cart__error.password-error Пароль должен содержать минимум 8 символов
     label(for="password-repeat").label Повторение пароля
     | !{passwordRepeat}
-    p.register-cart__error Пароли не совпадают
+    p.register-cart__error.password-repeat-error Пароли не совпадают
     | !{registerBtn}
     a(href="/").register-cart__link Войти`;
 
@@ -75,7 +75,7 @@ export default class Register extends Block {
 				inputClass: "register-cart__input",
 			}).render(),
 			passwordRepeat: new Input({
-				inputType: "text",
+				inputType: "password",
 				inputId: "password-repeat",
 				inputName: "password-repeat",
 				inputPlaceholder: "Введите пароль еще раз",

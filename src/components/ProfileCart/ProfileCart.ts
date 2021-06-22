@@ -32,13 +32,13 @@ main.content-wrapper__content.content-wrapper__content_profile
         if !changePassword
             label(for="login").label Логин
             | !{login}
-            p.profile-cart__error Неверный логин
+            p.profile-cart__error.login-error Неверный логин
             label(for="email").label Почта
             | !{email}
-            p.profile-cart__error Неверный формат email
+            p.profile-cart__error.email-error Неверный формат email
             label(for="phone").label Телефон
             | !{phone}
-            p.profile-cart__error Неверный формат телефона
+            p.profile-cart__error.phone-error Неверный формат телефона
             if edit
                 label(for="name").label Имя
                 | !{name}
@@ -47,13 +47,13 @@ main.content-wrapper__content.content-wrapper__content_profile
         else
             label(for="password").label Пароль
             | !{password}
-            p.profile-cart__error Неверный пароль 
+            p.profile-cart__error.password-error Неверный пароль 
             label(for="password-new").label Новый пароль
             | !{passwordNew}
-            p.profile-cart__error Неверный пароль 
+            p.profile-cart__error.password-error Неверный пароль 
             label(for="password-new-repeat").label Повторение нового пароля
             | !{passwordNewRepeat}
-            p.profile-cart__error Неверный пароль 
+            p.profile-cart__error.password-new-repeat-error Неверный пароль 
         
         .actions
             if !edit && !changePassword
