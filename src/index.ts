@@ -1,14 +1,6 @@
 import render from "./services/render";
 import "./styles/index.scss";
 
-import "./profile.html";
-import "./register.html";
-import "./inactivechat.html";
-import "./activechat.html";
-import "./profile-edit.html";
-import "./profile-change-password.html";
-import "./error.html";
-
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import InactiveMessenger from "./pages/InactiveMessenger";
