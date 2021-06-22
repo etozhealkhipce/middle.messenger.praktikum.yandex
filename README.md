@@ -1,8 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/724e793a-213c-442e-b94d-65fc4a27d4fa/deploy-status)](https://app.netlify.com/sites/stupefied-franklin-e43062/deploys)
 
-## Sprint 1 PR
+## Sprint 2 PR
 
-- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/3
+- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/4
 
 ## Описание
 
