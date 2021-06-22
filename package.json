@@ -26,7 +26,7 @@
 	"scripts": {
 		"express": "node express.js",
 		"build": "parcel build './src/**/*.html' --dist-dir dist/ --no-cache --public-url /",
-		"start": "npm run express && parcel build './src/index.html' --dist-dir dist/ --no-cache --public-url /",
+		"start": "npm run express && parcel build './src/**/*.html' --dist-dir dist/ --no-cache --public-url /",
 		"serve": "parcel './src/index.html' --no-cache",
 		"lint": "eslint . --ext .js,.ts --fix && stylelint '**/*.scss' --fix"
 	},
