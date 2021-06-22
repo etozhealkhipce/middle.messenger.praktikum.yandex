@@ -12,6 +12,7 @@ const path: string = window.location.pathname;
 
 switch (path) {
 	case "/":
+	case "":
 		render("#app", new SignIn());
 		break;
 	case "/register":
