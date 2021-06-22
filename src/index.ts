@@ -8,8 +8,6 @@ import ActiveMessenger from "./pages/ActiveMessenger";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 
-render("#app", new SignIn());
-
 const path: string = window.location.pathname;
 
 switch (path) {
