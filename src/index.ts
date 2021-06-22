@@ -10,6 +10,8 @@ import Error from "./pages/Error";
 
 const path: string = window.location.pathname;
 
+render("#app", new SignIn());
+
 switch (path) {
 	case "/":
 	case "":
