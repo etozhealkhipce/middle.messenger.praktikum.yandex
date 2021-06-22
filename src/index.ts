@@ -8,7 +8,7 @@ import ActiveMessenger from "./pages/ActiveMessenger";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 
-const path = window.location.pathname;
+const path: string = window.location.pathname;
 
 switch (path) {
 	case "/":
@@ -24,6 +24,12 @@ switch (path) {
 		render("#app", new ActiveMessenger());
 		break;
 	case "/profile":
+		render("#app", new Profile({ edit: false, changePassword: false }));
+		break;
+	case "/profile-edit":
+		render("#app", new Profile({ edit: true, changePassword: false }));
+		break;
+	case "/profile-change-password":
 		render("#app", new Profile({ edit: false, changePassword: true }));
 		break;
 	case "/error":

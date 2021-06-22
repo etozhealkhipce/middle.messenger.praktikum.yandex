@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_register.scss";
 
-const template = `
+const template: string = `
 form.register-cart#registerForm
     h1.register-cart__title Регистрация
     label(for="email").label Почта
@@ -91,7 +91,7 @@ export default class Register extends Block {
 		});
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

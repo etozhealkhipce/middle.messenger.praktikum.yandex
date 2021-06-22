@@ -1,20 +1,25 @@
-export default function () {
-	const deleteButton = document.getElementById("deleteBtn");
-	const messageForm = document.getElementById("messageForm");
-	const profileButton = document.getElementById("profileBtn");
+export default function (): void {
+	const deleteButton = <HTMLButtonElement>document.getElementById("deleteBtn");
+	const messageForm = <HTMLButtonElement>document.getElementById("messageForm");
+	const profileButton = <HTMLButtonElement>(
+		document.getElementById("profileBtn")
+	);
 
-	profileButton.addEventListener("click", () => {
-		window.location = "./profile";
+	profileButton.addEventListener("click", (): void => {
+		window.location.href = "./profile";
 	});
 
-	deleteButton.addEventListener("click", () => {
+	deleteButton.addEventListener("click", (): void => {
 		window.confirm("Удалить пользователя?");
 	});
 
-	messageForm.addEventListener("submit", (e) => {
+	messageForm.addEventListener("submit", (e: Event): void => {
 		e.preventDefault();
 
-		const typedMessage = document.getElementById("messageInput").value;
+		const typedMessage = (<HTMLInputElement>(
+			document.getElementById("messageInput")
+		)).value;
+
 		console.log({
 			typedMessage,
 		});

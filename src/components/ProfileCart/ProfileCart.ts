@@ -4,7 +4,12 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_profileCart.scss";
 
-const template = `
+type Props = {
+	edit: Boolean;
+	changePassword: Boolean;
+};
+
+const template: string = `
 block variables
 
 main.content-wrapper__content.content-wrapper__content_profile
@@ -53,17 +58,17 @@ main.content-wrapper__content.content-wrapper__content_profile
         .actions
             if !edit && !changePassword
                 .actions__left
-                    a(href="./profileEdit.pug").actions__link Изменить даннные
-                    a(href="./passwordChange.pug").actions__link Изменить пароль
+                    a(href="./profile-edit").actions__link Изменить даннные
+                    a(href="./profile-change-password").actions__link Изменить пароль
                 .actions__right
-                    a(href="./error.pug").actions__link.logout Выйти
+                    a(href="./error").actions__link.logout Выйти
             else
                 | !{saveBtn}
 `;
 export default class ProfileCart extends Block {
 	events: Record<string, any>;
 
-	constructor(props: { edit: Boolean; changePassword: Boolean }) {
+	constructor(props: Props) {
 		super("template", {
 			avatar: new Input({
 				inputType: "file",
@@ -79,7 +84,7 @@ export default class ProfileCart extends Block {
 				inputValue: "alkhipce",
 				inputPlaceholder: "Введите логин",
 				inputClass: "profile-cart__input",
-				inputDisabled: props.edit,
+				inputDisabled: !props.edit,
 			}).render(),
 			email: new Input({
 				inputType: "text",
@@ -88,7 +93,7 @@ export default class ProfileCart extends Block {
 				inputValue: "alkhipce@mail.ru",
 				inputPlaceholder: "Введите почту",
 				inputClass: "profile-cart__input",
-				inputDisabled: props.edit,
+				inputDisabled: !props.edit,
 			}).render(),
 			phone: new Input({
 				inputType: "text",
@@ -97,7 +102,7 @@ export default class ProfileCart extends Block {
 				inputValue: "+7 777 555 1234",
 				inputPlaceholder: "Введите телефон",
 				inputClass: "profile-cart__input",
-				inputDisabled: props.edit,
+				inputDisabled: !props.edit,
 			}).render(),
 			name: new Input({
 				inputType: "text",
@@ -136,20 +141,21 @@ export default class ProfileCart extends Block {
 				inputClass: "profile-cart__input",
 			}).render(),
 			saveBtn: new Button({
-				buttonType: "button",
+				buttonType: "submit",
 				buttonId: "saveBtn",
 				buttonText: "Сохранить",
 				buttonName: "saveBtn",
 				buttonClass: "saveBtn",
 			}).render(),
+			...props,
 		});
 	}
 
-	getEvents() {
+	getEvents(): Record<string, any> {
 		return this.events;
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

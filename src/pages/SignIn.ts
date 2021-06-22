@@ -4,11 +4,11 @@ import { Login } from "../components/Login";
 
 import signInEvents from "../components/Login/events";
 
-const events = {
+const events: Record<string, Function> = {
 	signInEvents,
 };
 
-const template = `
+const template: string = `
 main.login
 	| !{login}
 `;
@@ -18,13 +18,13 @@ export default class SignIn extends Block {
 		super(
 			"template",
 			{
-				login: new Login({}).render(),
+				login: new Login().render(),
 			},
 			events
 		);
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

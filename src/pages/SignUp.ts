@@ -4,11 +4,11 @@ import { Register } from "../components/Register";
 
 import signUpEvents from "../components/Register/events";
 
-const events = {
+const events: Record<string, Function> = {
 	signUpEvents,
 };
 
-const template = `
+const template: string = `
 main.register
 	| !{register}
 `;
@@ -24,7 +24,7 @@ export default class SignUp extends Block {
 		);
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

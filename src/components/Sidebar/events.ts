@@ -1,14 +1,15 @@
 export default function () {
-	const sidebar = document.querySelector(".sidebar");
-	const profileButton = document.getElementById("profileBtn");
-	console.log(profileButton);
+	const sidebar = <HTMLButtonElement>document.querySelector(".sidebar");
+	const profileButton = <HTMLButtonElement>(
+		document.getElementById("profileBtn")
+	);
 
 	profileButton.addEventListener("click", (): void => {
-		window.location = "./profile";
+		window.location.href = "./profile";
 	});
 
 	sidebar.addEventListener("click", (e: Event): void => {
-		if (e.target.closest(".user-preview")) {
+		if ((<HTMLElement>e.target).closest(".user-preview")) {
 			document.location.href = "./activechat";
 		}
 	});

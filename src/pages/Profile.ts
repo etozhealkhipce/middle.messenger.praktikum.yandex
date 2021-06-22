@@ -7,19 +7,24 @@ import * as users from "../mock/users.json";
 import profileCartEvents from "../components/ProfileCart/events";
 import sidebarEvents from "../components/Sidebar/events";
 
-const events = {
+type Props = {
+	edit: Boolean;
+	changePassword: Boolean;
+};
+
+const events: Record<string, Function> = {
 	profileCartEvents,
 	sidebarEvents,
 };
 
-const template = `
+const template: string = `
 main.content-wrapper
 	| !{sidebar}
 	| !{profileCart}
 `;
 
 export default class Profile extends Block {
-	constructor(props: { edit: Boolean; changePassword: Boolean }) {
+	constructor(props: Props) {
 		super(
 			"template",
 			{
@@ -30,7 +35,7 @@ export default class Profile extends Block {
 		);
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

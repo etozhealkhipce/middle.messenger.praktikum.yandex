@@ -5,12 +5,14 @@ import { Chat } from "../components/Chat";
 import * as users from "../mock/users.json";
 
 import chatEvents from "../components/Chat/events";
+import sidebarEvents from "../components/Sidebar/events";
 
-const events = {
+const events: Record<string, Function> = {
 	chatEvents,
+	sidebarEvents,
 };
 
-const template = `
+const template: string = `
 block content
     main.content-wrapper
         | !{sidebar}
@@ -29,7 +31,7 @@ export default class ActiveMessenger extends Block {
 		);
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

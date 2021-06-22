@@ -13,7 +13,7 @@ class EventBus {
 		this.listeners[event].push(callback);
 	}
 
-	off(event: string, callback: any) {
+	off(event: string, callback: any): void {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}
@@ -23,7 +23,7 @@ class EventBus {
 		);
 	}
 
-	emit(event: string, ...args: any) {
+	emit(event: string, ...args: any): void {
 		if (!this.listeners[event]) {
 			throw new Error(`Нет события: ${event}`);
 		}

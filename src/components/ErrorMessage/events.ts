@@ -1,7 +1,7 @@
 export default function () {
-	const backButton = document.getElementById("backButton");
+	const backButton = <HTMLButtonElement>document.getElementById("backButton");
 
-	backButton.addEventListener("click", () => {
+	backButton.addEventListener("click", (): void => {
 		window.history.back();
 	});
 }

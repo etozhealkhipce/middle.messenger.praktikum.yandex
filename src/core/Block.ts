@@ -35,14 +35,14 @@ class Block {
 		eventBus.emit(Block.EVENTS.INIT);
 	}
 
-	private _registerEvents(eventBus: EventBus) {
+	private _registerEvents(eventBus: EventBus): void {
 		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
 	}
 
-	private _createResources() {
+	private _createResources(): void {
 		const { tagName } = this._meta;
 		this._element = this._createDocumentElement(tagName);
 	}
@@ -52,25 +52,25 @@ class Block {
 		this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 	}
 
-	private _componentDidMount() {
+	private _componentDidMount(): void {
 		this.componentDidMount();
 		this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 	}
 
 	componentDidMount() {}
 
-	private _componentDidUpdate() {
+	private _componentDidUpdate(): void {
 		const response = this.componentDidUpdate();
 		if (response) {
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		}
 	}
 
-	componentDidUpdate() {
+	componentDidUpdate(): Boolean {
 		return true;
 	}
 
-	setProps = (nextProps) => {
+	setProps = (nextProps): undefined => {
 		if (!nextProps) {
 			return;
 		}
@@ -82,7 +82,7 @@ class Block {
 		return this._element;
 	}
 
-	private _render() {
+	private _render(): void {
 		const block = this.render();
 		this._element.innerHTML = block;
 		if (this._element.content) {
@@ -100,7 +100,9 @@ class Block {
 		return this.events;
 	}
 
-	private _makePropsProxy(props: object) {
+	private _makePropsProxy(
+		props: Record<symbol, any>
+	): Boolean | Record<string, any> {
 		const proxyData = new Proxy(props, {
 			set: (target, prop, value) => {
 				const oldProp = target[prop];
@@ -118,7 +120,7 @@ class Block {
 		return proxyData;
 	}
 
-	private _createDocumentElement(tagName: string) {
+	private _createDocumentElement(tagName: string): HTMLElement {
 		return document.createElement(tagName);
 	}
 

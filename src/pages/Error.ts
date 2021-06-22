@@ -4,11 +4,11 @@ import { ErrorMessage } from "../components/ErrorMessage";
 
 import errorEvents from "../components/ErrorMessage/events";
 
-const events = {
+const events: Record<string, Function> = {
 	errorEvents,
 };
 
-const template = `
+const template: string = `
 main.error
 	| !{error}
 `;
@@ -24,7 +24,7 @@ export default class Error extends Block {
 		);
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

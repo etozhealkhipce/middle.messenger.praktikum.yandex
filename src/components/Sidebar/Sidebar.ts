@@ -5,7 +5,9 @@ import { Input } from "../ui/Input";
 import { UserPreview } from "../ui/userPreview";
 import "./_sidebar.scss";
 
-const template = `
+type Props = Record<string, any>;
+
+const template: string = `
 aside.sidebar
     .search
         | !{searchInput}
@@ -15,7 +17,7 @@ aside.sidebar
     | !{profileButton}`;
 
 export default class Sidebar extends Block {
-	constructor(props: any) {
+	constructor(props: Props) {
 		super("template", {
 			searchInput: new Input({
 				inputType: "text",
@@ -36,7 +38,7 @@ export default class Sidebar extends Block {
 		});
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }

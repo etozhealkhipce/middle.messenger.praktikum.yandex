@@ -5,7 +5,9 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_chat.scss";
 
-const template = `
+type Props = Record<string, string>;
+
+const template: string = `
 main.content-wrapper__content
     .chat
         .header
@@ -50,7 +52,7 @@ main.content-wrapper__content
             | !{sendMessageButton}`;
 
 export default class Chat extends Block {
-	constructor(props: any) {
+	constructor(props: Props) {
 		super("template", {
 			messageInput: new Input({
 				inputType: "text",

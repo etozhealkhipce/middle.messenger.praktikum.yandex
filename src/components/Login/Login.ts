@@ -4,7 +4,7 @@ import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_login.scss";
 
-const template = `
+const template: string = `
 form.login-cart#loginForm
     h1.login-cart__title Вход
     label(for="login").label Логин
@@ -19,7 +19,7 @@ form.login-cart#loginForm
     | !{registerBtn}`;
 
 export default class Login extends Block {
-	constructor(props: any) {
+	constructor() {
 		super("template", {
 			login: new Input({
 				inputType: "text",
@@ -49,11 +49,10 @@ export default class Login extends Block {
 				buttonName: "registerBtn",
 				buttonClass: "login-cart__button_gray registerBtn",
 			}).render(),
-			...props,
 		});
 	}
 
-	render() {
+	render(): string {
 		return compile(template)(this.props);
 	}
 }
