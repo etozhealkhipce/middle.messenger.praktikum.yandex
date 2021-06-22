@@ -8,7 +8,12 @@ import ActiveMessenger from "./pages/ActiveMessenger";
 import Profile from "./pages/Profile";
 import Error from "./pages/Error";
 
-const path: string = window.location.pathname;
+let path: string | null = null;
+if (window) {
+	path = window.location.pathname;
+} else {
+	render("#app", new SignIn());
+}
 
 switch (path) {
 	case "/":
@@ -32,8 +37,10 @@ switch (path) {
 	case "/profile-change-password":
 		render("#app", new Profile({ edit: false, changePassword: true }));
 		break;
+	case "/error":
+		render("#app", new Error({ errorCode: 404 }));
+		break;
 
 	default:
-		render("#app", new Error({ errorCode: 404 }));
 		break;
 }
