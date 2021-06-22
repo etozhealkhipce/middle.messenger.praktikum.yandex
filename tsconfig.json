@@ -1,5 +1,4 @@
 {
-	"include": ["./src", "./src/custom.d.ts"],
 	"compilerOptions": {
         "outDir": "dist",
         "target": "es2016",
@@ -10,5 +9,8 @@
 		"resolveJsonModule": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-	}
+	},
+	"exclude": [
+        "node_modules"
+    ]
 }
