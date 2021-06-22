@@ -3,18 +3,18 @@ const messageForm = document.getElementById("messageForm");
 const profileButton = document.getElementById("profileBtn");
 
 profileButton.addEventListener("click", () => {
-  window.location = "./profile.html";
+	window.location = "./profile.html";
 });
 
 deleteButton.addEventListener("click", () => {
-  window.confirm("Удалить пользователя?");
+	window.confirm("Удалить пользователя?");
 });
 
 messageForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+	e.preventDefault();
 
-  const typedMessage = document.getElementById("messageInput").value;
-  console.log({
-    typedMessage,
-  });
+	const typedMessage = document.getElementById("messageInput").value;
+	console.log({
+		typedMessage,
+	});
 });

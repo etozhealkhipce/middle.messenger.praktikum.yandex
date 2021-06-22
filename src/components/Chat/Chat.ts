@@ -1,10 +1,18 @@
+import { compile } from "pug";
+import trashIcon from "url:../../assets/icons/trash.svg";
+import Block from "../../core/Block";
+import { Button } from "../ui/Button";
+import { Input } from "../ui/Input";
+import "./_chat.scss";
+
+const template = `
 main.content-wrapper__content
     .chat
         .header
             h3.header__title Иван
 
             button(type="button" id="deleteBtn").header__delete
-                img(src="../assets/icons/trash.svg")
+                img(src=trashIcon)
         .body
             span.body__date 28 мая
             
@@ -31,14 +39,39 @@ main.content-wrapper__content
                     span.body__time 10:02
             .body__right-message
                 .body__message-wrapper
-                    .body__message ого!                    
+                    .body__message ого!                   
                     span.body__time 10:02
             .body__right-message
                 .body__message-wrapper
                     .body__message ого!                    
                     span.body__time 10:02
         form.type#messageForm
-            include ../ui/Input/input.pug
-            +input('text', 'messageInput', 'messageInput', 'Введите сообщение')(class="type__input")
-            include ../ui/Button/button.pug
-            +button('submit', 'sendMessageButton', '', 'sendMessageButton')(class="type__button")
+            | !{messageInput}
+            | !{sendMessageButton}`;
+
+export default class Chat extends Block {
+	constructor(props: any) {
+		super("template", {
+			messageInput: new Input({
+				inputType: "text",
+				inputId: "messageInput",
+				inputName: "messageInput",
+				inputPlaceholder: "Введите сообщение",
+				inputClass: "type__input",
+			}).render(),
+			sendMessageButton: new Button({
+				buttonType: "submit",
+				buttonId: "sendMessageButton",
+				buttonText: "",
+				buttonName: "sendMessageButton",
+				buttonClass: "type__button",
+			}).render(),
+			trashIcon,
+			...props,
+		});
+	}
+
+	render() {
+		return compile(template)(this.props);
+	}
+}

@@ -2,14 +2,14 @@ const registerButton = document.getElementById("registerBtn");
 const loginForm = document.getElementById("loginForm");
 
 registerButton.addEventListener("click", () => {
-  window.location = "./register.html";
+	window.location = "./register.html";
 });
 
 loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
+	e.preventDefault();
 
-  const login = document.getElementById("login").value;
-  const password = document.getElementById("password").value;
+	const login = document.getElementById("login").value;
+	const password = document.getElementById("password").value;
 
-  console.log({ login, password });
+	console.log({ login, password });
 });
