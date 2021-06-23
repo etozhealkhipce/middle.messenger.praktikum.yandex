@@ -6,7 +6,9 @@ export default function render(root: string, block: any) {
 		const events = block.getEvents();
 		if (events) {
 			Object.keys(events).forEach((key) => {
-				events[key]();
+				if (typeof events[key] === "function") {
+					events[key]();
+				}
 			});
 		}
 	}
