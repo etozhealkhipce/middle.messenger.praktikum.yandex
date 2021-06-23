@@ -1,18 +1,25 @@
-.register-cart
+form.register-cart#registerForm
     h1.register-cart__title Регистрация
     include ../ui/Input/input.pug
-    +input('email', '1', 'email', 'Введите почту')(class="register-cart__input")
+    label(for="email").label Почта
+    +input('email', 'email', 'email', 'Введите почту')(class="register-cart__input")
     p.register-cart__error Неверный формат почты
-    +input('text', '2', 'login', 'Введите логин')(class="register-cart__input")
+    label(for="login").label Логин
+    +input('text', 'login', 'login', 'Введите логин')(class="register-cart__input")
     p.register-cart__error Неверный логин
-    +input('text', '3', 'name', 'Введите имя')(class="register-cart__input")
-    +input('text', '4', 'surname', 'Введите фамилию')(class="register-cart__input")
-    +input('text', '5', 'phone', 'Введите телефон')(class="register-cart__input")
+    label(for="name").label Имя
+    +input('text', 'name', 'name', 'Введите имя')(class="register-cart__input")
+    label(for="surname").label Фамилия
+    +input('text', 'surname', 'surname', 'Введите фамилию')(class="register-cart__input")
+    label(for="phone").label Телефон
+    +input('text', 'phone', 'phone', 'Введите телефон')(class="register-cart__input")
     p.register-cart__error Неверный формат телефона
-    +input('password', '6', 'password', 'Введите пароль')(class="register-cart__input")
+    label(for="password").label Пароль
+    +input('password', 'password', 'password', 'Введите пароль')(class="register-cart__input")
     p.register-cart__error Пароль должен содержать '@/$!1-9'
-    +input('password', '7', 'password-repeat', 'Введите пароль ещё раз')(class="register-cart__input")
+    label(for="password-repeat").label Повторение пароля
+    +input('password', 'password-repeat', 'password-repeat', 'Введите пароль ещё раз')(class="register-cart__input")
     p.register-cart__error Пароли не совпадают
     include ../ui/Button/button.pug
-    +button('button', '8    ', 'Зарегистрироваться')(class="registerBtn")
+    +button('submit', 'registerBtn', 'Зарегистрироваться', 'registerBtn')(class="registerBtn")
     a(href="/").register-cart__link Войти

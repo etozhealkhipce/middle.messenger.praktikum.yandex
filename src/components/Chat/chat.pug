@@ -2,9 +2,11 @@ main.content-wrapper__content
     .chat
         .header
             h3.header__title Иван
-            img(src="../assets/icons/trash.svg").header__delete
+
+            button(type="button" id="deleteBtn").header__delete
+                img(src="../assets/icons/trash.svg")
         .body
-            span.body__data 28 мая
+            span.body__date 28 мая
             
             .body__left-message
                 .body__message-wrapper
@@ -35,8 +37,8 @@ main.content-wrapper__content
                 .body__message-wrapper
                     .body__message ого!                    
                     span.body__time 10:02
-        .type
+        form.type#messageForm
             include ../ui/Input/input.pug
-            +input('text', '2', 'message', 'Введите сообщение')(class="type__input")
+            +input('text', 'messageInput', 'messageInput', 'Введите сообщение')(class="type__input")
             include ../ui/Button/button.pug
-            +button('button', '1', '')(class="type__button")
+            +button('submit', 'sendMessageButton', '', 'sendMessageButton')(class="type__button")

@@ -8,5 +8,5 @@ app.use("/", express.static(path.join(__dirname, "dist")));
 const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${3000}!`);
+  console.log(`Server running on port ${PORT}!`);
 });

@@ -1,4 +1,4 @@
-$gray: #9e9e9e;
+@use '../../../styles/variables.scss' as *;
 
 .input {
   width: 100%;
@@ -11,6 +11,8 @@ $gray: #9e9e9e;
 
   &:focus {
     outline: none;
+    transition: 0.2s;
+    border-color: black;
   }
 
   &:disabled {

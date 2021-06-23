@@ -1,12 +1,16 @@
-const registerButton = document.querySelector(".registerBtn");
+const registerForm = document.getElementById("registerForm");
 
-registerButton.addEventListener("click", () => {
-  const email = document.getElementsByName("email")[0].value;
-  const login = document.getElementsByName("login")[0].value;
-  const name = document.getElementsByName("name")[0].value;
-  const surname = document.getElementsByName("surname")[0].value;
-  const phone = document.getElementsByName("phone")[0].value;
-  const passwordRepeat = document.getElementsByName("password-repeat")[0].value;
+registerForm.addEventListener("submit", (e) => {
+  e.preventDefault();
 
-  console.log({ email, login, name, surname, phone, passwordRepeat });
+  const response = {
+    email: document.getElementById("email").value,
+    login: document.getElementById("login").value,
+    name: document.getElementById("name").value,
+    surname: document.getElementById("surname").value,
+    phone: document.getElementById("phone").value,
+    passwordRepeat: document.getElementById("password-repeat").value,
+  };
+
+  console.log(response);
 });

@@ -1,6 +1,6 @@
-const deleteButton = document.querySelector(".header__delete");
-const sendButton = document.querySelector(".type__button");
-const profileButton = document.querySelector(".profile");
+const deleteButton = document.getElementById("deleteBtn");
+const messageForm = document.getElementById("messageForm");
+const profileButton = document.getElementById("profileBtn");
 
 profileButton.addEventListener("click", () => {
   window.location = "./profile.html";
@@ -10,7 +10,11 @@ deleteButton.addEventListener("click", () => {
   confirm("Удалить пользователя?");
 });
 
-sendButton.addEventListener("click", () => {
-  const typedMessage = document.getElementsByName("message")[0].value;
-  console.log(typedMessage);
+messageForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const typedMessage = document.getElementById("messageInput").value;
+  console.log({
+    typedMessage,
+  });
 });
