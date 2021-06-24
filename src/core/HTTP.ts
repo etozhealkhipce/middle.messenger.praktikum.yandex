@@ -55,11 +55,13 @@ export default class HTTPTransport {
 
 			xhr.onload = function () {
 				if (xhr.status === 200) {
+					// TODO: при использовании исправить
 					resolve(new Promise(() => xhr));
 				} else {
 					reject(new Error(xhr.status.toString()));
 				}
 			};
+
 			xhr.onabort = reject;
 			xhr.onerror = reject;
 

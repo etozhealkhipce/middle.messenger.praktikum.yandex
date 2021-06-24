@@ -1,7 +1,6 @@
 import { compile } from "pug";
 import Block from "../core/Block";
 import { ErrorMessage } from "../components/ErrorMessage";
-
 import errorEvents from "../components/ErrorMessage/events";
 
 const events: Record<string, Function> = {
