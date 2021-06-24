@@ -3,14 +3,16 @@ export default function () {
 	const profileButton = <HTMLButtonElement>(
 		document.getElementById("profileBtn")
 	);
-
-	profileButton.addEventListener("click", (): void => {
-		window.location.href = "./profile";
-	});
-
-	sidebar.addEventListener("click", (e: Event): void => {
-		if ((<HTMLElement>e.target).closest(".user-preview")) {
-			document.location.href = "./activechat";
-		}
-	});
+	if (profileButton) {
+		profileButton.addEventListener("click", (): void => {
+			window.location.href = "./profile";
+		});
+	}
+	if (sidebar) {
+		sidebar.addEventListener("click", (e: Event): void => {
+			if ((<HTMLElement>e.target).closest(".user-preview")) {
+				document.location.href = "./activechat";
+			}
+		});
+	}
 }

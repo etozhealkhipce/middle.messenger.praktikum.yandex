@@ -39,38 +39,40 @@ export default function (): void {
 		const phoneTest = () =>
 			toggle(!validate(phoneInput.value, Test.phone), phoneError);
 		multipleListener(phoneInput, "blur, focus", phoneTest);
-		// form
-		profileForm.addEventListener("submit", (e: Event): void => {
-			e.preventDefault();
+		// form\
+		if (profileForm) {
+			profileForm.addEventListener("submit", (e: Event): void => {
+				e.preventDefault();
 
-			const obj = {
-				login: <HTMLInputElement>document.getElementById("login"),
-				avatar: <HTMLInputElement>document.getElementById("avatar"),
-				email: <HTMLInputElement>document.getElementById("email"),
-				phone: <HTMLInputElement>document.getElementById("phone"),
-				name: <HTMLInputElement>document.getElementById("name"),
-				surname: <HTMLInputElement>document.getElementById("surname"),
-			};
+				const obj = {
+					login: <HTMLInputElement>document.getElementById("login"),
+					avatar: <HTMLInputElement>document.getElementById("avatar"),
+					email: <HTMLInputElement>document.getElementById("email"),
+					phone: <HTMLInputElement>document.getElementById("phone"),
+					name: <HTMLInputElement>document.getElementById("name"),
+					surname: <HTMLInputElement>document.getElementById("surname"),
+				};
 
-			const request = Object.entries(obj).reduce(
-				(acc, [key, elem]): Record<string, string> => {
-					if (elem && elem.value) {
-						acc[key] = elem.value;
-					}
+				const request = Object.entries(obj).reduce(
+					(acc: Record<string, any>, [key, elem]): Record<string, string> => {
+						if (elem && elem.value) {
+							acc[key] = elem.value;
+						}
 
-					return acc;
-				},
-				{}
-			);
+						return acc;
+					},
+					{}
+				);
 
-			const loginValidate = loginTest();
-			const emailValidate = emailTest();
-			const phoneValidate = phoneTest();
+				const loginValidate = loginTest();
+				const emailValidate = emailTest();
+				const phoneValidate = phoneTest();
 
-			if (loginValidate && emailValidate && phoneValidate) {
-				console.log(request);
-			}
-		});
+				if (loginValidate && emailValidate && phoneValidate) {
+					console.log(request);
+				}
+			});
+		}
 	}
 
 	if (path === "/profile-change-password") {
@@ -122,39 +124,43 @@ export default function (): void {
 			passwordNewRepeatTest
 		);
 		// form
-		profileForm.addEventListener("submit", (e: Event): void => {
-			e.preventDefault();
+		if (profileForm) {
+			profileForm.addEventListener("submit", (e: Event): void => {
+				e.preventDefault();
 
-			const obj = {
-				password: <HTMLInputElement>document.getElementById("password"),
-				passwordNew: <HTMLInputElement>document.getElementById("password-new"),
-				passwordNewRepeat: <HTMLInputElement>(
-					document.getElementById("password-new-repeat")
-				),
-			};
+				const obj = {
+					password: <HTMLInputElement>document.getElementById("password"),
+					passwordNew: <HTMLInputElement>(
+						document.getElementById("password-new")
+					),
+					passwordNewRepeat: <HTMLInputElement>(
+						document.getElementById("password-new-repeat")
+					),
+				};
 
-			const request = Object.entries(obj).reduce(
-				(acc, [key, elem]): Record<string, string> => {
-					if (elem && elem.value) {
-						acc[key] = elem.value;
-					}
+				const request = Object.entries(obj).reduce(
+					(acc: Record<string, any>, [key, elem]): Record<string, string> => {
+						if (elem && elem.value) {
+							acc[key] = elem.value;
+						}
 
-					return acc;
-				},
-				{}
-			);
+						return acc;
+					},
+					{}
+				);
 
-			const passwordValidate = passwordTest();
-			const passwordNewValidate = passwordNewTest();
-			const passwordNewRepeatValidate = passwordNewRepeatTest();
+				const passwordValidate = passwordTest();
+				const passwordNewValidate = passwordNewTest();
+				const passwordNewRepeatValidate = passwordNewRepeatTest();
 
-			if (
-				passwordValidate &&
-				passwordNewValidate &&
-				passwordNewRepeatValidate
-			) {
-				console.log(request);
-			}
-		});
+				if (
+					passwordValidate &&
+					passwordNewValidate &&
+					passwordNewRepeatValidate
+				) {
+					console.log(request);
+				}
+			});
+		}
 	}
 }

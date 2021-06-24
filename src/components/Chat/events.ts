@@ -5,23 +5,29 @@ export default function (): void {
 		document.getElementById("profileBtn")
 	);
 
-	profileButton.addEventListener("click", (): void => {
-		window.location.href = "./profile";
-	});
-
-	deleteButton.addEventListener("click", (): void => {
-		window.confirm("Удалить пользователя?");
-	});
-
-	messageForm.addEventListener("submit", (e: Event): void => {
-		e.preventDefault();
-
-		const typedMessage = (<HTMLInputElement>(
-			document.getElementById("messageInput")
-		)).value;
-
-		console.log({
-			typedMessage,
+	if (profileButton) {
+		profileButton.addEventListener("click", (): void => {
+			window.location.href = "./profile";
 		});
-	});
+	}
+
+	if (deleteButton) {
+		deleteButton.addEventListener("click", (): void => {
+			window.confirm("Удалить пользователя?");
+		});
+	}
+
+	if (messageForm) {
+		messageForm.addEventListener("submit", (e: Event): void => {
+			e.preventDefault();
+
+			const typedMessage = (<HTMLInputElement>(
+				document.getElementById("messageInput")
+			)).value;
+
+			console.log({
+				typedMessage,
+			});
+		});
+	}
 }

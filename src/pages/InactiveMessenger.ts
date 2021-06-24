@@ -5,7 +5,7 @@ import { Chat } from "../components/Chat";
 import * as users from "../mock/users.json";
 import sidebarEvents from "../components/Sidebar/events";
 
-const events:  = {
+const events: Events = {
 	sidebarEvents,
 };
 

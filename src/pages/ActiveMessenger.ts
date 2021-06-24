@@ -3,11 +3,10 @@ import Block from "../core/Block";
 import { Sidebar } from "../components/Sidebar";
 import { Chat } from "../components/Chat";
 import * as users from "../mock/users.json";
-
 import chatEvents from "../components/Chat/events";
 import sidebarEvents from "../components/Sidebar/events";
 
-const events: Record<string, Function> = {
+const events: Events = {
 	chatEvents,
 	sidebarEvents,
 };

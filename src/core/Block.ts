@@ -128,7 +128,7 @@ class Block {
 		this.getContent().style.display = "block";
 	}
 
-	hide() {
+	hidden() {
 		this.getContent().style.display = "none";
 	}
 }

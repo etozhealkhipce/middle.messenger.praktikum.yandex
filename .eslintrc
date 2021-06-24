@@ -19,6 +19,11 @@
 		"class-methods-use-this": 0,
 		"no-underscore-dangle": 0,
 		"max-params": [2, 4],
-		"prettier/prettier": "error"
+		"prettier/prettier": [
+			"error",
+			{
+				"endOfLine": "auto"
+			}
+		]
 	}
 }

@@ -55,34 +55,36 @@ export default function (): void {
 		toggle(!validate(phoneInput.value, Test.phone), phoneError);
 	multipleListener(phoneInput, "blur, focus", phoneTest);
 
-	registerForm.addEventListener("submit", (e: Event): void => {
-		e.preventDefault();
+	if (registerForm) {
+		registerForm.addEventListener("submit", (e: Event): void => {
+			e.preventDefault();
 
-		const response = {
-			email: (<HTMLInputElement>document.getElementById("email")).value,
-			login: (<HTMLInputElement>document.getElementById("login")).value,
-			name: (<HTMLInputElement>document.getElementById("name")).value,
-			surname: (<HTMLInputElement>document.getElementById("surname")).value,
-			phone: (<HTMLInputElement>document.getElementById("phone")).value,
-			passwordRepeat: (<HTMLInputElement>(
-				document.getElementById("password-repeat")
-			)).value,
-		};
+			const response = {
+				email: (<HTMLInputElement>document.getElementById("email")).value,
+				login: (<HTMLInputElement>document.getElementById("login")).value,
+				name: (<HTMLInputElement>document.getElementById("name")).value,
+				surname: (<HTMLInputElement>document.getElementById("surname")).value,
+				phone: (<HTMLInputElement>document.getElementById("phone")).value,
+				passwordRepeat: (<HTMLInputElement>(
+					document.getElementById("password-repeat")
+				)).value,
+			};
 
-		const passwordValidate = passwordTest();
-		const loginValidate = loginTest();
-		const passwordRepeatvalidate = passwordRepeatTest();
-		const emailValidate = emailTest();
-		const phoneValidate = phoneTest();
+			const passwordValidate = passwordTest();
+			const loginValidate = loginTest();
+			const passwordRepeatvalidate = passwordRepeatTest();
+			const emailValidate = emailTest();
+			const phoneValidate = phoneTest();
 
-		if (
-			passwordValidate &&
-			loginValidate &&
-			passwordRepeatvalidate &&
-			emailValidate &&
-			phoneValidate
-		) {
-			console.log(response);
-		}
-	});
+			if (
+				passwordValidate &&
+				loginValidate &&
+				passwordRepeatvalidate &&
+				emailValidate &&
+				phoneValidate
+			) {
+				console.log(response);
+			}
+		});
+	}
 }

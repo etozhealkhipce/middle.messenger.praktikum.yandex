@@ -18,9 +18,12 @@ export default function (): void {
 	const passwordError = <HTMLParagraphElement>(
 		document.querySelector(".password-error")
 	);
-	registerButton.addEventListener("click", (): void => {
-		window.location.href = "./register";
-	});
+
+	if (registerButton) {
+		registerButton.addEventListener("click", (): void => {
+			window.location.href = "./register";
+		});
+	}
 
 	const loginTest = () =>
 		toggle(!validate(loginInput.value, Test.login), loginError);
@@ -30,14 +33,16 @@ export default function (): void {
 		toggle(!validate(passwordInput.value, Test.password), passwordError);
 	multipleListener(passwordInput, "blur, focus", passwordTest);
 
-	loginForm.addEventListener("submit", (e: Event): void => {
-		e.preventDefault();
+	if (loginForm) {
+		loginForm.addEventListener("submit", (e: Event): void => {
+			e.preventDefault();
 
-		const passwordValidate = passwordTest();
-		const loginValidate = loginTest();
+			const passwordValidate = passwordTest();
+			const loginValidate = loginTest();
 
-		if (passwordValidate && loginValidate) {
-			console.log({ login: loginInput.value, password: passwordInput.value });
-		}
-	});
+			if (passwordValidate && loginValidate) {
+				console.log({ login: loginInput.value, password: passwordInput.value });
+			}
+		});
+	}
 }

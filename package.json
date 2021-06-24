@@ -10,6 +10,7 @@
 	"devDependencies": {
 		"@parcel/transformer-pug": "^2.0.0-nightly.703",
 		"@parcel/transformer-sass": "^2.0.0-nightly.703",
+		"@types/pug": "^2.0.4",
 		"@typescript-eslint/eslint-plugin": "^4.28.0",
 		"@typescript-eslint/parser": "^4.27.0",
 		"eslint": "^7.29.0",
@@ -27,7 +28,7 @@
 		"express": "node express.js",
 		"build": "parcel build './src/**/*.html' --dist-dir dist/ --no-cache --public-url /",
 		"start": "parcel -p 3000 ./src/index.html",
-		"serve": "parcel './src/index.html' --no-cache",
+		"serve": "parcel ./src/index.html --no-cache",
 		"lint": "eslint . --ext .js,.ts --fix && stylelint '**/*.scss' --fix"
 	},
 	"repository": {

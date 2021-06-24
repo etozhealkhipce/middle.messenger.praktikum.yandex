@@ -1,10 +1,9 @@
 import { compile } from "pug";
 import Block from "../core/Block";
 import { Register } from "../components/Register";
-
 import signUpEvents from "../components/Register/events";
 
-const events: Record<string, Function> = {
+const events: Events = {
 	signUpEvents,
 };
 

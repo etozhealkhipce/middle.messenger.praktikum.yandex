@@ -3,7 +3,6 @@ import Block from "../core/Block";
 import { Sidebar } from "../components/Sidebar";
 import { ProfileCart } from "../components/ProfileCart";
 import * as users from "../mock/users.json";
-
 import profileCartEvents from "../components/ProfileCart/events";
 import sidebarEvents from "../components/Sidebar/events";
 

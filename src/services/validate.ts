@@ -13,10 +13,10 @@ export const validate = (value: string, test: string): Boolean => {
 
 export const toggle = (result: Boolean, element: HTMLElement): Boolean => {
 	if (result) {
-		element.style.display = "block";
+		element.classList.remove("hidden");
 		return false;
 	}
-	element.style.display = "none";
+	element.classList.add("hidden");
 	return true;
 };
 
@@ -25,9 +25,12 @@ export const multipleListener = (
 	eventNames: string,
 	callback: Function
 ): void => {
-	eventNames.split(", ").forEach((eventName) =>
-		element.addEventListener(eventName, () => {
-			callback();
-		})
-	);
+	eventNames.split(", ").forEach((eventName): Function | void => {
+		if (element) {
+			return element.addEventListener(eventName, () => {
+				callback();
+			});
+		}
+		return undefined;
+	});
 };
