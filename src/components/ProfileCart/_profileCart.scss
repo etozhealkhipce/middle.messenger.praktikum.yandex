@@ -1,134 +1,133 @@
 @use '../../styles/variables.scss' as *;
 
 .profile-cart {
-  width: 500px;
-  padding: 50px;
-  margin: 0 auto;
-  background-color: white;
-  border-radius: 10px;
+	background-color: #fff;
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: 50px;
+	width: 500px;
 
-  &__title {
-    color: black;
-    font-family: "Montserrat", sans-serif;
-    font-weight: 600;
-    font-size: 2.7rem;
-    margin-top: 0;
-  }
+	&__title {
+		color: #000;
+		font-family: "Montserrat", sans-serif;
+		font-size: 2.7rem;
+		font-weight: 600;
+		margin-top: 0;
+	}
 
-  &__error {
-    color: $red;
-    margin-top: -25px;
-    font-size: 0.7rem;
-    display: none;
-  }
+	&__error {
+		color: $red;
+		font-size: 0.7rem;
+		margin-top: -25px;
+	}
 
-  &__input {
-    margin-bottom: 40px;
-  }
+	&__input {
+		margin-bottom: 40px;
+	}
 
-  &__button_gray {
-    margin-top: 20px;
-    background-color: $gray;
+	&__button_gray {
+		background-color: $gray;
+		margin-top: 20px;
 
-    &:hover {
-      transition: 0.3;
-      background-color: black;
-    }
-  }
+		&:hover {
+			background-color: #000;
+			transition: 0.3;
+		}
+	}
 
-  .user {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 40px;
+	.user {
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 40px;
 
-    &__avatar-input {
-      height: 70px;
-      width: 70px;
-    }
+		&__avatar-input {
+			height: 70px;
+			width: 70px;
+		}
 
-    &__image {
-      width: 70px;
-      height: 100%;
-      border-radius: 50%;
-      background-color: $light-gray;
-      cursor: pointer;
-    }
+		&__image {
+			background-color: $light-gray;
+			border-radius: 50%;
+			cursor: pointer;
+			height: 100%;
+			width: 70px;
+		}
 
-    &__first-wrapper {
-      display: flex;
-      align-items: center;
-      margin-right: 20px;
-      height: 70px;
-      position: relative;
+		&__first-wrapper {
+			align-items: center;
+			display: flex;
+			height: 70px;
+			margin-right: 20px;
+			position: relative;
 
-      &_edit {
-        &:after {
-          content: "";
-          position: absolute;
-          opacity: 0;
-          background: url("../../assets/icons/camera.svg") no-repeat;
-          z-index: 999;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
-        }
+			&_edit {
+				&::after {
+					background: url("../../assets/icons/camera.svg") no-repeat;
+					content: "";
+					cursor: pointer;
+					height: 30px;
+					left: 50%;
+					opacity: 0;
+					position: absolute;
+					top: 50%;
+					transform: translate(-50%, -50%);
+					width: 30px;
+					z-index: 999;
+				}
 
-        &:hover:after {
-          opacity: 1;
-        }
+				&:hover::after {
+					opacity: 1;
+				}
 
-        & > input {
-          display: none;
-        }
-      }
-    }
+				> input {
+					display: none;
+				}
+			}
+		}
 
-    &__second-wrapper {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-      height: 70px;
-    }
+		&__second-wrapper {
+			display: flex;
+			flex-direction: column;
+			height: 70px;
+			justify-content: center;
+		}
 
-    &__title {
-      font-weight: 400;
-    }
+		&__title {
+			font-weight: 400;
+		}
 
-    &__surname {
-      color: $gray;
-      margin-bottom: 0;
-    }
-  }
+		&__surname {
+			color: $gray;
+			margin-bottom: 0;
+		}
+	}
 
-  .actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 40px;
+	.actions {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 40px;
 
-    &__link {
-      display: inline-block;
-      width: 100%;
-      margin-top: 40px;
-      color: black;
-      text-decoration: none;
-      font-size: 1rem;
+		&__link {
+			color: #000;
+			display: inline-block;
+			font-size: 1rem;
+			margin-top: 40px;
+			text-decoration: none;
+			width: 100%;
 
-      &:hover {
-        transition: 0.3s;
-        color: $gray;
-      }
-    }
+			&:hover {
+				color: $gray;
+				transition: 0.3s;
+			}
+		}
 
-    &__right {
-      margin-top: auto;
-      margin-bottom: 0;
-    }
+		&__right {
+			margin-bottom: 0;
+			margin-top: auto;
+		}
 
-    .logout {
-      color: $red;
-    }
-  }
+		.logout {
+			color: $red;
+		}
+	}
 }

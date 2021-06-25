@@ -1,0 +1,27 @@
+@use '../../styles/variables.scss' as *;
+
+.error-cart {
+	background-color: #fff;
+	border-radius: 10px;
+	margin: 0 auto;
+	padding: 50px;
+	width: 500px;
+
+	&__title {
+		color: #000;
+		font-family: "Montserrat", sans-serif;
+		font-size: 2.7rem;
+		font-weight: 600;
+		margin-top: 0;
+	}
+
+	&__message {
+		color: #000;
+		font-family: "Montserrat", sans-serif;
+		font-size: 1rem;
+	}
+
+	&__button {
+		margin-top: 40px;
+	}
+}

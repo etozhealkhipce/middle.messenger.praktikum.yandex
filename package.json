@@ -1,33 +1,45 @@
 {
-  "name": "middle.messenger.praktikum.yandex",
-  "version": "1.0.0",
-  "description": "Мессенджер на JavaScript.",
-  "dependencies": {
-    "express": "^4.17.1",
-    "normalize.css": "^8.0.1"
-  },
-  "devDependencies": {
-    "@parcel/transformer-pug": "^2.0.0-nightly.703",
-    "@parcel/transformer-sass": "^2.0.0-nightly.703",
-    "parcel": "^2.0.0-beta.3.1",
-    "pug": "^3.0.2",
-    "sass": "^1.34.0"
-  },
-  "scripts": {
-    "express": "node express.js",
-    "build": "parcel build './src/views/index.pug' --dist-dir dist/ --no-cache --public-url /",
-    "start": "parcel build './src/views/index.pug' --dist-dir dist/ --no-cache --public-url / && npm run express",
-    "serve": "parcel './src/views/index.pug' --no-cache"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/issues"
-  },
-  "homepage": "https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex#readme",
-  "_id": "middle.messenger.praktikum.yandex@1.0.0"
+	"name": "middle.messenger.praktikum.yandex",
+	"version": "1.0.0",
+	"description": "Мессенджер на JavaScript.",
+	"dependencies": {
+		"express": "^4.17.1",
+		"normalize.css": "^8.0.1",
+		"pug": "^3.0.2"
+	},
+	"devDependencies": {
+		"@parcel/transformer-pug": "^2.0.0-nightly.703",
+		"@parcel/transformer-sass": "^2.0.0-nightly.703",
+		"@types/pug": "^2.0.4",
+		"@typescript-eslint/eslint-plugin": "^4.28.0",
+		"@typescript-eslint/parser": "^4.27.0",
+		"eslint": "^7.29.0",
+		"eslint-config-airbnb-typescript": "^12.3.1",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-plugin-prettier": "^3.4.0",
+		"parcel": "^2.0.0-beta.3.1",
+		"sass": "^1.34.0",
+		"stylelint": "^13.13.1",
+		"stylelint-config-prettier": "^8.0.2",
+		"stylelint-config-sass-guidelines": "^8.0.0",
+		"typescript": "^4.3.4"
+	},
+	"scripts": {
+		"express": "node express.js",
+		"build": "parcel build './src/**/*.html' --dist-dir dist/ --no-cache --public-url /",
+		"start": "parcel -p 3000 ./src/index.html",
+		"serve": "parcel ./src/index.html --no-cache",
+		"lint": "eslint . --ext .js,.ts --fix && stylelint '**/*.scss' --fix"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/issues"
+	},
+	"homepage": "https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex#readme",
+	"_id": "middle.messenger.praktikum.yandex@1.0.0"
 }
