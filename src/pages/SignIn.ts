@@ -1,11 +1,11 @@
 import { compile } from "pug";
 import Block from "../core/Block";
 import { Login } from "../components/Login";
-import signInEvents from "../components/Login/events";
+// import signInEvents from "../components/Login/events";
 
-const events: Events = {
-	signInEvents,
-};
+// const events: Events = {
+// 	signInEvents,
+// };
 
 const template: string = `
 main.login
@@ -18,8 +18,8 @@ export default class SignIn extends Block {
 			"template",
 			{
 				login: new Login().render(),
-			},
-			events
+			}
+			// events
 		);
 	}
 

@@ -1,9 +1,16 @@
 import EventBus from "./EventBus";
 
-class Block {
-	protected props: Record<string, any>;
+type Constructor = {
+	tagName: string;
+	props: Record<string, any>;
+	events: Record<string, Function>;
+	classes: string[];
+};
 
-	protected events: Record<string, Function>;
+class Block {
+	protected props: Record<string, any> | null;
+
+	protected events: Record<string, Function> | null;
 
 	protected eventBus: () => EventBus;
 
@@ -14,16 +21,17 @@ class Block {
 		FLOW_RENDER: "flow:render",
 	};
 
-	_element = null;
+	_element: HTMLElement | null = null;
 
-	_meta = null;
+	_meta: Constructor | null = null;
 
-	constructor(tagName = "div", props = {}, events?: Record<string, Function>) {
+	constructor({ tagName, props, events, classes }: Constructor) {
 		const eventBus = new EventBus();
 		this._meta = {
 			tagName,
 			props,
 			events,
+			classes,
 		};
 
 		this.events = events;
@@ -70,7 +78,7 @@ class Block {
 		return true;
 	}
 
-	setProps = (nextProps): undefined => {
+	setProps = (nextProps: Record<string, any>): undefined => {
 		if (!nextProps) {
 			return;
 		}
@@ -84,13 +92,28 @@ class Block {
 
 	private _render(): void {
 		const block = this.render();
+
 		this._element.innerHTML = block;
+
 		if (this._element.content) {
 			this._element = this._element.content.cloneNode(true);
 		}
+
+		this._addEvents();
 	}
 
 	render() {}
+
+	_addEvents() {
+		const { events } = this;
+
+		if (events) {
+			Object.keys(events).forEach((eventName) => {
+				console.log(this._element);
+				this._element.addEventListener(eventName, events[eventName]);
+			});
+		}
+	}
 
 	getContent() {
 		return this.element;
@@ -125,11 +148,19 @@ class Block {
 	}
 
 	show() {
-		this.getContent().style.display = "block";
+		const element = this.getContent();
+
+		if (element) {
+			element.style.display = "block";
+		}
 	}
 
 	hidden() {
-		this.getContent().style.display = "none";
+		const element = this.getContent();
+
+		if (element) {
+			element.style.display = "none";
+		}
 	}
 }
 

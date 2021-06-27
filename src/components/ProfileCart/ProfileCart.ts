@@ -151,10 +151,6 @@ export default class ProfileCart extends Block {
 		});
 	}
 
-	getEvents(): Record<string, any> {
-		return this.events;
-	}
-
 	render(): string {
 		return compile(template)(this.props);
 	}
