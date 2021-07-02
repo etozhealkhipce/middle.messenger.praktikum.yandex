@@ -37,7 +37,6 @@ export default class Sidebar extends Block {
 					buttonClass: "profile",
 				}).render(),
 				userPreview: new UserPreview({ users: props.users }).render(),
-				...props,
 			},
 			events: {
 				events,

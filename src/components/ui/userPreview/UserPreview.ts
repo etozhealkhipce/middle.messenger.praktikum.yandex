@@ -30,7 +30,7 @@ else
 
 export default class UserPreview extends Block {
 	constructor(props: Props) {
-		super("template", props);
+		super({ tagName: "template", props });
 	}
 
 	render(): string {
