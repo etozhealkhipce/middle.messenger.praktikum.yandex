@@ -3,11 +3,6 @@ import Block from "../core/Block";
 import { Sidebar } from "../components/Sidebar";
 import { Chat } from "../components/Chat";
 import * as users from "../mock/users.json";
-import sidebarEvents from "../components/Sidebar/events";
-
-const events: Events = {
-	sidebarEvents,
-};
 
 const template: string = `
 block content
@@ -19,14 +14,20 @@ block content
 
 export default class InactiveMessenger extends Block {
 	constructor() {
-		super(
-			"template",
-			{
-				sidebar: new Sidebar({ users }).render(),
-				chat: new Chat({}).render(),
+		const sidebar = new Sidebar({ users });
+		const chat = new Chat({});
+
+		super({
+			tagName: "template",
+			props: {
+				sidebar: sidebar.render(),
+				chat: chat.render(),
 			},
-			events
-		);
+			events: {
+				...sidebar.getEvents(),
+				...chat.getEvents(),
+			},
+		});
 	}
 
 	render(): string {

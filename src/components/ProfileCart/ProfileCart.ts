@@ -3,6 +3,7 @@ import Block from "../../core/Block";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_profileCart.scss";
+import events from "./events";
 
 type Props = {
 	edit: Boolean;
@@ -69,85 +70,91 @@ export default class ProfileCart extends Block {
 	events: Record<string, any>;
 
 	constructor(props: Props) {
-		super("template", {
-			avatar: new Input({
-				inputType: "file",
-				inputId: "avatar-input",
-				inputName: "avatar",
-				inputPlaceholder: "",
-				inputClass: "profile-cart__input_file",
-			}).render(),
-			login: new Input({
-				inputType: "text",
-				inputId: "login",
-				inputName: "login",
-				inputValue: "alkhipce",
-				inputPlaceholder: "Введите логин",
-				inputClass: "profile-cart__input",
-				inputDisabled: !props.edit,
-			}).render(),
-			email: new Input({
-				inputType: "text",
-				inputId: "email",
-				inputName: "email",
-				inputValue: "alkhipce@mail.ru",
-				inputPlaceholder: "Введите почту",
-				inputClass: "profile-cart__input",
-				inputDisabled: !props.edit,
-			}).render(),
-			phone: new Input({
-				inputType: "text",
-				inputId: "phone",
-				inputName: "phone",
-				inputValue: "+7 777 555 1234",
-				inputPlaceholder: "Введите телефон",
-				inputClass: "profile-cart__input",
-				inputDisabled: !props.edit,
-			}).render(),
-			name: new Input({
-				inputType: "text",
-				inputId: "name",
-				inputName: "name",
-				inputValue: "Илья",
-				inputPlaceholder: "Введите имя",
-				inputClass: "profile-cart__input",
-			}).render(),
-			surname: new Input({
-				inputType: "text",
-				inputId: "surname",
-				inputName: "surname",
-				inputPlaceholder: "Введите фамилию",
-				inputClass: "profile-cart__input",
-			}).render(),
-			password: new Input({
-				inputType: "password",
-				inputId: "password",
-				inputName: "password",
-				inputPlaceholder: "Введите пароль",
-				inputClass: "profile-cart__input",
-			}).render(),
-			passwordNew: new Input({
-				inputType: "password",
-				inputId: "password-new",
-				inputName: "password-new",
-				inputPlaceholder: "Введите новый пароль",
-				inputClass: "profile-cart__input",
-			}).render(),
-			passwordNewRepeat: new Input({
-				inputType: "password",
-				inputId: "password-new-repeat",
-				inputName: "password-new-repeat",
-				inputPlaceholder: "Введите новый пароль еще раз",
-				inputClass: "profile-cart__input",
-			}).render(),
-			saveBtn: new Button({
-				buttonType: "submit",
-				buttonId: "saveBtn",
-				buttonText: "Сохранить",
-				buttonName: "saveBtn",
-				buttonClass: "saveBtn",
-			}).render(),
-			...props,
+		super({
+			tagName: "template",
+			props: {
+				avatar: new Input({
+					inputType: "file",
+					inputId: "avatar-input",
+					inputName: "avatar",
+					inputPlaceholder: "",
+					inputClass: "profile-cart__input_file",
+				}).render(),
+				login: new Input({
+					inputType: "text",
+					inputId: "login",
+					inputName: "login",
+					inputValue: "alkhipce",
+					inputPlaceholder: "Введите логин",
+					inputClass: "profile-cart__input",
+					inputDisabled: !props.edit,
+				}).render(),
+				email: new Input({
+					inputType: "text",
+					inputId: "email",
+					inputName: "email",
+					inputValue: "alkhipce@mail.ru",
+					inputPlaceholder: "Введите почту",
+					inputClass: "profile-cart__input",
+					inputDisabled: !props.edit,
+				}).render(),
+				phone: new Input({
+					inputType: "text",
+					inputId: "phone",
+					inputName: "phone",
+					inputValue: "+7 777 555 1234",
+					inputPlaceholder: "Введите телефон",
+					inputClass: "profile-cart__input",
+					inputDisabled: !props.edit,
+				}).render(),
+				name: new Input({
+					inputType: "text",
+					inputId: "name",
+					inputName: "name",
+					inputValue: "Илья",
+					inputPlaceholder: "Введите имя",
+					inputClass: "profile-cart__input",
+				}).render(),
+				surname: new Input({
+					inputType: "text",
+					inputId: "surname",
+					inputName: "surname",
+					inputPlaceholder: "Введите фамилию",
+					inputClass: "profile-cart__input",
+				}).render(),
+				password: new Input({
+					inputType: "password",
+					inputId: "password",
+					inputName: "password",
+					inputPlaceholder: "Введите пароль",
+					inputClass: "profile-cart__input",
+				}).render(),
+				passwordNew: new Input({
+					inputType: "password",
+					inputId: "password-new",
+					inputName: "password-new",
+					inputPlaceholder: "Введите новый пароль",
+					inputClass: "profile-cart__input",
+				}).render(),
+				passwordNewRepeat: new Input({
+					inputType: "password",
+					inputId: "password-new-repeat",
+					inputName: "password-new-repeat",
+					inputPlaceholder: "Введите новый пароль еще раз",
+					inputClass: "profile-cart__input",
+				}).render(),
+				saveBtn: new Button({
+					buttonType: "submit",
+					buttonId: "saveBtn",
+					buttonText: "Сохранить",
+					buttonName: "saveBtn",
+					buttonClass: "saveBtn",
+				}).render(),
+				...props,
+			},
+			events: {
+				events,
+			},
 		});
 	}
 

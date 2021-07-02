@@ -3,14 +3,18 @@ import EventBus from "./EventBus";
 type Constructor = {
 	tagName: string;
 	props: Record<string, any>;
-	events: Record<string, Function>;
-	classes: string[];
+	events?: Record<string, Function>;
+	classes?: string[];
 };
 
 class Block {
-	protected props: Record<string, any> | null;
+	protected props: Record<string, any>;
 
-	protected events: Record<string, Function> | null;
+	protected tagName: string;
+
+	protected events: Record<string, Function>;
+
+	protected classes: string[];
 
 	protected eventBus: () => EventBus;
 
@@ -78,14 +82,6 @@ class Block {
 		return true;
 	}
 
-	setProps = (nextProps: Record<string, any>): undefined => {
-		if (!nextProps) {
-			return;
-		}
-
-		Object.assign(this.props, nextProps);
-	};
-
 	get element() {
 		return this._element;
 	}
@@ -98,22 +94,9 @@ class Block {
 		if (this._element.content) {
 			this._element = this._element.content.cloneNode(true);
 		}
-
-		this._addEvents();
 	}
 
 	render() {}
-
-	_addEvents() {
-		const { events } = this;
-
-		if (events) {
-			Object.keys(events).forEach((eventName) => {
-				console.log(this._element);
-				this._element.addEventListener(eventName, events[eventName]);
-			});
-		}
-	}
 
 	getContent() {
 		return this.element;
@@ -124,23 +107,25 @@ class Block {
 	}
 
 	private _makePropsProxy(
-		props: Record<symbol, any>
+		props: Record<string, any>
 	): Boolean | Record<string, any> {
-		const proxyData = new Proxy(props, {
-			set: (target, prop, value) => {
-				const oldProp = target[prop];
-				target[prop] = value;
-				const newProp = target[prop];
+		if (props) {
+			const proxyData = new Proxy(props, {
+				set: (target, prop, value) => {
+					const oldProp = target[prop];
+					target[prop] = value;
+					const newProp = target[prop];
 
-				this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProp, newProp);
-				return true;
-			},
-			deleteProperty: () => {
-				throw new Error("Нет доступа!");
-			},
-		});
+					this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProp, newProp);
+					return true;
+				},
+				deleteProperty: () => {
+					throw new Error("Нет доступа!");
+				},
+			});
 
-		return proxyData;
+			return proxyData;
+		}
 	}
 
 	private _createDocumentElement(tagName: string): HTMLElement {

@@ -15,7 +15,10 @@ button(type=buttonType id=buttonId name=buttonName class=buttonClass)&attributes
 
 export default class Button extends Block {
 	constructor(props: Props) {
-		super("template", props);
+		super({
+			tagName: "template",
+			props,
+		});
 	}
 
 	render(): string {

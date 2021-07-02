@@ -3,25 +3,21 @@ import Block from "../../core/Block";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_login.scss";
-import {
-	Test,
-	validate,
-	toggle,
-	multipleListener,
-} from "../../services/validate";
+import events from "./events";
 
 const template: string = `
-h1.login-cart__title Вход
-label(for="login").label Логин
-| !{login}
-p.login-cart__error.login-error.hidden Неверный логин
-label(for="password").label Пароль
-| !{password} 
-p.login-cart__error.password-error.hidden Минимум восемь символов
-| !{loginBtn}
-a(href="./inactivechat").login-cart__link Забыли пароль?
-a(href="./register")
-| !{registerBtn}`;
+form.login-cart#loginForm
+	h1.login-cart__title Вход
+	label(for="login").label Логин
+	| !{login}
+	p.login-cart__error.login-error.hidden Неверный логин
+	label(for="password").label Пароль
+	| !{password} 
+	p.login-cart__error.password-error.hidden Минимум восемь символов
+	| !{loginBtn}
+	a(href="./inactivechat").login-cart__link Забыли пароль?
+	a(href="./register")
+	| !{registerBtn}`;
 
 export default class Login extends Block {
 	constructor() {
@@ -58,42 +54,7 @@ export default class Login extends Block {
 				}).render(),
 			},
 			events: {
-				submit: (e: Event): void => {
-					e.preventDefault();
-					console.log("test");
-
-					const loginInput = <HTMLInputElement>document.getElementById("login");
-					const passwordInput = <HTMLInputElement>(
-						document.getElementById("password")
-					);
-					const loginError = <HTMLParagraphElement>(
-						document.querySelector(".login-error")
-					);
-					const passwordError = <HTMLParagraphElement>(
-						document.querySelector(".password-error")
-					);
-
-					const loginTest = () =>
-						toggle(!validate(loginInput.value, Test.login), loginError);
-					multipleListener(loginInput, "blur, focus", loginTest);
-
-					const passwordTest = () =>
-						toggle(
-							!validate(passwordInput.value, Test.password),
-							passwordError
-						);
-					multipleListener(passwordInput, "blur, focus", passwordTest);
-
-					const passwordValidate = passwordTest();
-					const loginValidate = loginTest();
-
-					if (passwordValidate && loginValidate) {
-						console.log({
-							login: loginInput.value,
-							password: passwordInput.value,
-						});
-					}
-				},
+				events,
 			},
 			classes: ["form", "login-cart#loginForm"],
 		});
