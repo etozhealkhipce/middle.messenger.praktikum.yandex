@@ -1,11 +1,6 @@
 import { compile } from "pug";
 import Block from "../core/Block";
 import { ErrorMessage } from "../components/ErrorMessage";
-import errorEvents from "../components/ErrorMessage/events";
-
-const events: Record<string, Function> = {
-	errorEvents,
-};
 
 const template: string = `
 main.error
@@ -14,13 +9,17 @@ main.error
 
 export default class Error extends Block {
 	constructor(props: any) {
-		super(
-			"template",
-			{
-				error: new ErrorMessage({ ...props }).render(),
+		const error = new ErrorMessage({ ...props });
+
+		super({
+			tagName: "template",
+			props: {
+				error: error.render(),
 			},
-			events
-		);
+			events: {
+				...error.getEvents(),
+			},
+		});
 	}
 
 	render(): string {
