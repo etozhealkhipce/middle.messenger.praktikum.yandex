@@ -17,7 +17,7 @@ input(type=inputType id=inputId name=inputName placeholder=inputPlaceholder valu
 
 export default class Input extends Block {
 	constructor(props: Props) {
-		super("template", props);
+		super({ tagName: "template", props });
 	}
 
 	render(): string {

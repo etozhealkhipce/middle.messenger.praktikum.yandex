@@ -1,11 +1,6 @@
 import { compile } from "pug";
 import Block from "../core/Block";
 import { Login } from "../components/Login";
-import signInEvents from "../components/Login/events";
-
-const events: Events = {
-	signInEvents,
-};
 
 const template: string = `
 main.login
@@ -14,13 +9,17 @@ main.login
 
 export default class SignIn extends Block {
 	constructor() {
-		super(
-			"template",
-			{
-				login: new Login().render(),
+		const login = new Login();
+
+		super({
+			tagName: "template",
+			props: {
+				login: login.render(),
 			},
-			events
-		);
+			events: {
+				...login.getEvents(),
+			},
+		});
 	}
 
 	render(): string {

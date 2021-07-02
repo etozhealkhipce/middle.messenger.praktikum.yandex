@@ -1,11 +1,6 @@
 import { compile } from "pug";
 import Block from "../core/Block";
 import { Register } from "../components/Register";
-import signUpEvents from "../components/Register/events";
-
-const events: Events = {
-	signUpEvents,
-};
 
 const template: string = `
 main.register
@@ -14,13 +9,17 @@ main.register
 
 export default class SignUp extends Block {
 	constructor() {
-		super(
-			"template",
-			{
-				register: new Register().render(),
+		const register = new Register();
+
+		super({
+			tagName: "template",
+			props: {
+				register: register.render(),
 			},
-			events
-		);
+			events: {
+				...register.getEvents(),
+			},
+		});
 	}
 
 	render(): string {

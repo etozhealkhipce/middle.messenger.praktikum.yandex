@@ -4,8 +4,9 @@ import Block from "../../core/Block";
 import { Button } from "../ui/Button";
 import { Input } from "../ui/Input";
 import "./_chat.scss";
+import events from "./events";
 
-type Props = Record<string, string>;
+type Props = Record<string, any>;
 
 const template: string = `
 main.content-wrapper__content
@@ -53,23 +54,29 @@ main.content-wrapper__content
 
 export default class Chat extends Block {
 	constructor(props: Props) {
-		super("template", {
-			messageInput: new Input({
-				inputType: "text",
-				inputId: "messageInput",
-				inputName: "messageInput",
-				inputPlaceholder: "Введите сообщение",
-				inputClass: "type__input",
-			}).render(),
-			sendMessageButton: new Button({
-				buttonType: "submit",
-				buttonId: "sendMessageButton",
-				buttonText: "",
-				buttonName: "sendMessageButton",
-				buttonClass: "type__button",
-			}).render(),
-			trashIcon,
-			...props,
+		super({
+			tagName: "template",
+			props: {
+				messageInput: new Input({
+					inputType: "text",
+					inputId: "messageInput",
+					inputName: "messageInput",
+					inputPlaceholder: "Введите сообщение",
+					inputClass: "type__input",
+				}).render(),
+				sendMessageButton: new Button({
+					buttonType: "submit",
+					buttonId: "sendMessageButton",
+					buttonText: "",
+					buttonName: "sendMessageButton",
+					buttonClass: "type__button",
+				}).render(),
+				trashIcon,
+				...props,
+			},
+			events: {
+				events,
+			},
 		});
 	}
 
