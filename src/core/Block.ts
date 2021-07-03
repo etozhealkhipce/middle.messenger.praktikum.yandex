@@ -3,18 +3,14 @@ import EventBus from "./EventBus";
 type Constructor = {
 	tagName: string;
 	props: Record<string, any>;
-	events?: Record<string, Function>;
+	events?: Record<string, any> | undefined;
 	classes?: string[];
 };
 
 class Block {
-	protected props: Record<string, any>;
+	events: any;
 
-	protected tagName: string;
-
-	protected events: Record<string, Function>;
-
-	protected classes: string[];
+	props: any;
 
 	protected eventBus: () => EventBus;
 
@@ -25,9 +21,9 @@ class Block {
 		FLOW_RENDER: "flow:render",
 	};
 
-	_element: HTMLElement | null = null;
+	_element: HTMLElement;
 
-	_meta: Constructor | null = null;
+	_meta: Constructor;
 
 	constructor({ tagName, props, events, classes }: Constructor) {
 		const eventBus = new EventBus();
@@ -91,9 +87,9 @@ class Block {
 
 		this._element.innerHTML = block;
 
-		if (this._element.content) {
-			this._element = this._element.content.cloneNode(true);
-		}
+		// if (this._element.content) {
+		// 	this._element = this._element.content.cloneNode(true);
+		// }
 	}
 
 	render() {}
@@ -111,7 +107,7 @@ class Block {
 	): Boolean | Record<string, any> {
 		if (props) {
 			const proxyData = new Proxy(props, {
-				set: (target, prop, value) => {
+				set: (target, prop: any, value) => {
 					const oldProp = target[prop];
 					target[prop] = value;
 					const newProp = target[prop];
@@ -126,26 +122,12 @@ class Block {
 
 			return proxyData;
 		}
+
+		return false;
 	}
 
 	private _createDocumentElement(tagName: string): HTMLElement {
 		return document.createElement(tagName);
-	}
-
-	show() {
-		const element = this.getContent();
-
-		if (element) {
-			element.style.display = "block";
-		}
-	}
-
-	hidden() {
-		const element = this.getContent();
-
-		if (element) {
-			element.style.display = "none";
-		}
 	}
 }
 

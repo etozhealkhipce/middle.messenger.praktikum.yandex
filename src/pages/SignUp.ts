@@ -12,7 +12,7 @@ export default class SignUp extends Block {
 		const register = new Register();
 
 		super({
-			tagName: "template",
+			tagName: "div",
 			props: {
 				register: register.render(),
 			},

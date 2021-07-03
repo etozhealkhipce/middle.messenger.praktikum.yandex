@@ -1,3 +1,5 @@
+import { router } from "../../index";
+
 import {
 	Test,
 	validate,
@@ -21,7 +23,9 @@ export default function (): void {
 
 	if (registerButton) {
 		registerButton.addEventListener("click", (): void => {
-			window.location.href = "./register";
+			// window.location.href = "./register";
+			console.log(router);
+			router.go("/register");
 		});
 	}
 
