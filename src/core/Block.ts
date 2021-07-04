@@ -87,9 +87,9 @@ class Block {
 
 		this._element.innerHTML = block;
 
-		// if (this._element.content) {
-		// 	this._element = this._element.content.cloneNode(true);
-		// }
+		if (this._element.content) {
+			this._element = this._element.content.cloneNode(true);
+		}
 	}
 
 	render() {}

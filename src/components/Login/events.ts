@@ -14,6 +14,9 @@ export default function (): void {
 	const loginForm = <HTMLButtonElement>document.getElementById("loginForm");
 	const loginInput = <HTMLInputElement>document.getElementById("login");
 	const passwordInput = <HTMLInputElement>document.getElementById("password");
+	const forgetPassword = <HTMLInputElement>(
+		document.querySelector(".login-cart__link")
+	);
 	const loginError = <HTMLParagraphElement>(
 		document.querySelector(".login-error")
 	);
@@ -23,9 +26,13 @@ export default function (): void {
 
 	if (registerButton) {
 		registerButton.addEventListener("click", (): void => {
-			// window.location.href = "./register";
-			console.log(router);
 			router.go("/register");
+		});
+	}
+
+	if (forgetPassword) {
+		forgetPassword.addEventListener("click", (): void => {
+			router.go("/inactivechat");
 		});
 	}
 

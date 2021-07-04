@@ -17,7 +17,7 @@ export default class Error extends Block {
 				error: error.render(),
 			},
 			events: {
-				...error.getEvents(),
+				error: error.getEvents(),
 			},
 		});
 	}

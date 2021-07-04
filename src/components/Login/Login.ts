@@ -15,8 +15,7 @@ form.login-cart#loginForm
 	| !{password} 
 	p.login-cart__error.password-error.hidden Минимум восемь символов
 	| !{loginBtn}
-	a(href="./inactivechat").login-cart__link Забыли пароль?
-	a(href="./register")
+	a.login-cart__link Забыли пароль?
 	| !{registerBtn}`;
 
 export default class Login extends Block {
@@ -53,9 +52,7 @@ export default class Login extends Block {
 					buttonClass: "login-cart__button_gray registerBtn",
 				}).render(),
 			},
-			events: {
-				events,
-			},
+			events,
 			classes: ["form", "login-cart#loginForm"],
 		});
 	}
@@ -64,6 +61,3 @@ export default class Login extends Block {
 		return compile(template)(this.props);
 	}
 }
-// Object.keys(events).forEach(eventName => {
-//   this._element.addEventListener(eventName, events[eventName]);
-// });

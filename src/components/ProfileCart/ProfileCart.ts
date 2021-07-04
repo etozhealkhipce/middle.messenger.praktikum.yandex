@@ -11,8 +11,6 @@ type Props = {
 };
 
 const template: string = `
-block variables
-
 main.content-wrapper__content.content-wrapper__content_profile
     form.profile-cart#profileForm
         .user
@@ -51,7 +49,7 @@ main.content-wrapper__content.content-wrapper__content_profile
             p.profile-cart__error.password-error.hidden Неверный пароль 
             label(for="password-new").label Новый пароль
             | !{passwordNew}
-            p.profile-cart__error.password-error.hidden Неверный пароль 
+            p.profile-cart__error.password-new-error.hidden Неверный пароль 
             label(for="password-new-repeat").label Повторение нового пароля
             | !{passwordNewRepeat}
             p.profile-cart__error.password-new-repeat-error.hidden Неверный пароль 
@@ -59,12 +57,13 @@ main.content-wrapper__content.content-wrapper__content_profile
         .actions
             if !edit && !changePassword
                 .actions__left
-                    a(href="./profile-edit").actions__link Изменить даннные
-                    a(href="./profile-change-password").actions__link Изменить пароль
+                    a.actions__link.profile-edit Изменить даннные
+                    a.actions__link.profile-change-password Изменить пароль
                 .actions__right
-                    a(href="./error").actions__link.logout Выйти
+                    a.actions__link.logout Выйти
             else
                 | !{saveBtn}
+                a.actions__link.back Отмена
 `;
 export default class ProfileCart extends Block {
 	events: Record<string, any>;
@@ -152,9 +151,7 @@ export default class ProfileCart extends Block {
 				}).render(),
 				...props,
 			},
-			events: {
-				events,
-			},
+			events,
 		});
 	}
 

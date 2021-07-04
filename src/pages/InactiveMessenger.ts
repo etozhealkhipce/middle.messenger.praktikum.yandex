@@ -16,6 +16,12 @@ export default class InactiveMessenger extends Block {
 	constructor() {
 		const sidebar = new Sidebar({ users });
 		const chat = new Chat({});
+		console.log({
+			events: {
+				sidebar: sidebar.getEvents(),
+				chat: chat.getEvents(),
+			},
+		});
 
 		super({
 			tagName: "template",
@@ -24,8 +30,8 @@ export default class InactiveMessenger extends Block {
 				chat: chat.render(),
 			},
 			events: {
-				...sidebar.getEvents(),
-				...chat.getEvents(),
+				sidebar: sidebar.getEvents(),
+				chat: chat.getEvents(),
 			},
 		});
 	}

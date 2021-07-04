@@ -92,9 +92,7 @@ export default class Register extends Block {
 					buttonClass: "registerBtn",
 				}).render(),
 			},
-			events: {
-				events,
-			},
+			events,
 		});
 	}
 

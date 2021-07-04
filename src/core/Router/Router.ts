@@ -22,8 +22,11 @@ export default class Router {
 		(Router as any).__instance = this;
 	}
 
-	use(pathname: string, block: any) {
-		const route = new Route(pathname, block, { rootQuery: this._rootQuery });
+	use(pathname: string, block: any, props?: any) {
+		const route = new Route(pathname, block, {
+			rootQuery: this._rootQuery,
+			...props,
+		});
 		this.routes.push(route);
 
 		return this;
@@ -37,18 +40,18 @@ export default class Router {
 		this._onRoute(window.location.pathname);
 	}
 
-	_onRoute(pathname: string) {
+	_onRoute(pathname: string, props?: Record<string, any>) {
 		const route = this.getRoute(pathname);
 
-		route.render();
+		route.render(props);
 
 		this._currentRoute = route;
 	}
 
-	go(pathname: string) {
+	go(pathname: string, props?: Record<string, any>) {
 		this.history.pushState({}, "", pathname);
 
-		this._onRoute(pathname);
+		this._onRoute(pathname, props);
 	}
 
 	back() {

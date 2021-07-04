@@ -12,12 +12,12 @@ export default class SignIn extends Block {
 		const login = new Login();
 
 		super({
-			tagName: "div",
+			tagName: "template",
 			props: {
 				login: login.render(),
 			},
 			events: {
-				...login.getEvents(),
+				login: login.getEvents(),
 			},
 		});
 	}

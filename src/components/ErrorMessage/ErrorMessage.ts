@@ -27,9 +27,7 @@ export default class ErrorMessage extends Block {
 					buttonClass: "error-cart__button back",
 				}).render(),
 				...props,
-				events: {
-					events,
-				},
+				events,
 			},
 		});
 	}

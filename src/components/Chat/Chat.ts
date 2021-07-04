@@ -74,9 +74,7 @@ export default class Chat extends Block {
 				trashIcon,
 				...props,
 			},
-			events: {
-				events,
-			},
+			events,
 		});
 	}
 

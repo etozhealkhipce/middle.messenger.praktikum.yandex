@@ -23,8 +23,8 @@ export default class ActiveMessenger extends Block {
 				chat: chat.render(),
 			},
 			events: {
-				...sidebar.getEvents(),
-				...chat.getEvents(),
+				sidebar: sidebar.getEvents(),
+				chat: chat.getEvents(),
 			},
 		});
 	}

@@ -27,8 +27,8 @@ export default class Profile extends Block {
 				profileCart: profileCart.render(),
 			},
 			events: {
-				...sidebar.getEvents(),
-				...profileCart.getEvents(),
+				sidebar: sidebar.getEvents(),
+				profileCart: profileCart.getEvents(),
 			},
 		});
 	}

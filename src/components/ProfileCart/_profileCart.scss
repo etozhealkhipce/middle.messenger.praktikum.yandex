@@ -7,6 +7,10 @@
 	padding: 50px;
 	width: 500px;
 
+	a {
+		cursor: pointer;
+	}
+
 	&__title {
 		color: #000;
 		font-family: "Montserrat", sans-serif;
@@ -104,6 +108,7 @@
 
 	.actions {
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
 		margin-top: 40px;
 

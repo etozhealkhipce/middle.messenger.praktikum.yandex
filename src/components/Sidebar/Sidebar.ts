@@ -12,9 +12,7 @@ const template: string = `
 aside.sidebar
     .search
         | !{searchInput}
-    a(href="./chat.pug")
     | !{userPreview}
-    a(href="./profile.pug")
     | !{profileButton}`;
 
 export default class Sidebar extends Block {
@@ -38,9 +36,7 @@ export default class Sidebar extends Block {
 				}).render(),
 				userPreview: new UserPreview({ users: props.users }).render(),
 			},
-			events: {
-				events,
-			},
+			events,
 		});
 	}
 
