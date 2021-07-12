@@ -1,4 +1,5 @@
 {
 	"extension": ["ts"],
-	"spec": "tests/**/*.spec.ts"
+	"spec": "tests/**/*.spec.ts",
+	"require": "tests/babel-register.js"
 }

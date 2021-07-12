@@ -8,6 +8,12 @@
 		"pug": "^3.0.2"
 	},
 	"devDependencies": {
+		"@babel/preset-env": "^7.14.7",
+		"@babel/preset-typescript": "^7.14.5",
+		"@types/jsdom": "^16.2.13",
+		"jsdom": "^14.1.0",
+		"@babel/core": "^7.14.6",
+		"@babel/register": "^7.14.5",
 		"@parcel/transformer-pug": "^2.0.0-nightly.703",
 		"@parcel/transformer-sass": "^2.0.0-nightly.703",
 		"@types/chai": "^4.2.21",
@@ -34,7 +40,7 @@
 		"start": "parcel -p 3000 ./src/index.html",
 		"serve": "parcel ./src/index.html --no-cache",
 		"lint": "eslint . --ext .js,.ts --fix && stylelint '**/*.scss' --fix",
-		"test": "mocha"
+		"test": "./node_modules/.bin/mocha"
 	},
 	"repository": {
 		"type": "git",
