@@ -1,8 +1,8 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { Sidebar } from "../components/Sidebar";
-import { ProfileCart } from "../components/ProfileCart";
-import * as users from "../mock/users.json";
+import { compile } from 'pug';
+import Block from '../core/Block';
+import { Sidebar } from '../components/Sidebar';
+import { ProfileCart } from '../components/ProfileCart';
+import * as users from '../mock/users.json';
 
 type Props = {
 	edit: Boolean;
@@ -21,7 +21,7 @@ export default class Profile extends Block {
 		const profileCart = new ProfileCart(props);
 
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				sidebar: sidebar.render(),
 				profileCart: profileCart.render(),

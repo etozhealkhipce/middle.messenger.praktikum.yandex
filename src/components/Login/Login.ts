@@ -1,9 +1,9 @@
-import { compile } from "pug";
-import Block from "../../core/Block";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
-import "./_login.scss";
-import events from "./events";
+import { compile } from 'pug';
+import Block from '../../core/Block';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import './_login.scss';
+import events from './events';
 
 const template: string = `
 form.login-cart#loginForm
@@ -21,39 +21,39 @@ form.login-cart#loginForm
 export default class Login extends Block {
 	constructor() {
 		super({
-			tagName: "form",
+			tagName: 'form',
 			props: {
 				login: new Input({
-					inputType: "text",
-					inputId: "login",
-					inputName: "login",
-					inputPlaceholder: "Введите логин",
-					inputClass: "login-cart__input",
+					inputType: 'text',
+					inputId: 'login',
+					inputName: 'login',
+					inputPlaceholder: 'Введите логин',
+					inputClass: 'login-cart__input',
 				}).render(),
 				password: new Input({
-					inputType: "password",
-					inputId: "password",
-					inputName: "password",
-					inputPlaceholder: "Введите пароль",
-					inputClass: "login-cart__input",
+					inputType: 'password',
+					inputId: 'password',
+					inputName: 'password',
+					inputPlaceholder: 'Введите пароль',
+					inputClass: 'login-cart__input',
 				}).render(),
 				loginBtn: new Button({
-					buttonType: "submit",
-					buttonId: "loginBtn",
-					buttonText: "Авторизоваться",
-					buttonName: "loginBtn",
-					buttonClass: "loginBtn",
+					buttonType: 'submit',
+					buttonId: 'loginBtn',
+					buttonText: 'Авторизоваться',
+					buttonName: 'loginBtn',
+					buttonClass: 'loginBtn',
 				}).render(),
 				registerBtn: new Button({
-					buttonType: "button",
-					buttonId: "registerBtn",
-					buttonText: "Регистрация",
-					buttonName: "registerBtn",
-					buttonClass: "login-cart__button_gray registerBtn",
+					buttonType: 'button',
+					buttonId: 'registerBtn',
+					buttonText: 'Регистрация',
+					buttonName: 'registerBtn',
+					buttonClass: 'login-cart__button_gray registerBtn',
 				}).render(),
 			},
 			events,
-			classes: ["form", "login-cart#loginForm"],
+			classes: ['form', 'login-cart#loginForm'],
 		});
 	}
 

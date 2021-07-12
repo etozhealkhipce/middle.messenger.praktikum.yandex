@@ -1,8 +1,8 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { Sidebar } from "../components/Sidebar";
-import { Chat } from "../components/Chat";
-import * as users from "../mock/users.json";
+import { compile } from 'pug';
+import Block from '../core/Block';
+import { Sidebar } from '../components/Sidebar';
+import { Chat } from '../components/Chat';
+import * as users from '../mock/users.json';
 
 const template: string = `
 block content
@@ -17,7 +17,7 @@ export default class ActiveMessenger extends Block {
 		const chat = new Chat({});
 
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				sidebar: sidebar.render(),
 				chat: chat.render(),

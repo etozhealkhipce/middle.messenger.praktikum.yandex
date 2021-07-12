@@ -1,6 +1,6 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { Login } from "../components/Login";
+import { compile } from 'pug';
+import Block from '../core/Block';
+import { Login } from '../components/Login';
 
 const template: string = `
 main.login
@@ -12,7 +12,7 @@ export default class SignIn extends Block {
 		const login = new Login();
 
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				login: login.render(),
 			},

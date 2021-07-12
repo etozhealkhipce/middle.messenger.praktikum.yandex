@@ -1,6 +1,6 @@
-import { compile } from "pug";
-import Block from "../../../core/Block";
-import "./_button.scss";
+import { compile } from 'pug';
+import Block from '../../../core/Block';
+import './_button.scss';
 
 type Props = {
 	buttonType: string;
@@ -16,7 +16,7 @@ button(type=buttonType id=buttonId name=buttonName class=buttonClass)&attributes
 export default class Button extends Block {
 	constructor(props: Props) {
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props,
 		});
 	}

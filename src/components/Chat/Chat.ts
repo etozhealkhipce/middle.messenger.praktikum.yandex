@@ -1,10 +1,10 @@
-import { compile } from "pug";
-import trashIcon from "url:../../assets/icons/trash.svg";
-import Block from "../../core/Block";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
-import "./_chat.scss";
-import events from "./events";
+import { compile } from 'pug';
+import trashIcon from 'url:../../assets/icons/trash.svg';
+import Block from '../../core/Block';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import './_chat.scss';
+import events from './events';
 
 type Props = Record<string, any>;
 
@@ -55,21 +55,21 @@ main.content-wrapper__content
 export default class Chat extends Block {
 	constructor(props: Props) {
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				messageInput: new Input({
-					inputType: "text",
-					inputId: "messageInput",
-					inputName: "messageInput",
-					inputPlaceholder: "Введите сообщение",
-					inputClass: "type__input",
+					inputType: 'text',
+					inputId: 'messageInput',
+					inputName: 'messageInput',
+					inputPlaceholder: 'Введите сообщение',
+					inputClass: 'type__input',
 				}).render(),
 				sendMessageButton: new Button({
-					buttonType: "submit",
-					buttonId: "sendMessageButton",
-					buttonText: "",
-					buttonName: "sendMessageButton",
-					buttonClass: "type__button",
+					buttonType: 'submit',
+					buttonId: 'sendMessageButton',
+					buttonText: '',
+					buttonName: 'sendMessageButton',
+					buttonClass: 'type__button',
 				}).render(),
 				trashIcon,
 				...props,

@@ -1,9 +1,9 @@
-import { compile } from "pug";
-import Block from "../../core/Block";
-import { Button } from "../ui/Button";
-import { Input } from "../ui/Input";
-import "./_register.scss";
-import events from "./events";
+import { compile } from 'pug';
+import Block from '../../core/Block';
+import { Button } from '../ui/Button';
+import { Input } from '../ui/Input';
+import './_register.scss';
+import events from './events';
 
 const template: string = `
 form.register-cart#registerForm
@@ -33,63 +33,63 @@ form.register-cart#registerForm
 export default class Register extends Block {
 	constructor() {
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				email: new Input({
-					inputType: "text",
-					inputId: "email",
-					inputName: "email",
-					inputPlaceholder: "Введите почту",
-					inputClass: "register-cart__input",
+					inputType: 'text',
+					inputId: 'email',
+					inputName: 'email',
+					inputPlaceholder: 'Введите почту',
+					inputClass: 'register-cart__input',
 				}).render(),
 				login: new Input({
-					inputType: "text",
-					inputId: "login",
-					inputName: "login",
-					inputPlaceholder: "Введите логин",
-					inputClass: "register-cart__input",
+					inputType: 'text',
+					inputId: 'login',
+					inputName: 'login',
+					inputPlaceholder: 'Введите логин',
+					inputClass: 'register-cart__input',
 				}).render(),
 				name: new Input({
-					inputType: "text",
-					inputId: "name",
-					inputName: "name",
-					inputPlaceholder: "Введите имя",
-					inputClass: "register-cart__input",
+					inputType: 'text',
+					inputId: 'name',
+					inputName: 'name',
+					inputPlaceholder: 'Введите имя',
+					inputClass: 'register-cart__input',
 				}).render(),
 				surname: new Input({
-					inputType: "text",
-					inputId: "surname",
-					inputName: "surname",
-					inputPlaceholder: "Введите фамилию",
-					inputClass: "register-cart__input",
+					inputType: 'text',
+					inputId: 'surname',
+					inputName: 'surname',
+					inputPlaceholder: 'Введите фамилию',
+					inputClass: 'register-cart__input',
 				}).render(),
 				phone: new Input({
-					inputType: "text",
-					inputId: "phone",
-					inputName: "phone",
-					inputPlaceholder: "Введите телефон",
-					inputClass: "register-cart__input",
+					inputType: 'text',
+					inputId: 'phone',
+					inputName: 'phone',
+					inputPlaceholder: 'Введите телефон',
+					inputClass: 'register-cart__input',
 				}).render(),
 				password: new Input({
-					inputType: "password",
-					inputId: "password",
-					inputName: "password",
-					inputPlaceholder: "Введите пароль",
-					inputClass: "register-cart__input",
+					inputType: 'password',
+					inputId: 'password',
+					inputName: 'password',
+					inputPlaceholder: 'Введите пароль',
+					inputClass: 'register-cart__input',
 				}).render(),
 				passwordRepeat: new Input({
-					inputType: "password",
-					inputId: "password-repeat",
-					inputName: "password-repeat",
-					inputPlaceholder: "Введите пароль еще раз",
-					inputClass: "register-cart__input",
+					inputType: 'password',
+					inputId: 'password-repeat',
+					inputName: 'password-repeat',
+					inputPlaceholder: 'Введите пароль еще раз',
+					inputClass: 'register-cart__input',
 				}).render(),
 				registerBtn: new Button({
-					buttonType: "submit",
-					buttonId: "registerBtn",
-					buttonText: "Зарегистрироваться",
-					buttonName: "registerBtn",
-					buttonClass: "registerBtn",
+					buttonType: 'submit',
+					buttonId: 'registerBtn',
+					buttonText: 'Зарегистрироваться',
+					buttonName: 'registerBtn',
+					buttonClass: 'registerBtn',
 				}).render(),
 			},
 			events,

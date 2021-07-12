@@ -1,6 +1,6 @@
-import { compile } from "pug";
-import Block from "../../../core/Block";
-import "./_userPreview.scss";
+import { compile } from 'pug';
+import Block from '../../../core/Block';
+import './_userPreview.scss';
 
 type Props = {
 	users?: {
@@ -30,7 +30,7 @@ else
 
 export default class UserPreview extends Block {
 	constructor(props: Props) {
-		super({ tagName: "template", props });
+		super({ tagName: 'template', props });
 	}
 
 	render(): string {

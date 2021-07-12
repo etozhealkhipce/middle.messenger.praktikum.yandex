@@ -3,70 +3,70 @@ import {
 	validate,
 	toggle,
 	multipleListener,
-} from "../../services/validate";
+} from '../../services/validate';
 
 export default function (): void {
-	const registerForm = <HTMLFormElement>document.getElementById("registerForm");
+	const registerForm = <HTMLFormElement>document.getElementById('registerForm');
 
-	const loginInput = <HTMLInputElement>document.getElementById("login");
-	const passwordInput = <HTMLInputElement>document.getElementById("password");
+	const loginInput = <HTMLInputElement>document.getElementById('login');
+	const passwordInput = <HTMLInputElement>document.getElementById('password');
 	const passwordRepeatInput = <HTMLInputElement>(
-		document.getElementById("password-repeat")
+		document.getElementById('password-repeat')
 	);
-	const emailInput = <HTMLInputElement>document.getElementById("email");
-	const phoneInput = <HTMLInputElement>document.getElementById("phone");
+	const emailInput = <HTMLInputElement>document.getElementById('email');
+	const phoneInput = <HTMLInputElement>document.getElementById('phone');
 
 	const loginError = <HTMLParagraphElement>(
-		document.querySelector(".login-error")
+		document.querySelector('.login-error')
 	);
 	const passwordError = <HTMLParagraphElement>(
-		document.querySelector(".password-error")
+		document.querySelector('.password-error')
 	);
 	const passwordRepeatError = <HTMLParagraphElement>(
-		document.querySelector(".password-repeat-error")
+		document.querySelector('.password-repeat-error')
 	);
 	const emailError = <HTMLParagraphElement>(
-		document.querySelector(".email-error")
+		document.querySelector('.email-error')
 	);
 	const phoneError = <HTMLParagraphElement>(
-		document.querySelector(".phone-error")
+		document.querySelector('.phone-error')
 	);
 
 	const loginTest = () =>
 		toggle(!validate(loginInput.value, Test.login), loginError);
-	multipleListener(loginInput, "blur, focus", loginTest);
+	multipleListener(loginInput, 'blur, focus', loginTest);
 
 	const passwordTest = () =>
 		toggle(!validate(passwordInput.value, Test.password), passwordError);
-	multipleListener(passwordInput, "blur, focus", passwordTest);
+	multipleListener(passwordInput, 'blur, focus', passwordTest);
 
 	const passwordRepeatTest = () =>
 		toggle(
 			passwordRepeatInput.value !== passwordInput.value,
 			passwordRepeatError
 		);
-	multipleListener(passwordRepeatInput, "blur, focus", passwordRepeatTest);
+	multipleListener(passwordRepeatInput, 'blur, focus', passwordRepeatTest);
 
 	const emailTest = () =>
 		toggle(!validate(emailInput.value, Test.email), emailError);
-	multipleListener(emailInput, "blur, focus", emailTest);
+	multipleListener(emailInput, 'blur, focus', emailTest);
 
 	const phoneTest = () =>
 		toggle(!validate(phoneInput.value, Test.phone), phoneError);
-	multipleListener(phoneInput, "blur, focus", phoneTest);
+	multipleListener(phoneInput, 'blur, focus', phoneTest);
 
 	if (registerForm) {
-		registerForm.addEventListener("submit", (e: Event): void => {
+		registerForm.addEventListener('submit', (e: Event): void => {
 			e.preventDefault();
 
 			const response = {
-				email: (<HTMLInputElement>document.getElementById("email")).value,
-				login: (<HTMLInputElement>document.getElementById("login")).value,
-				name: (<HTMLInputElement>document.getElementById("name")).value,
-				surname: (<HTMLInputElement>document.getElementById("surname")).value,
-				phone: (<HTMLInputElement>document.getElementById("phone")).value,
+				email: (<HTMLInputElement>document.getElementById('email')).value,
+				login: (<HTMLInputElement>document.getElementById('login')).value,
+				name: (<HTMLInputElement>document.getElementById('name')).value,
+				surname: (<HTMLInputElement>document.getElementById('surname')).value,
+				phone: (<HTMLInputElement>document.getElementById('phone')).value,
 				passwordRepeat: (<HTMLInputElement>(
-					document.getElementById("password-repeat")
+					document.getElementById('password-repeat')
 				)).value,
 			};
 

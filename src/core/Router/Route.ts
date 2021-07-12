@@ -1,4 +1,4 @@
-import render from "../../services/render";
+import render from '../../services/render';
 
 function isEqual(lhs: string, rhs: string) {
 	return lhs === rhs;
@@ -35,6 +35,7 @@ export default class Route {
 		if (props) {
 			this._props = Object.assign(this._props, props);
 		}
+
 		this._block = new this._blockClass(this._props);
 		render(this._props.rootQuery, this._block);
 	}

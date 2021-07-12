@@ -1,6 +1,6 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { ErrorMessage } from "../components/ErrorMessage";
+import { compile } from 'pug';
+import Block from '../core/Block';
+import { ErrorMessage } from '../components/ErrorMessage';
 
 const template: string = `
 main.error
@@ -12,7 +12,7 @@ export default class Error extends Block {
 		const error = new ErrorMessage({ ...props });
 
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				error: error.render(),
 			},

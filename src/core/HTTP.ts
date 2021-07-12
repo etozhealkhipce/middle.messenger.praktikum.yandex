@@ -1,10 +1,10 @@
 const enum METHODS {
-	GET = "GET",
-	POST = "POST",
-	PUT = "PUT",
-	DELETE = "DELETE",
-	UPDATE = "UPDATE",
-	PATCH = "PATCH",
+	GET = 'GET',
+	POST = 'POST',
+	PUT = 'PUT',
+	DELETE = 'DELETE',
+	UPDATE = 'UPDATE',
+	PATCH = 'PATCH',
 }
 
 function queryStringify(data: Record<string, any>): string | null {
@@ -12,7 +12,7 @@ function queryStringify(data: Record<string, any>): string | null {
 		const params = Object.entries(data).reduce(
 			(acc, [key, value], index) =>
 				acc + (index ? `&${key}=${value}` : `${key}=${value}`),
-			"?"
+			'?'
 		);
 		return params;
 	}
@@ -37,7 +37,7 @@ export default class HTTPTransport {
 
 		return new Promise((resolve, reject) => {
 			if (!method) {
-				reject(new Error("No method"));
+				reject(new Error('No method'));
 				return;
 			}
 

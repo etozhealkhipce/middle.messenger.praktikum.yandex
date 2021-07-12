@@ -1,5 +1,5 @@
 export default {
 	biba() {
-		console.log("test");
+		console.log('test');
 	},
 };

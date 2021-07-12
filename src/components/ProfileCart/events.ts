@@ -1,55 +1,55 @@
-import { router } from "../../index";
+import { router } from '../../index';
 
 import {
 	Test,
 	validate,
 	toggle,
 	multipleListener,
-} from "../../services/validate";
+} from '../../services/validate';
 
 export default function (): void {
-	const profileForm = <HTMLButtonElement>document.getElementById("profileForm");
+	const profileForm = <HTMLButtonElement>document.getElementById('profileForm');
 	const profileEditLink = <HTMLButtonElement>(
-		document.querySelector(".profile-edit")
+		document.querySelector('.profile-edit')
 	);
 	const profileChangePasswordLink = <HTMLButtonElement>(
-		document.querySelector(".profile-change-password")
+		document.querySelector('.profile-change-password')
 	);
-	const profileBackLink = <HTMLButtonElement>document.querySelector(".back");
+	const profileBackLink = <HTMLButtonElement>document.querySelector('.back');
 
 	if (profileEditLink) {
-		profileEditLink.addEventListener("click", () => {
-			router.go("/profile", { edit: true, changePassword: false });
+		profileEditLink.addEventListener('click', () => {
+			router.go('/profile', { edit: true, changePassword: false });
 		});
 	}
 
 	if (profileChangePasswordLink) {
-		profileChangePasswordLink.addEventListener("click", () => {
-			router.go("/profile", { edit: false, changePassword: true });
+		profileChangePasswordLink.addEventListener('click', () => {
+			router.go('/profile', { edit: false, changePassword: true });
 		});
 	}
 
 	if (profileBackLink) {
-		profileBackLink.addEventListener("click", () => {
-			router.go("/profile", { edit: false, changePassword: false });
+		profileBackLink.addEventListener('click', () => {
+			router.go('/profile', { edit: false, changePassword: false });
 		});
 	}
 
 	// inputs
-	const loginInput = <HTMLInputElement>document.getElementById("login");
-	const emailInput = <HTMLInputElement>document.getElementById("email");
-	const phoneInput = <HTMLInputElement>document.getElementById("phone");
+	const loginInput = <HTMLInputElement>document.getElementById('login');
+	const emailInput = <HTMLInputElement>document.getElementById('email');
+	const phoneInput = <HTMLInputElement>document.getElementById('phone');
 
 	// errors
 	const emailError = <HTMLParagraphElement>(
-		document.querySelector(".email-error")
+		document.querySelector('.email-error')
 	);
 	const phoneError = <HTMLParagraphElement>(
-		document.querySelector(".phone-error")
+		document.querySelector('.phone-error')
 	);
 
 	const loginError = <HTMLParagraphElement>(
-		document.querySelector(".login-error")
+		document.querySelector('.login-error')
 	);
 
 	// tests
@@ -60,7 +60,7 @@ export default function (): void {
 
 		return false;
 	};
-	multipleListener(loginInput, "blur, focus", loginTest);
+	multipleListener(loginInput, 'blur, focus', loginTest);
 
 	const emailTest = () => {
 		if (emailInput && emailError) {
@@ -69,7 +69,7 @@ export default function (): void {
 
 		return false;
 	};
-	multipleListener(emailInput, "blur, focus", emailTest);
+	multipleListener(emailInput, 'blur, focus', emailTest);
 
 	const phoneTest = () => {
 		if (phoneInput && phoneError) {
@@ -78,25 +78,25 @@ export default function (): void {
 
 		return false;
 	};
-	multipleListener(phoneInput, "blur, focus", phoneTest);
+	multipleListener(phoneInput, 'blur, focus', phoneTest);
 
 	// inputs
-	const passwordInput = <HTMLInputElement>document.getElementById("password");
+	const passwordInput = <HTMLInputElement>document.getElementById('password');
 	const passwordNewInput = <HTMLInputElement>(
-		document.getElementById("password-new")
+		document.getElementById('password-new')
 	);
 	const passwordNewRepeatInput = <HTMLInputElement>(
-		document.getElementById("password-new-repeat")
+		document.getElementById('password-new-repeat')
 	);
 	// errors
 	const passwordError = <HTMLParagraphElement>(
-		document.querySelector(".password-error")
+		document.querySelector('.password-error')
 	);
 	const passwordNewError = <HTMLParagraphElement>(
-		document.querySelector(".password-new-error")
+		document.querySelector('.password-new-error')
 	);
 	const passwordNewRepeatError = <HTMLParagraphElement>(
-		document.querySelector(".password-new-repeat-error")
+		document.querySelector('.password-new-repeat-error')
 	);
 	// tests
 	const passwordTest = () => {
@@ -109,7 +109,7 @@ export default function (): void {
 
 		return false;
 	};
-	multipleListener(passwordInput, "blur, focus", passwordTest);
+	multipleListener(passwordInput, 'blur, focus', passwordTest);
 
 	const passwordNewTest = () => {
 		if (passwordNewInput && passwordNewError) {
@@ -121,7 +121,7 @@ export default function (): void {
 
 		return false;
 	};
-	multipleListener(passwordNewInput, "blur, focus", passwordNewTest);
+	multipleListener(passwordNewInput, 'blur, focus', passwordNewTest);
 
 	const passwordNewRepeatTest = () => {
 		if (passwordNewRepeatInput && passwordNewRepeatError) {
@@ -135,27 +135,27 @@ export default function (): void {
 	};
 	multipleListener(
 		passwordNewRepeatInput,
-		"blur, focus",
+		'blur, focus',
 		passwordNewRepeatTest
 	);
 
 	// form
 	if (profileForm) {
-		profileForm.addEventListener("submit", (e: Event): void => {
+		profileForm.addEventListener('submit', (e: Event): void => {
 			e.preventDefault();
 
 			const obj = {
-				password: <HTMLInputElement>document.getElementById("password"),
-				passwordNew: <HTMLInputElement>document.getElementById("password-new"),
+				password: <HTMLInputElement>document.getElementById('password'),
+				passwordNew: <HTMLInputElement>document.getElementById('password-new'),
 				passwordNewRepeat: <HTMLInputElement>(
-					document.getElementById("password-new-repeat")
+					document.getElementById('password-new-repeat')
 				),
-				login: <HTMLInputElement>document.getElementById("login"),
-				avatar: <HTMLInputElement>document.getElementById("avatar"),
-				email: <HTMLInputElement>document.getElementById("email"),
-				phone: <HTMLInputElement>document.getElementById("phone"),
-				name: <HTMLInputElement>document.getElementById("name"),
-				surname: <HTMLInputElement>document.getElementById("surname"),
+				login: <HTMLInputElement>document.getElementById('login'),
+				avatar: <HTMLInputElement>document.getElementById('avatar'),
+				email: <HTMLInputElement>document.getElementById('email'),
+				phone: <HTMLInputElement>document.getElementById('phone'),
+				name: <HTMLInputElement>document.getElementById('name'),
+				surname: <HTMLInputElement>document.getElementById('surname'),
 			};
 
 			const request = Object.entries(obj).reduce(

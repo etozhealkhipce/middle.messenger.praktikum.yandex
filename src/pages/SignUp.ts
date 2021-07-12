@@ -1,6 +1,6 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { Register } from "../components/Register";
+import { compile } from 'pug';
+import Block from '../core/Block';
+import { Register } from '../components/Register';
 
 const template: string = `
 main.register
@@ -12,7 +12,7 @@ export default class SignUp extends Block {
 		const register = new Register();
 
 		super({
-			tagName: "template",
+			tagName: 'template',
 			props: {
 				register: register.render(),
 			},

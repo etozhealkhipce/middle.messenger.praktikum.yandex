@@ -1,4 +1,4 @@
-import Route from "./Route";
+import Route from './Route';
 
 export default class Router {
 	protected _currentRoute: any;
@@ -49,7 +49,7 @@ export default class Router {
 	}
 
 	go(pathname: string, props?: Record<string, any>) {
-		this.history.pushState({}, "", pathname);
+		this.history.pushState({}, '', pathname);
 
 		this._onRoute(pathname, props);
 	}

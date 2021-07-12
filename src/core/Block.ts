@@ -1,4 +1,4 @@
-import EventBus from "./EventBus";
+import EventBus from './EventBus';
 
 type Constructor = {
 	tagName: string;
@@ -12,13 +12,15 @@ class Block {
 
 	props: any;
 
+	classes?: string[];
+
 	protected eventBus: () => EventBus;
 
 	static EVENTS = {
-		INIT: "init",
-		FLOW_CDM: "flow:component-did-mount",
-		FLOW_CDU: "flow:component-did-update",
-		FLOW_RENDER: "flow:render",
+		INIT: 'init',
+		FLOW_CDM: 'flow:component-did-mount',
+		FLOW_CDU: 'flow:component-did-update',
+		FLOW_RENDER: 'flow:render',
 	};
 
 	_element: HTMLElement;
@@ -35,6 +37,7 @@ class Block {
 		};
 
 		this.events = events;
+		this.classes = classes;
 		this.props = this._makePropsProxy(props);
 
 		this.eventBus = () => eventBus;
@@ -52,7 +55,11 @@ class Block {
 
 	private _createResources(): void {
 		const { tagName } = this._meta;
-		this._element = this._createDocumentElement(tagName);
+		const element = this._createDocumentElement(tagName);
+		if (this.classes) {
+			element.classList.add(...this.classes);
+		}
+		this._element = element;
 	}
 
 	init() {
@@ -116,7 +123,7 @@ class Block {
 					return true;
 				},
 				deleteProperty: () => {
-					throw new Error("Нет доступа!");
+					throw new Error('Нет доступа!');
 				},
 			});
 
