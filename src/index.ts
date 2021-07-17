@@ -10,7 +10,7 @@ import Error from './pages/Error';
 
 export const router = new Router('#app');
 
-const enum Paths {
+enum Paths {
 	index = '/',
 	register = '/register',
 	inactivechat = '/inactivechat',

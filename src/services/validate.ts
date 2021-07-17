@@ -1,4 +1,4 @@
-export const enum Test {
+export enum Test {
 	login = '^[a-zA-Z-0-9]{2,30}$',
 	password = '^[a-zA-Z-0-9]{8,}$',
 	email = '\\S+@\\S+\\.\\S+',

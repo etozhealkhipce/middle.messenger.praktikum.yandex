@@ -1,4 +1,8 @@
-export default function (): void {
+import ChatsController from '../../controllers/chats.controller';
+
+export default async function (): Promise<void> {
+	await ChatsController.getChats();
+
 	const deleteButton = <HTMLButtonElement>document.getElementById('deleteBtn');
 	const messageForm = <HTMLButtonElement>document.getElementById('messageForm');
 

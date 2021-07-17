@@ -1,5 +1,18 @@
-import chat from './chat';
+export default class BaseAPI {
+	// На случай, если забудете переопределить метод и используете его, — выстрелит ошибка
+	create() {
+		throw new Error('Not implemented');
+	}
 
-export default {
-	...chat,
-};
+	request() {
+		throw new Error('Not implemented');
+	}
+
+	update() {
+		throw new Error('Not implemented');
+	}
+
+	delete() {
+		throw new Error('Not implemented');
+	}
+}
