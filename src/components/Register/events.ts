@@ -1,3 +1,4 @@
+import AuthController from '../../controllers/auth.controller';
 import {
 	Test,
 	validate,
@@ -62,12 +63,12 @@ export default function (): void {
 			const response = {
 				email: (<HTMLInputElement>document.getElementById('email')).value,
 				login: (<HTMLInputElement>document.getElementById('login')).value,
-				name: (<HTMLInputElement>document.getElementById('name')).value,
-				surname: (<HTMLInputElement>document.getElementById('surname')).value,
+				first_name: (<HTMLInputElement>document.getElementById('name')).value,
+				second_name: (<HTMLInputElement>document.getElementById('surname'))
+					.value,
 				phone: (<HTMLInputElement>document.getElementById('phone')).value,
-				passwordRepeat: (<HTMLInputElement>(
-					document.getElementById('password-repeat')
-				)).value,
+				password: (<HTMLInputElement>document.getElementById('password-repeat'))
+					.value,
 			};
 
 			const passwordValidate = passwordTest();
@@ -83,7 +84,8 @@ export default function (): void {
 				emailValidate &&
 				phoneValidate
 			) {
-				console.log(response);
+				const auth = new AuthController();
+				auth.start().signUp(response);
 			}
 		});
 	}

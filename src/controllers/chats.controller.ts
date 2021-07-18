@@ -2,12 +2,14 @@ import ChatsAPI from '../api/chats.api';
 
 const chatsAPI = new ChatsAPI();
 
-class ChatsController {
+export default class ChatsController {
+	start() {
+		return this;
+	}
+
 	public async getChats() {
 		console.log('test');
 		const chats = await chatsAPI.request();
 		console.log(chats);
 	}
 }
-
-export default new ChatsController();
