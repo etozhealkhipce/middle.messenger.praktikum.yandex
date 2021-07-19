@@ -1,4 +1,5 @@
 import Router from './core/Router/Router';
+import AuthController from './controllers/auth.controller';
 import './styles/index.scss';
 
 import SignIn from './pages/SignIn';
@@ -9,6 +10,7 @@ import Profile from './pages/Profile';
 import Error from './pages/Error';
 
 export const router = new Router('#app');
+export const authController = new AuthController();
 
 enum Paths {
 	index = '/',

@@ -2,8 +2,7 @@ export default function render(root: string, block: any): void {
 	const app = document.querySelector(root);
 	if (!app) return;
 
-	app.innerHTML = '';
-	app.appendChild(block.getContent());
+	app.innerHTML = block.getContent();
 
 	const events = block.getEvents();
 

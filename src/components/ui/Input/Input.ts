@@ -1,4 +1,3 @@
-import { compile } from 'pug';
 import Block from '../../../core/Block';
 import './_input.scss';
 
@@ -17,10 +16,6 @@ input(type=inputType id=inputId name=inputName placeholder=inputPlaceholder valu
 
 export default class Input extends Block {
 	constructor(props: Props) {
-		super({ tagName: 'template', props });
-	}
-
-	render(): string {
-		return compile(template)(this.props);
+		super({ template, tagName: 'template', props });
 	}
 }

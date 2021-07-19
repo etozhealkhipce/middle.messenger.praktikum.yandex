@@ -1,10 +1,14 @@
+import { compile } from 'pug';
 import EventBus from './EventBus';
+import merge from '../utils/merge';
 
 type Constructor = {
+	template: string;
 	tagName: string;
 	props: Record<string, any>;
-	events?: Record<string, any> | undefined;
+	events?: Record<string, any>;
 	classes?: string[];
+	store?: any;
 };
 
 class Block {
@@ -13,6 +17,10 @@ class Block {
 	props: any;
 
 	classes?: string[];
+
+	template: string;
+
+	store: any;
 
 	protected eventBus: () => EventBus;
 
@@ -27,26 +35,40 @@ class Block {
 
 	_meta: Constructor;
 
-	constructor({ tagName, props, events, classes }: Constructor) {
+	constructor({
+		template,
+		tagName,
+		props,
+		events,
+		classes,
+		store,
+	}: Constructor) {
 		const eventBus = new EventBus();
 		this._meta = {
 			tagName,
+			template,
 			props,
 			events,
 			classes,
+			store,
 		};
 
 		this.events = events;
+		this.template = template;
 		this.classes = classes;
 		this.props = this._makePropsProxy(props);
+		this.store = store;
 
 		this.eventBus = () => eventBus;
-
 		this._registerEvents(eventBus);
+
 		eventBus.emit(Block.EVENTS.INIT);
 	}
 
 	private _registerEvents(eventBus: EventBus): void {
+		if (this.store) {
+			this.store.init(this._updateState.bind(this));
+		}
 		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -85,24 +107,27 @@ class Block {
 		return true;
 	}
 
+	private _updateState() {
+		// this.props = merge(this.props, this.store.state);
+		this._componentDidMount();
+	}
+
 	get element() {
 		return this._element;
 	}
 
 	private _render(): void {
-		const block = this.render();
+		const block = compile(this.template)(this.props);
 
 		this._element.innerHTML = block;
 
-		if (this._element.content) {
-			this._element = this._element.content.cloneNode(true);
-		}
+		this.render();
 	}
 
 	render() {}
 
 	getContent() {
-		return this.element;
+		return this.element.innerHTML;
 	}
 
 	getEvents() {
@@ -115,6 +140,7 @@ class Block {
 		if (props) {
 			const proxyData = new Proxy(props, {
 				set: (target, prop: any, value) => {
+					console.log(target, prop);
 					const oldProp = target[prop];
 					target[prop] = value;
 					const newProp = target[prop];

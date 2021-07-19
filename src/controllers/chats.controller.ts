@@ -8,7 +8,6 @@ export default class ChatsController {
 	}
 
 	public async getChats() {
-		console.log('test');
 		const chats = await chatsAPI.request();
 		console.log(chats);
 	}

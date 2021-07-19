@@ -1,4 +1,4 @@
-import { router } from '../../index';
+import { authController, router } from '../../index';
 
 import {
 	Test,
@@ -47,6 +47,8 @@ export default function (): void {
 	if (loginForm) {
 		loginForm.addEventListener('submit', (e: Event): void => {
 			e.preventDefault();
+
+			authController.logout();
 
 			const passwordValidate = passwordTest();
 			const loginValidate = loginTest();

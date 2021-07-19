@@ -64,7 +64,9 @@ export default class HTTPTransport {
 			xhr.timeout = timeout;
 			xhr.ontimeout = reject;
 
-			xhr.send(data);
+			xhr.withCredentials = true;
+
+			xhr.send(JSON.stringify(data));
 		});
 	};
 }
