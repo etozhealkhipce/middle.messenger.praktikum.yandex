@@ -1,6 +1,6 @@
 @use '../../styles/variables.scss' as *;
 
-.sidebar {
+.sidebar-wrapper {
 	border-right: 1px solid $soft-gray;
 	height: 100vh;
 	overflow-y: scroll;

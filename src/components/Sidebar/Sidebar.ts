@@ -1,46 +1,59 @@
-import { compile } from 'pug';
+import { render } from 'pug';
 import Block from '../../core/Block';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { UserPreview } from '../ui/userPreview';
 import './_sidebar.scss';
 import events from './events';
-
-type Props = Record<string, any>;
+import merge from '../../utils/merge';
 
 const template: string = `
 aside.sidebar
-    .search
-        | !{searchInput}
-    | !{userPreview}
-    | !{profileButton}`;
+	.search
+		.search-input-wrapper
+		.user-preview-wrapper
+		.profile-button-wrapper`;
 
 export default class Sidebar extends Block {
-	constructor(props: Props) {
-		super({
+	constructor(parentData: any) {
+		const data: any = merge(parentData, {
 			tagName: 'template',
-			props: {
-				searchInput: new Input({
-					inputType: 'text',
-					inputId: '3',
-					inputName: 'search',
-					inputPlaceholder: 'Поиск',
-					inputClass: 'search__input',
-				}).render(),
-				profileButton: new Button({
-					buttonType: 'button',
-					buttonId: 'profileBtn',
-					buttonText: 'Профиль',
-					buttonName: 'profileBtn',
-					buttonClass: 'profile',
-				}).render(),
-				userPreview: new UserPreview({ users: props.users }).render(),
-			},
+			children: [
+				{
+					component: Input,
+					props: {
+						inputType: 'text',
+						inputId: '3',
+						inputName: 'search',
+						inputPlaceholder: 'Поиск',
+						inputClass: 'search__input',
+					},
+					rootQuery: '.search-input-wrapper',
+				},
+				{
+					component: Button,
+					props: {
+						buttonType: 'button',
+						buttonId: 'profileBtn',
+						buttonText: 'Профиль',
+						buttonName: 'profileBtn',
+						buttonClass: 'profile',
+					},
+					rootQuery: '.profile-button-wrapper',
+				},
+				{
+					component: UserPreview,
+					props: { users: parentData.users },
+					rootQuery: '.user-preview-wrapper',
+				},
+			],
 			events,
 		});
+
+		super(data);
 	}
 
 	render(): string {
-		return compile(template)(this.props);
+		return render(template);
 	}
 }

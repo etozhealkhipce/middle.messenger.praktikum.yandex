@@ -1,14 +1,7 @@
-export default function render(root: string, block: any): void {
-	const app = document.querySelector(root);
+export default function render(root: string, block: string): void {
+	const app: HTMLElement | null = document.querySelector(root);
+
 	if (!app) return;
 
-	app.innerHTML = block.getContent();
-
-	const events = block.getEvents();
-
-	if (events) {
-		Object.keys(events).forEach((key) => {
-			events[key]();
-		});
-	}
+	app.innerHTML = block;
 }

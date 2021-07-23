@@ -11,4 +11,42 @@ declare global {
 		password: string;
 		phone: string;
 	};
+
+	type InputT = {
+		props: {
+			inputType: string;
+			inputId: number | string;
+			inputName: string;
+			inputPlaceholder: string;
+			inputClass: string;
+		};
+		rootQuery: string;
+		selector: string;
+	};
+
+	type ButtonT = {
+		props: {
+			buttonType: string;
+			buttonId: number | string;
+			buttonName: string;
+			buttonClass?: string;
+			buttonText?: string;
+			buttonDisabled?: any;
+		};
+		rootQuery: string;
+		selector: string;
+	};
+
+	type UserPreviewT = {
+		props: {
+			buttonType: string;
+			buttonId: number | string;
+			buttonName: string;
+			buttonClass?: string;
+			buttonText?: string;
+			buttonDisabled?: any;
+		};
+		rootQuery: string;
+		selector: string;
+	};
 }

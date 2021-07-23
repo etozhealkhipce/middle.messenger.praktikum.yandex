@@ -1,4 +1,5 @@
-import { authController, router } from '../../index';
+import authController from '../../controllers/auth.controller';
+import Router from '../../core/Router/Router';
 
 import {
 	Test,
@@ -11,6 +12,7 @@ export default function (): void {
 	const registerButton = <HTMLButtonElement>(
 		document.getElementById('registerBtn')
 	);
+
 	const loginForm = <HTMLButtonElement>document.getElementById('loginForm');
 	const loginInput = <HTMLInputElement>document.getElementById('login');
 	const passwordInput = <HTMLInputElement>document.getElementById('password');
@@ -26,13 +28,13 @@ export default function (): void {
 
 	if (registerButton) {
 		registerButton.addEventListener('click', (): void => {
-			router.go('/register');
+			Router.go('/register');
 		});
 	}
 
 	if (forgetPassword) {
 		forgetPassword.addEventListener('click', (): void => {
-			router.go('/inactivechat');
+			Router.go('/inactivechat');
 		});
 	}
 

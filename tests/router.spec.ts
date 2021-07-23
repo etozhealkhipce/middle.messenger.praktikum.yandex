@@ -3,7 +3,7 @@ import { JSDOM } from 'jsdom';
 import Router from '../src/core/Router/Router';
 import Block from '../src/core/Block';
 
-let router: Router;
+let router: typeof Router;
 
 declare global {
 	namespace NodeJS {
@@ -40,7 +40,7 @@ class TestComponent extends Block {
 
 describe('Router', () => {
 	beforeEach(() => {
-		router = new Router('#app');
+		router = Router;
 
 		Object.defineProperty(window, 'location', {
 			value: {

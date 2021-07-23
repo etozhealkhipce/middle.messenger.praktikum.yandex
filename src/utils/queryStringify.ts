@@ -1,21 +1,7 @@
+import isPlainObject from './isPlainObject';
+import isArray from './isArray';
+
 type StringIndexed = Record<string, any>;
-
-type PlainObject<T = unknown> = {
-	[k in string]: T;
-};
-
-function isArray(value: unknown): value is [] {
-	return Array.isArray(value);
-}
-
-function isPlainObject(value: unknown): value is PlainObject {
-	return (
-		typeof value === 'object' &&
-		value !== null &&
-		value.constructor === Object &&
-		Object.prototype.toString.call(value) === '[object Object]'
-	);
-}
 
 function queryStringify(data: StringIndexed, urlEncode?: any) {
 	function normalizeObj(val: any, path: any[] = []): any[] {

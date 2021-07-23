@@ -1,17 +1,19 @@
 import { render } from 'pug';
 import Block from '../core/Block';
-import { Login } from '../components/Login';
+import { Register } from '../components/Register';
 
-const template: string = `main.login`;
+const template: string = `
+main.register
+`;
 
-export default class SignIn extends Block {
+export default class SignUp extends Block {
 	constructor(props: any) {
 		super({
 			tagName: 'template',
 			children: [
 				{
-					component: Login,
-					rootQuery: '.login',
+					component: Register,
+					rootQuery: '.register',
 				},
 			],
 			...props,

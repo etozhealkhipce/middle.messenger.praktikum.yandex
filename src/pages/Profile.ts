@@ -1,39 +1,40 @@
-import { compile } from 'pug';
+import { render } from 'pug';
 import Block from '../core/Block';
 import { Sidebar } from '../components/Sidebar';
 import { ProfileCart } from '../components/ProfileCart';
-import * as users from '../mock/users.json';
-
-type Props = {
-	edit: Boolean;
-	changePassword: Boolean;
-};
+// import * as users from '../mock/users.json';
 
 const template: string = `
 main.content-wrapper
-	| !{sidebar}
-	| !{profileCart}
-`;
+	.sidebar-wrapper
+	.profile-cart-wrapper`;
 
 export default class Profile extends Block {
-	constructor(props: Props) {
-		const sidebar = new Sidebar({ users });
-		const profileCart = new ProfileCart(props);
-
+	constructor(props: any) {
 		super({
 			tagName: 'template',
-			props: {
-				sidebar: sidebar.render(),
-				profileCart: profileCart.render(),
-			},
-			events: {
-				sidebar: sidebar.getEvents(),
-				profileCart: profileCart.getEvents(),
-			},
+			children: [
+				{
+					component: Sidebar,
+					// props: {
+					// 	users,
+					// },
+					rootQuery: '.sidebar-wrapper',
+				},
+				{
+					component: ProfileCart,
+					props: {
+						edit: false,
+						changePassword: false,
+					},
+					rootQuery: '.profile-cart-wrapper',
+				},
+			],
+			...props,
 		});
 	}
 
 	render(): string {
-		return compile(template)(this.props);
+		return render(template);
 	}
 }

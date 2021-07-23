@@ -1,26 +1,20 @@
-import { compile } from 'pug';
 import EventBus from './EventBus';
+import Store from './Store';
 import merge from '../utils/merge';
+import render from '../services/render';
 
 type Constructor = {
-	template: string;
 	tagName: string;
-	props: Record<string, any>;
-	events?: Record<string, any>;
+	rootQuery: string;
+	props?: Record<string, any>;
+	events?: Function;
 	classes?: string[];
-	store?: any;
+	selector?: string;
+	children?: any[];
 };
 
 class Block {
-	events: any;
-
 	props: any;
-
-	classes?: string[];
-
-	template: string;
-
-	store: any;
 
 	protected eventBus: () => EventBus;
 
@@ -36,28 +30,26 @@ class Block {
 	_meta: Constructor;
 
 	constructor({
-		template,
 		tagName,
 		props,
 		events,
 		classes,
-		store,
+		selector,
+		rootQuery,
+		children,
 	}: Constructor) {
 		const eventBus = new EventBus();
 		this._meta = {
 			tagName,
-			template,
 			props,
 			events,
 			classes,
-			store,
+			selector,
+			rootQuery,
+			children,
 		};
 
-		this.events = events;
-		this.template = template;
-		this.classes = classes;
-		this.props = this._makePropsProxy(props);
-		this.store = store;
+		this.props = this._makePropsProxy(props || {});
 
 		this.eventBus = () => eventBus;
 		this._registerEvents(eventBus);
@@ -66,8 +58,8 @@ class Block {
 	}
 
 	private _registerEvents(eventBus: EventBus): void {
-		if (this.store) {
-			this.store.init(this._updateState.bind(this));
+		if (this._meta.selector) {
+			Store.init(this._meta.selector, this._updateState.bind(this));
 		}
 		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
@@ -76,10 +68,10 @@ class Block {
 	}
 
 	private _createResources(): void {
-		const { tagName } = this._meta;
+		const { tagName, classes } = this._meta;
 		const element = this._createDocumentElement(tagName);
-		if (this.classes) {
-			element.classList.add(...this.classes);
+		if (classes) {
+			element.classList.add(...classes);
 		}
 		this._element = element;
 	}
@@ -108,8 +100,20 @@ class Block {
 	}
 
 	private _updateState() {
-		// this.props = merge(this.props, this.store.state);
-		this._componentDidMount();
+		const { selector } = this._meta;
+		if (selector) {
+			const nextProps = Store.get(selector);
+
+			this.setProps(nextProps);
+		}
+	}
+
+	setProps(nextProps: any) {
+		if (!nextProps) {
+			return;
+		}
+
+		merge(this.props, nextProps);
 	}
 
 	get element() {
@@ -117,21 +121,44 @@ class Block {
 	}
 
 	private _render(): void {
-		const block = compile(this.template)(this.props);
+		const block: any = this.render();
 
-		this._element.innerHTML = block;
+		const { rootQuery, children, events } = this._meta;
 
-		this.render();
+		// TODO: подумать как можно убрать обертку над динамическими элементами в темплейте
+		// TODO: использовать Shadow DOM
+		render(rootQuery, block);
+
+		if (children && children.length) {
+			children.map((item) => {
+				const { component } = item;
+				// eslint-disable-next-line new-cap
+				return new component({
+					tagName: item.tagName,
+					props: item.props,
+					events: item.events,
+					classes: item.classes,
+					selector: item.selector,
+					rootQuery: item.rootQuery,
+					children: item.children,
+				});
+			});
+		}
+
+		// TODO: добавить уникальные события на каждый компонент
+		if (events) {
+			events();
+		}
 	}
 
 	render() {}
 
 	getContent() {
-		return this.element.innerHTML;
+		return this.element;
 	}
 
 	getEvents() {
-		return this.events;
+		return this._meta.events;
 	}
 
 	private _makePropsProxy(
@@ -140,7 +167,6 @@ class Block {
 		if (props) {
 			const proxyData = new Proxy(props, {
 				set: (target, prop: any, value) => {
-					console.log(target, prop);
 					const oldProp = target[prop];
 					target[prop] = value;
 					const newProp = target[prop];

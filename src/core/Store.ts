@@ -2,24 +2,23 @@ import set from '../utils/set';
 import get from '../utils/get';
 import EventBus from './EventBus';
 
-// TODO: сделать стор общим и добавить мемоизацию
 class Store {
 	protected eventBus: () => EventBus;
 
 	protected state: Record<string, any>;
 
-	static EVENTS = {
-		UPDATED: 'store:updated',
-	};
+	protected event: string;
 
-	constructor(state: any) {
+	constructor() {
 		const eventBus = new EventBus();
 		this.eventBus = () => eventBus;
-		this.state = this._makeStateProxy(state);
+		this.state = {};
 	}
 
-	init(action: Function) {
-		this.eventBus().on(Store.EVENTS.UPDATED, action);
+	init(event: string, action: Function) {
+		this.event = event;
+		this.eventBus().on(event, action);
+		this.state[event] = this._makeStateProxy({});
 	}
 
 	set(path: string, value: any) {
@@ -27,6 +26,7 @@ class Store {
 	}
 
 	get(path: string) {
+		// TODO: добавить мемоизацию
 		return get(this.state, path);
 	}
 
@@ -35,15 +35,15 @@ class Store {
 	): Boolean | Record<string, any> {
 		if (state) {
 			const proxyData = new Proxy(state, {
-				set: (target, prop: any, value) => {
-					const oldProp = target[prop];
+				set: (target, prop: any, value, receiver) => {
+					// const oldProp = target[prop];
 					target[prop] = value;
-					const newProp = target[prop];
+					// const newProp = target[prop];
 
 					// TODO: при рефакторинге добавить глубокое сравнение
-					if (oldProp !== newProp) {
-						this.eventBus().emit(Store.EVENTS.UPDATED);
-					}
+					console.log('обновился стейт', receiver);
+
+					this.eventBus().emit(this.event);
 					return true;
 				},
 				deleteProperty: () => {
@@ -58,4 +58,4 @@ class Store {
 	}
 }
 
-export default Store;
+export default new Store();

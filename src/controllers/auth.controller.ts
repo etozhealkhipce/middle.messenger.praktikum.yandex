@@ -1,13 +1,13 @@
-import RegisterStore from '../pages/SignUp/store';
 import RegisterAPI from '../api/register.api';
-import { Button } from '../components/ui/Button';
 import LogoutAPI from '../api/logout.api';
 import { Test, validate, toggle, multipleListener } from '../services/validate';
+import Store from '../core/Store';
+import Router from '../core/Router/Router';
 
 const registerAPI = new RegisterAPI();
 const logoutAPI = new LogoutAPI();
 
-export default class AuthController {
+class AuthController {
 	userData: UserData;
 
 	public validate(): Boolean {
@@ -91,27 +91,44 @@ export default class AuthController {
 	public async signUp() {
 		try {
 			if (this.validate()) {
-				// RegisterStore.set(
-				// 	'registerBtn',
-				// 	new Button({
-				// 		buttonType: 'submit',
-				// 		buttonId: 'registerBtn',
-				// 		buttonText: 'Зарегистрироваться',
-				// 		buttonName: 'registerBtn',
-				// 		buttonClass: 'registerBtn',
-				// 		buttonDisabled: true,
-				// 	}).getContent()
-				// );
-				RegisterStore.set('loading', true);
+				Store.set('registerBtn', {
+					buttonDisabled: true,
+				});
 
-				// const response = await registerAPI.create(this.userData);
+				await registerAPI.create(this.userData);
 
-				// console.log(response);
+				Router.go('/');
 			} else {
 				throw new Error('Неверный формат данных');
 			}
 		} catch (error) {
 			console.log(error);
+		} finally {
+			Store.set('registerBtn', {
+				buttonDisabled: false,
+			});
+		}
+	}
+
+	public async signIn() {
+		try {
+			if (this.validate()) {
+				Store.set('registerBtn', {
+					buttonDisabled: true,
+				});
+
+				await registerAPI.create(this.userData);
+
+				Router.go('/');
+			} else {
+				throw new Error('Неверный формат данных');
+			}
+		} catch (error) {
+			console.log(error);
+		} finally {
+			Store.set('registerBtn', {
+				buttonDisabled: false,
+			});
 		}
 	}
 
@@ -124,3 +141,5 @@ export default class AuthController {
 		}
 	}
 }
+
+export default new AuthController();

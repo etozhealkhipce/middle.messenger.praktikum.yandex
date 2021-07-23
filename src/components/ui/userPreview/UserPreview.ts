@@ -2,16 +2,6 @@ import { compile } from 'pug';
 import Block from '../../../core/Block';
 import './_userPreview.scss';
 
-type Props = {
-	users?: {
-		name: string;
-		avatar: string;
-		messagePreview?: string;
-		messageTime?: string;
-		messageCounter?: string | number;
-	};
-};
-
 const template: string = `
 if users
 	each user, id in users
@@ -29,8 +19,13 @@ else
 	h3.empty Список чатов пуст`;
 
 export default class UserPreview extends Block {
-	constructor(props: Props) {
-		super({ tagName: 'template', props });
+	constructor({ props, rootQuery, selector }: UserPreviewT) {
+		super({
+			tagName: 'template',
+			props,
+			rootQuery,
+			selector,
+		});
 	}
 
 	render(): string {

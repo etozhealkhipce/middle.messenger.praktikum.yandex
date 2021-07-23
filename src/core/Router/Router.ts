@@ -1,6 +1,6 @@
 import Route from './Route';
 
-export default class Router {
+class Router {
 	protected _currentRoute: any;
 
 	protected _rootQuery: string;
@@ -50,7 +50,6 @@ export default class Router {
 
 	go(pathname: string, props?: Record<string, any>) {
 		this.history.pushState({}, '', pathname);
-
 		this._onRoute(pathname, props);
 	}
 
@@ -66,3 +65,5 @@ export default class Router {
 		return this.routes.find((route: any) => route.match(pathname));
 	}
 }
+
+export default new Router('#app');
