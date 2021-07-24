@@ -103,7 +103,7 @@ class Block {
 		const { selector } = this._meta;
 		if (selector) {
 			const nextProps = Store.get(selector);
-
+			console.log(nextProps);
 			this.setProps(nextProps);
 		}
 	}
@@ -122,11 +122,10 @@ class Block {
 
 	private _render(): void {
 		const block: any = this.render();
-
 		const { rootQuery, children, events } = this._meta;
 
 		// TODO: подумать как можно убрать обертку над динамическими элементами в темплейте
-		// TODO: использовать Shadow DOM
+		// TODO: возможно использовать Shadow DOM
 		render(rootQuery, block);
 
 		if (children && children.length) {

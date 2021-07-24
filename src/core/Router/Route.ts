@@ -11,13 +11,13 @@ export default class Route {
 
 	protected _block: Function | null;
 
-	protected _props: Record<string, any>;
+	protected _params: Record<string, any>;
 
-	constructor(pathname: string, view: any, props: Record<string, any>) {
+	constructor(pathname: string, view: any, params: Record<string, any>) {
 		this._pathname = pathname;
 		this._blockClass = view;
 		this._block = null;
-		this._props = props;
+		this._params = params;
 	}
 
 	navigate(pathname: string) {
@@ -31,11 +31,11 @@ export default class Route {
 		return isEqual(pathname, this._pathname);
 	}
 
-	render(props?: Record<string, any>) {
-		if (props) {
-			this._props = merge(this._props, props);
+	render(params?: Record<string, any>) {
+		if (params) {
+			this._params = merge(this._params, params);
 		}
 
-		this._block = new this._blockClass(this._props);
+		this._block = new this._blockClass(this._params);
 	}
 }

@@ -1,4 +1,8 @@
+import HTTP from '../core/HTTP';
+
 export default class BaseAPI {
+	authAPIInstance = new HTTP('/auth');
+
 	create() {
 		throw new Error('Not implemented');
 	}

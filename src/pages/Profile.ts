@@ -7,10 +7,11 @@ import { ProfileCart } from '../components/ProfileCart';
 const template: string = `
 main.content-wrapper
 	.sidebar-wrapper
-	.profile-cart-wrapper`;
+	.profile-cart-wrapper.content-wrapper__content`;
 
 export default class Profile extends Block {
-	constructor(props: any) {
+	constructor(params: any) {
+		console.log(params);
 		super({
 			tagName: 'template',
 			children: [
@@ -23,14 +24,11 @@ export default class Profile extends Block {
 				},
 				{
 					component: ProfileCart,
-					props: {
-						edit: false,
-						changePassword: false,
-					},
 					rootQuery: '.profile-cart-wrapper',
+					...params.profileCart,
 				},
 			],
-			...props,
+			rootQuery: params.rootQuery,
 		});
 	}
 

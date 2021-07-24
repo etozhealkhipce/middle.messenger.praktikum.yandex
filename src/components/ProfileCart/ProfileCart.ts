@@ -12,7 +12,7 @@ import merge from '../../utils/merge';
 // };
 
 const template: string = `
-main.content-wrapper__content.content-wrapper__content_profile
+main.content-wrapper__content_profile
     form.profile-cart#profileForm
         .user
             if edit
@@ -90,12 +90,13 @@ export default class ProfileCart extends Block {
 						inputType: 'text',
 						inputId: 'login',
 						inputName: 'login',
-						inputValue: 'alkhipce',
+						inputValue: '',
 						inputPlaceholder: 'Введите логин',
 						inputClass: 'profile-cart__input',
-						inputDisabled: false,
+						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.login-wrapper',
+					selector: 'profileCart.login',
 				},
 				{
 					component: Input,
@@ -106,9 +107,10 @@ export default class ProfileCart extends Block {
 						inputValue: 'alkhipce@mail.ru',
 						inputPlaceholder: 'Введите почту',
 						inputClass: 'profile-cart__input',
-						inputDisabled: false,
+						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.email-wrapper',
+					selector: 'profileCart.email',
 				},
 				{
 					component: Input,
@@ -119,7 +121,7 @@ export default class ProfileCart extends Block {
 						inputValue: '+7 777 555 1234',
 						inputPlaceholder: 'Введите телефон',
 						inputClass: 'profile-cart__input',
-						inputDisabled: false,
+						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.phone-wrapper',
 				},

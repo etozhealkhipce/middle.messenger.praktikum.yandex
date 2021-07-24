@@ -1,4 +1,4 @@
-import { router } from '../../index';
+import Router from '../../core/Router/Router';
 
 export default function () {
 	const sidebar = <HTMLElement>document.querySelector('.sidebar');
@@ -8,14 +8,14 @@ export default function () {
 
 	if (profileButton) {
 		profileButton.addEventListener('click', (): void => {
-			router.go('/profile', { edit: false, changePassword: false });
+			Router.go('/profile', { edit: false, changePassword: false });
 		});
 	}
 
 	if (sidebar) {
 		sidebar.addEventListener('click', (e: Event): void => {
 			if ((<HTMLElement>e.target).closest('.user-preview')) {
-				router.go('/activechat');
+				Router.go('/activechat');
 			}
 		});
 	}

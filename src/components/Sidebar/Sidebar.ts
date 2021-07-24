@@ -11,8 +11,8 @@ const template: string = `
 aside.sidebar
 	.search
 		.search-input-wrapper
-		.user-preview-wrapper
-		.profile-button-wrapper`;
+	.user-preview-wrapper
+	.profile-button-wrapper`;
 
 export default class Sidebar extends Block {
 	constructor(parentData: any) {

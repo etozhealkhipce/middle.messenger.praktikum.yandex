@@ -1,11 +1,8 @@
-import BaseAPI from './index';
-import HTTP from '../core/HTTP';
-
-const registerAPIInstance = new HTTP('/auth');
+import BaseAPI from '../index';
 
 export default class Register extends BaseAPI {
 	async create(data: UserData) {
-		const response = await registerAPIInstance.post('/signup', {
+		const response = await this.authAPIInstance.post('/signup', {
 			data,
 			headers: {
 				'content-type': 'application/json',

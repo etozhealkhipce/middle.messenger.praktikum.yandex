@@ -1,11 +1,17 @@
 @use '../../styles/variables.scss' as *;
 
-.profile-cart-wrapper {
+.profile-cart {
 	background-color: #fff;
 	border-radius: 10px;
 	margin: 0 auto;
 	padding: 50px;
 	width: 500px;
+
+	&-wrapper {
+		align-items: center;
+		display: flex;
+		justify-content: center;
+	}
 
 	a {
 		cursor: pointer;

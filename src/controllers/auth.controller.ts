@@ -1,96 +1,24 @@
-import RegisterAPI from '../api/register.api';
-import LogoutAPI from '../api/logout.api';
-import { Test, validate, toggle, multipleListener } from '../services/validate';
+import RegisterAPI from '../api/auth/register.api';
+import LoginAPI from '../api/auth/login.api';
+import LogoutAPI from '../api/auth/logout.api';
+import UserAPI from '../api/auth/user.api';
 import Store from '../core/Store';
 import Router from '../core/Router/Router';
+import { registerValidate, loginValidate } from '../services/authValidate';
 
 const registerAPI = new RegisterAPI();
+const loginAPI = new LoginAPI();
 const logoutAPI = new LogoutAPI();
+const userAPI = new UserAPI();
 
 class AuthController {
-	userData: UserData;
-
-	public validate(): Boolean {
-		// TODO: переписать валидацию (вынести флаги в store и template)
-		const loginInput = <HTMLInputElement>document.getElementById('login');
-		const passwordInput = <HTMLInputElement>document.getElementById('password');
-		const passwordRepeatInput = <HTMLInputElement>(
-			document.getElementById('password-repeat')
-		);
-		const emailInput = <HTMLInputElement>document.getElementById('email');
-		const phoneInput = <HTMLInputElement>document.getElementById('phone');
-
-		const loginError = <HTMLParagraphElement>(
-			document.querySelector('.login-error')
-		);
-		const passwordError = <HTMLParagraphElement>(
-			document.querySelector('.password-error')
-		);
-		const passwordRepeatError = <HTMLParagraphElement>(
-			document.querySelector('.password-repeat-error')
-		);
-		const emailError = <HTMLParagraphElement>(
-			document.querySelector('.email-error')
-		);
-		const phoneError = <HTMLParagraphElement>(
-			document.querySelector('.phone-error')
-		);
-
-		const loginTest = () =>
-			toggle(!validate(loginInput.value, Test.login), loginError);
-		multipleListener(loginInput, 'blur, focus', loginTest);
-
-		const passwordTest = () =>
-			toggle(!validate(passwordInput.value, Test.password), passwordError);
-		multipleListener(passwordInput, 'blur, focus', passwordTest);
-
-		const passwordRepeatTest = () =>
-			toggle(
-				passwordRepeatInput.value !== passwordInput.value,
-				passwordRepeatError
-			);
-		multipleListener(passwordRepeatInput, 'blur, focus', passwordRepeatTest);
-
-		const emailTest = () =>
-			toggle(!validate(emailInput.value, Test.email), emailError);
-		multipleListener(emailInput, 'blur, focus', emailTest);
-
-		const phoneTest = () =>
-			toggle(!validate(phoneInput.value, Test.phone), phoneError);
-		multipleListener(phoneInput, 'blur, focus', phoneTest);
-
-		this.userData = {
-			email: (<HTMLInputElement>document.getElementById('email')).value,
-			login: (<HTMLInputElement>document.getElementById('login')).value,
-			first_name: (<HTMLInputElement>document.getElementById('name')).value,
-			second_name: (<HTMLInputElement>document.getElementById('surname')).value,
-			phone: (<HTMLInputElement>document.getElementById('phone')).value,
-			password: (<HTMLInputElement>document.getElementById('password-repeat'))
-				.value,
-		};
-
-		const passwordValidate = passwordTest();
-		const loginValidate = loginTest();
-		const passwordRepeatvalidate = passwordRepeatTest();
-		const emailValidate = emailTest();
-		const phoneValidate = phoneTest();
-
-		if (
-			passwordValidate &&
-			loginValidate &&
-			passwordRepeatvalidate &&
-			emailValidate &&
-			phoneValidate
-		) {
-			return true;
-		}
-
-		return false;
-	}
+	userData: LoginUserData | RegisterUserData | Boolean;
 
 	public async signUp() {
 		try {
-			if (this.validate()) {
+			this.userData = registerValidate();
+
+			if (this.userData) {
 				Store.set('registerBtn', {
 					buttonDisabled: true,
 				});
@@ -112,21 +40,23 @@ class AuthController {
 
 	public async signIn() {
 		try {
-			if (this.validate()) {
-				Store.set('registerBtn', {
+			this.userData = loginValidate();
+
+			if (this.userData) {
+				Store.set('loginBtn', {
 					buttonDisabled: true,
 				});
 
-				await registerAPI.create(this.userData);
+				await loginAPI.create(this.userData);
 
-				Router.go('/');
+				Router.go('/inactivechat');
 			} else {
 				throw new Error('Неверный формат данных');
 			}
 		} catch (error) {
 			console.log(error);
 		} finally {
-			Store.set('registerBtn', {
+			Store.set('loginBtn', {
 				buttonDisabled: false,
 			});
 		}
@@ -134,8 +64,26 @@ class AuthController {
 
 	public async logout() {
 		try {
-			const response = await logoutAPI.request();
+			await logoutAPI.request();
+		} catch (error) {
+			console.log(error);
+		}
+	}
+
+	public async user() {
+		try {
+			const response: any = await userAPI.request();
+
 			console.log(response);
+
+			// {"id":82914,"first_name":"Илья","second_name":"Дёмин","display_name":null,"login":"alkhipcetest","avatar":null,"email":"alkhipcetest@gmail.com","phone":"87758606824"}
+
+			if (response) {
+				Store.set('profileCart', {
+					login: { inputValue: JSON.parse(response).login },
+					email: { inputValue: JSON.parse(response).email },
+				});
+			}
 		} catch (error) {
 			console.log(error);
 		}

@@ -3,13 +3,18 @@ export {};
 declare global {
 	type Events = Record<string, Function>;
 
-	type UserData = {
+	type RegisterUserData = {
 		first_name: string;
 		second_name: string;
 		login: string;
 		email: string;
 		password: string;
 		phone: string;
+	};
+
+	type LoginUserData = {
+		login: string;
+		password: string;
 	};
 
 	type InputT = {

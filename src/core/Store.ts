@@ -1,5 +1,7 @@
 import set from '../utils/set';
 import get from '../utils/get';
+import stringToObject from '../utils/stringToObject';
+// import isEqual from '../utils/isEqual';
 import EventBus from './EventBus';
 
 class Store {
@@ -18,11 +20,23 @@ class Store {
 	init(event: string, action: Function) {
 		this.event = event;
 		this.eventBus().on(event, action);
-		this.state[event] = this._makeStateProxy({});
+
+		const test = stringToObject(event);
+		const acc = this.state.hasOwnProperty(Object.keys(test)[0])
+			? this.state[Object.keys(test)[0]]
+			: {};
+
+		this.state = Object.entries(test).reduce(
+			(acc, [key, val]) => (acc[key] = this._makeStateProxy(val)),
+			acc
+		);
+
+		console.log(this.state);
 	}
 
 	set(path: string, value: any) {
 		set(this.state, path, value);
+		console.log(this.state);
 	}
 
 	get(path: string) {
@@ -35,15 +49,11 @@ class Store {
 	): Boolean | Record<string, any> {
 		if (state) {
 			const proxyData = new Proxy(state, {
-				set: (target, prop: any, value, receiver) => {
-					// const oldProp = target[prop];
+				set: (target, prop: any, value) => {
 					target[prop] = value;
-					// const newProp = target[prop];
-
-					// TODO: при рефакторинге добавить глубокое сравнение
-					console.log('обновился стейт', receiver);
 
 					this.eventBus().emit(this.event);
+
 					return true;
 				},
 				deleteProperty: () => {

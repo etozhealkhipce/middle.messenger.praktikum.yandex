@@ -1,13 +1,11 @@
-import { router } from '../../index';
+import authController from '../../controllers/auth.controller';
+import Router from '../../core/Router/Router';
 
-import {
-	Test,
-	validate,
-	toggle,
-	multipleListener,
-} from '../../services/validate';
+import { Test, validate, toggle, multipleListener } from '../../utils/validate';
 
 export default function (): void {
+	authController.user();
+
 	const profileForm = <HTMLButtonElement>document.getElementById('profileForm');
 	const profileEditLink = <HTMLButtonElement>(
 		document.querySelector('.profile-edit')
@@ -19,19 +17,40 @@ export default function (): void {
 
 	if (profileEditLink) {
 		profileEditLink.addEventListener('click', () => {
-			router.go('/profile', { edit: true, changePassword: false });
+			Router.go('/profile', {
+				profileCart: {
+					props: {
+						edit: true,
+						changePassword: false,
+					},
+				},
+			});
 		});
 	}
 
 	if (profileChangePasswordLink) {
 		profileChangePasswordLink.addEventListener('click', () => {
-			router.go('/profile', { edit: false, changePassword: true });
+			Router.go('/profile', {
+				profileCart: {
+					props: {
+						edit: false,
+						changePassword: true,
+					},
+				},
+			});
 		});
 	}
 
 	if (profileBackLink) {
 		profileBackLink.addEventListener('click', () => {
-			router.go('/profile', { edit: false, changePassword: false });
+			Router.go('/profile', {
+				profileCart: {
+					props: {
+						edit: false,
+						changePassword: false,
+					},
+				},
+			});
 		});
 	}
 

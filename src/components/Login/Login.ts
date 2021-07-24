@@ -54,8 +54,10 @@ export default class Login extends Block {
 						buttonText: 'Авторизоваться',
 						buttonName: 'loginBtn',
 						buttonClass: 'loginBtn',
+						buttonDisabled: false,
 					},
 					rootQuery: '.loginBtn-wrapper',
+					selector: 'loginBtn',
 				},
 				{
 					component: Button,
