@@ -74,14 +74,25 @@ class AuthController {
 		try {
 			const response: any = await userAPI.request();
 
-			console.log(response);
+			// console.log(response);
 
 			// {"id":82914,"first_name":"Илья","second_name":"Дёмин","display_name":null,"login":"alkhipcetest","avatar":null,"email":"alkhipcetest@gmail.com","phone":"87758606824"}
 
 			if (response) {
+				const json = JSON.parse(response);
+
 				Store.set('profileCart', {
-					login: { inputValue: JSON.parse(response).login },
-					email: { inputValue: JSON.parse(response).email },
+					children: {
+						login: { inputValue: json.login },
+						email: { inputValue: json.email },
+						phone: { inputValuej: json.phone },
+						name: { inputValue: json.first_name },
+						surname: { inputValue: json.second_name },
+					},
+					main: {
+						name: json.first_name,
+						surname: json.second_name,
+					},
 				});
 			}
 		} catch (error) {

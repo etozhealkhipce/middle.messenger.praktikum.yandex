@@ -1,43 +1,50 @@
-function isEqualArray(a: any[], b: any[]) {
-	if (a.length !== b.length) return false;
+type PlainObject<T = any> = {
+	[k in string]: T;
+};
 
-	for (let i = 0, l = a.length; i < l; i++) {
-		if (a[i] instanceof Array && b[i] instanceof Array) {
-			if (!isEqualArray(a[i], b[i])) return false;
-		} else if (a[i] !== b[i]) {
-			return false;
-		}
-	}
-	return true;
+function isPlainObject(value: unknown): value is PlainObject {
+	if (value === undefined) return false;
+
+	return (
+		typeof value === 'object' &&
+		value !== null &&
+		value.constructor === Object &&
+		Object.prototype.toString.call(value) === '[object Object]'
+	);
 }
 
-function isEqual(a: object, b: object): boolean {
-	if (Object.keys(a).length !== Object.keys(b).length) return false;
+function isArray(value: unknown): value is [] {
+	return Array.isArray(value);
+}
 
-	for (const value in a) {
-		if (b.hasOwnProperty(value)) {
-			const lhs = (a as any)[value];
-			const rhs = (b as any)[value];
+function isArrayOrObject(value: unknown): value is [] | PlainObject {
+	return isPlainObject(value) || isArray(value);
+}
 
-			if (
-				lhs &&
-				rhs &&
-				lhs.constructor === Object &&
-				rhs.constructor === Object
-			) {
-				return isEqual(lhs, rhs);
-			}
-			if (lhs instanceof Array && rhs instanceof Array) {
-				return isEqualArray(lhs, rhs);
-			}
-
-			if (lhs === rhs) {
-				return true;
-			}
-
-			return false;
+function isEqual(lhs: PlainObject, rhs: PlainObject) {
+	if (!isArrayOrObject(lhs) || !isArrayOrObject(rhs)) {
+		if (lhs === rhs) {
+			return true;
 		}
 		return false;
+	}
+
+	if (Object.keys(lhs).length !== Object.keys(rhs).length) {
+		return false;
+	}
+
+	for (const [key, value] of Object.entries(lhs)) {
+		const rightValue = rhs[key];
+		if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
+			if (isEqual(value, rightValue)) {
+				continue;
+			}
+			return false;
+		}
+
+		if (value !== rightValue) {
+			return false;
+		}
 	}
 
 	return true;

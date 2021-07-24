@@ -1,7 +1,8 @@
 import set from '../utils/set';
 import get from '../utils/get';
 import stringToObject from '../utils/stringToObject';
-// import isEqual from '../utils/isEqual';
+import isEqual from '../utils/isEqual';
+import merge from '../utils/merge';
 import EventBus from './EventBus';
 
 class Store {
@@ -21,17 +22,10 @@ class Store {
 		this.event = event;
 		this.eventBus().on(event, action);
 
-		const test = stringToObject(event);
-		const acc = this.state.hasOwnProperty(Object.keys(test)[0])
-			? this.state[Object.keys(test)[0]]
-			: {};
-
-		this.state = Object.entries(test).reduce(
-			(acc, [key, val]) => (acc[key] = this._makeStateProxy(val)),
-			acc
+		const test: Record<string, any> = this._makeStateProxy(
+			stringToObject(event)
 		);
-
-		console.log(this.state);
+		this.state = merge(this.state, test);
 	}
 
 	set(path: string, value: any) {
@@ -40,7 +34,6 @@ class Store {
 	}
 
 	get(path: string) {
-		// TODO: добавить мемоизацию
 		return get(this.state, path);
 	}
 
@@ -50,9 +43,13 @@ class Store {
 		if (state) {
 			const proxyData = new Proxy(state, {
 				set: (target, prop: any, value) => {
+					const oldProp = target[prop];
 					target[prop] = value;
+					const newProp = target[prop];
 
-					this.eventBus().emit(this.event);
+					if (!isEqual(oldProp, newProp)) {
+						this.eventBus().emit(this.event);
+					}
 
 					return true;
 				},

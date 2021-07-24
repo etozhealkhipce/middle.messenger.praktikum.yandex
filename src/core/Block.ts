@@ -103,7 +103,6 @@ class Block {
 		const { selector } = this._meta;
 		if (selector) {
 			const nextProps = Store.get(selector);
-			console.log(nextProps);
 			this.setProps(nextProps);
 		}
 	}

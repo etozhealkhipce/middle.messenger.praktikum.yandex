@@ -25,8 +25,8 @@ main.content-wrapper__content_profile
                     img().user__image
 
             .user__second-wrapper
-                span.user__title Илья
-                p.user__surname Фамилия
+                span.user__title !{name}
+                p.user__surname !{surname}
         
 
         if !changePassword
@@ -96,7 +96,7 @@ export default class ProfileCart extends Block {
 						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.login-wrapper',
-					selector: 'profileCart.login',
+					selector: 'profileCart.children.login',
 				},
 				{
 					component: Input,
@@ -104,13 +104,13 @@ export default class ProfileCart extends Block {
 						inputType: 'text',
 						inputId: 'email',
 						inputName: 'email',
-						inputValue: 'alkhipce@mail.ru',
+						inputValue: '',
 						inputPlaceholder: 'Введите почту',
 						inputClass: 'profile-cart__input',
 						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.email-wrapper',
-					selector: 'profileCart.email',
+					selector: 'profileCart.children.email',
 				},
 				{
 					component: Input,
@@ -118,12 +118,13 @@ export default class ProfileCart extends Block {
 						inputType: 'text',
 						inputId: 'phone',
 						inputName: 'phone',
-						inputValue: '+7 777 555 1234',
+						inputValue: '',
 						inputPlaceholder: 'Введите телефон',
 						inputClass: 'profile-cart__input',
 						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.phone-wrapper',
+					selector: 'profileCart.children.phone',
 				},
 				{
 					component: Input,
@@ -131,11 +132,12 @@ export default class ProfileCart extends Block {
 						inputType: 'text',
 						inputId: 'name',
 						inputName: 'name',
-						inputValue: 'Илья',
+						inputValue: '',
 						inputPlaceholder: 'Введите имя',
 						inputClass: 'profile-cart__input',
 					},
 					rootQuery: '.name-wrapper',
+					selector: 'profileCart.children.name',
 				},
 				{
 					component: Input,
@@ -147,6 +149,7 @@ export default class ProfileCart extends Block {
 						inputClass: 'profile-cart__input',
 					},
 					rootQuery: '.surname-wrapper',
+					selector: 'profileCart.children.surname',
 				},
 				{
 					component: Input,
@@ -193,7 +196,12 @@ export default class ProfileCart extends Block {
 					rootQuery: '.saveBtn-wrapper',
 				},
 			],
+			props: {
+				name: 'AWDAW',
+				surname: 'awdawd',
+			},
 			events,
+			selector: 'profileCart',
 		});
 
 		super(data);
