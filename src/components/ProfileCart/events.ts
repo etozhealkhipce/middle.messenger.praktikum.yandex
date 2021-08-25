@@ -1,11 +1,10 @@
 import authController from '../../controllers/auth.controller';
-import userController from '../../controllers/user.controller';
 import Router from '../../core/Router/Router';
 
 import { Test, validate, toggle, multipleListener } from '../../utils/validate';
 
 export default async function (): Promise<any> {
-	await userController.getUserinfo();
+	await authController.getUserinfo();
 
 	const profileForm = <HTMLButtonElement>document.getElementById('profileForm');
 	const profileEditLink = <HTMLButtonElement>(
@@ -15,11 +14,17 @@ export default async function (): Promise<any> {
 		document.querySelector('.profile-change-password')
 	);
 	const profileBackLink = <HTMLButtonElement>document.querySelector('.back');
-	const logoutLink = <HTMLButtonElement>document.querySelector('.logout');
+	const logoutLink = <HTMLElement>document.querySelector('.logout');
+	const saveBtn = <HTMLElement>document.getElementById('saveBtn');
+
+	if (saveBtn) {
+		saveBtn.addEventListener('click', () => {});
+	}
 
 	if (logoutLink) {
-		logoutLink.addEventListener('click', async () => {
-			await authController.logout();
+		logoutLink.addEventListener('click', () => {
+			authController.logout();
+			Router.go('/');
 		});
 	}
 

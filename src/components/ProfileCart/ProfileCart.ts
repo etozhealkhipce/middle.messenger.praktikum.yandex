@@ -5,11 +5,6 @@ import { Input } from '../ui/Input';
 import './_profileCart.scss';
 import merge from '../../utils/merge';
 
-// type Props = {
-// 	edit: Boolean;
-// 	changePassword: Boolean;
-// };
-
 const template: string = `
 main.content-wrapper__content_profile
     form.profile-cart#profileForm
