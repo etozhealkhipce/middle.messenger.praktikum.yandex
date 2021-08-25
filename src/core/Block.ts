@@ -1,6 +1,8 @@
 import EventBus from './EventBus';
 import Store from './Store';
 import merge from '../utils/merge';
+import isEqual from '../utils/isEqual';
+import cloneDeep from '../utils/cloneDeep';
 import render from '../services/render';
 
 type Constructor = {
@@ -103,16 +105,15 @@ class Block {
 		const { selector } = this._meta;
 		if (selector) {
 			const nextProps = Store.get(selector);
-			this.setProps(nextProps);
-		}
-	}
 
-	setProps(nextProps: any) {
-		if (!nextProps) {
-			return;
-		}
+			const propsCopy = merge(cloneDeep(this.props), nextProps);
+			const equal = isEqual(this.props, propsCopy);
 
-		merge(this.props, nextProps);
+			if (!equal) {
+				this.props = this._makePropsProxy(propsCopy);
+				this._componentDidUpdate();
+			}
+		}
 	}
 
 	get element() {

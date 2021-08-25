@@ -1,7 +1,6 @@
 import RegisterAPI from '../api/auth/register.api';
 import LoginAPI from '../api/auth/login.api';
 import LogoutAPI from '../api/auth/logout.api';
-import UserAPI from '../api/auth/user.api';
 import Store from '../core/Store';
 import Router from '../core/Router/Router';
 import { registerValidate, loginValidate } from '../services/authValidate';
@@ -9,7 +8,6 @@ import { registerValidate, loginValidate } from '../services/authValidate';
 const registerAPI = new RegisterAPI();
 const loginAPI = new LoginAPI();
 const logoutAPI = new LogoutAPI();
-const userAPI = new UserAPI();
 
 class AuthController {
 	userData: LoginUserData | RegisterUserData | Boolean;
@@ -67,36 +65,8 @@ class AuthController {
 			await logoutAPI.request();
 		} catch (error) {
 			console.log(error);
-		}
-	}
-
-	public async user() {
-		try {
-			const response: any = await userAPI.request();
-
-			// console.log(response);
-
-			// {"id":82914,"first_name":"Илья","second_name":"Дёмин","display_name":null,"login":"alkhipcetest","avatar":null,"email":"alkhipcetest@gmail.com","phone":"87758606824"}
-
-			if (response) {
-				const json = JSON.parse(response);
-
-				Store.set('profileCart', {
-					children: {
-						login: { inputValue: json.login },
-						email: { inputValue: json.email },
-						phone: { inputValuej: json.phone },
-						name: { inputValue: json.first_name },
-						surname: { inputValue: json.second_name },
-					},
-					main: {
-						name: json.first_name,
-						surname: json.second_name,
-					},
-				});
-			}
-		} catch (error) {
-			console.log(error);
+		} finally {
+			Router.go('/');
 		}
 	}
 }

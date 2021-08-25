@@ -2,6 +2,8 @@ import { render } from 'pug';
 import Block from '../core/Block';
 import { Sidebar } from '../components/Sidebar';
 import { ProfileCart } from '../components/ProfileCart';
+import events from '../components/ProfileCart/events';
+
 // import * as users from '../mock/users.json';
 
 const template: string = `
@@ -11,7 +13,6 @@ main.content-wrapper
 
 export default class Profile extends Block {
 	constructor(params: any) {
-		console.log(params);
 		super({
 			tagName: 'template',
 			children: [
@@ -29,6 +30,7 @@ export default class Profile extends Block {
 				},
 			],
 			rootQuery: params.rootQuery,
+			events,
 		});
 	}
 

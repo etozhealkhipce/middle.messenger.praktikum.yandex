@@ -12,6 +12,15 @@ declare global {
 		phone: string;
 	};
 
+	type UpdateUserData = {
+		first_name?: string;
+		second_name?: string;
+		login?: string;
+		email?: string;
+		password?: string;
+		phone?: string;
+	};
+
 	type LoginUserData = {
 		login: string;
 		password: string;

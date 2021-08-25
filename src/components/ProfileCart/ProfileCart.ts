@@ -3,7 +3,6 @@ import Block from '../../core/Block';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import './_profileCart.scss';
-import events from './events';
 import merge from '../../utils/merge';
 
 // type Props = {
@@ -18,11 +17,11 @@ main.content-wrapper__content_profile
             if edit
                 .user__first-wrapper.user__first-wrapper_edit
                     label(for="avatar-input").user__avatar-input
-                        img().user__image
+                        img(src=avatar).user__image
                     .avatar-wrapper
             else
                 .user__first-wrapper
-                    img().user__image
+                    img(src=avatar).user__image
 
             .user__second-wrapper
                 span.user__title !{name}
@@ -96,7 +95,7 @@ export default class ProfileCart extends Block {
 						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.login-wrapper',
-					selector: 'profileCart.children.login',
+					selector: 'login-profile',
 				},
 				{
 					component: Input,
@@ -110,7 +109,7 @@ export default class ProfileCart extends Block {
 						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.email-wrapper',
-					selector: 'profileCart.children.email',
+					selector: 'email-profile',
 				},
 				{
 					component: Input,
@@ -124,7 +123,7 @@ export default class ProfileCart extends Block {
 						inputDisabled: !parentData?.props?.edit,
 					},
 					rootQuery: '.phone-wrapper',
-					selector: 'profileCart.children.phone',
+					selector: 'phone-profile',
 				},
 				{
 					component: Input,
@@ -137,7 +136,7 @@ export default class ProfileCart extends Block {
 						inputClass: 'profile-cart__input',
 					},
 					rootQuery: '.name-wrapper',
-					selector: 'profileCart.children.name',
+					selector: 'first_name-profile',
 				},
 				{
 					component: Input,
@@ -149,7 +148,7 @@ export default class ProfileCart extends Block {
 						inputClass: 'profile-cart__input',
 					},
 					rootQuery: '.surname-wrapper',
-					selector: 'profileCart.children.surname',
+					selector: 'second_name-profile',
 				},
 				{
 					component: Input,
@@ -194,14 +193,17 @@ export default class ProfileCart extends Block {
 						buttonClass: 'saveBtn',
 					},
 					rootQuery: '.saveBtn-wrapper',
+					selector: 'saveBtn',
 				},
 			],
 			props: {
-				name: 'AWDAW',
-				surname: 'awdawd',
+				name: '',
+				surname: '',
+				// TODO: не могу загрузить аватар ни напрямую (ругается CORS несмотря на cookies), ни через base64 в auth.controller
+				avatar:
+					'https://ya-praktikum.tech/api/v2/resources/7bfc05ab-de97-48cb-b4e6-97d207879f19/53bb8631-d926-447d-85f5-adf3ceccd6b8_image.png',
 			},
-			events,
-			selector: 'profileCart',
+			selector: 'main-profile',
 		});
 
 		super(data);
