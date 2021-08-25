@@ -1,17 +1,17 @@
-import RegisterAPI from '../api/auth/register.api';
-import LoginAPI from '../api/auth/login.api';
-import LogoutAPI from '../api/auth/logout.api';
-import UserAPI from '../api/auth/user.api';
+import AvatarAPI from '../api/user/avatar.api';
+import EditAPI from '../api/user/edit.api';
+import PasswordAPI from '../api/user/password.api';
+import UserAPI from '../api/user/user.api';
 import Store from '../core/Store';
 import Router from '../core/Router/Router';
 import { registerValidate, loginValidate } from '../services/authValidate';
 
-const registerAPI = new RegisterAPI();
-const loginAPI = new LoginAPI();
-const logoutAPI = new LogoutAPI();
+const AvatarAPI = new AvatarAPI();
+const EditAPI = new EditAPI();
+const PasswordAPI = new PasswordAPI();
 const userAPI = new UserAPI();
 
-class AuthController {
+class UserController {
 	userData: LoginUserData | RegisterUserData | Boolean;
 
 	public async signUp() {
@@ -98,4 +98,4 @@ class AuthController {
 	}
 }
 
-export default new AuthController();
+export default new UserController();

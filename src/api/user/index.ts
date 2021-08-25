@@ -1,7 +1,7 @@
-import HTTP from '../core/HTTP';
+import HTTP from '../../core/HTTP';
 
 export default class BaseAPI {
-	authAPIInstance = new HTTP('/auth');
+	userAPIInstance = new HTTP('/user');
 
 	create() {
 		throw new Error('Not implemented');

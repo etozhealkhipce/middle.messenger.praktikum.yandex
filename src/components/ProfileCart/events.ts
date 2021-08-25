@@ -14,6 +14,21 @@ export default function (): void {
 		document.querySelector('.profile-change-password')
 	);
 	const profileBackLink = <HTMLButtonElement>document.querySelector('.back');
+	const logoutLink = <HTMLElement>document.querySelector('.logout');
+	const saveBtn = <HTMLElement>document.getElementById('saveBtn');
+
+	if (saveBtn) {
+		saveBtn.addEventListener('click', () => {
+			
+		});
+	}
+
+	if (logoutLink) {
+		logoutLink.addEventListener('click', () => {
+			authController.logout();
+			Router.go('/');
+		});
+	}
 
 	if (profileEditLink) {
 		profileEditLink.addEventListener('click', () => {

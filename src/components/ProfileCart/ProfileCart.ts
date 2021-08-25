@@ -6,11 +6,6 @@ import './_profileCart.scss';
 import events from './events';
 import merge from '../../utils/merge';
 
-// type Props = {
-// 	edit: Boolean;
-// 	changePassword: Boolean;
-// };
-
 const template: string = `
 main.content-wrapper__content_profile
     form.profile-cart#profileForm

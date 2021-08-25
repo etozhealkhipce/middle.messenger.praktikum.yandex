@@ -1,4 +1,4 @@
-import BaseAPI from '../index';
+import BaseAPI from './index';
 
 export default class Logout extends BaseAPI {
 	async request() {
