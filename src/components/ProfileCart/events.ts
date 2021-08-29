@@ -1,4 +1,5 @@
 import authController from '../../controllers/auth.controller';
+import userController from '../../controllers/user.controller';
 import Router from '../../core/Router/Router';
 
 import { Test, validate, toggle, multipleListener } from '../../utils/validate';
@@ -15,10 +16,18 @@ export default async function (): Promise<any> {
 	);
 	const profileBackLink = <HTMLButtonElement>document.querySelector('.back');
 	const logoutLink = <HTMLElement>document.querySelector('.logout');
-	const saveBtn = <HTMLElement>document.getElementById('saveBtn');
+	const saveData = <HTMLElement>document.getElementById('saveData');
+	const savePassword = <HTMLElement>document.getElementById('savePassword');
 
-	if (saveBtn) {
-		saveBtn.addEventListener('click', () => {});
+	if (saveData) {
+		saveData.addEventListener('click', () => {
+			userController.editUser();
+		});
+	}
+	if (savePassword) {
+		savePassword.addEventListener('click', () => {
+			userController.editPassword();
+		});
 	}
 
 	if (logoutLink) {
@@ -30,7 +39,7 @@ export default async function (): Promise<any> {
 
 	if (profileEditLink) {
 		profileEditLink.addEventListener('click', () => {
-			Router.go('/profile', {
+			Router.go('/settings', {
 				profileCart: {
 					props: {
 						edit: true,
@@ -43,7 +52,7 @@ export default async function (): Promise<any> {
 
 	if (profileChangePasswordLink) {
 		profileChangePasswordLink.addEventListener('click', () => {
-			Router.go('/profile', {
+			Router.go('/settings', {
 				profileCart: {
 					props: {
 						edit: false,
@@ -56,7 +65,7 @@ export default async function (): Promise<any> {
 
 	if (profileBackLink) {
 		profileBackLink.addEventListener('click', () => {
-			Router.go('/profile', {
+			Router.go('/settings', {
 				profileCart: {
 					props: {
 						edit: false,

@@ -38,6 +38,7 @@ main.content-wrapper__content_profile
                 .name-wrapper
                 label(for="surname").label Фамилия
                 .surname-wrapper
+                .saveBtn-data-wrapper
         else
             label(for="password").label Пароль
             .password-wrapper
@@ -48,7 +49,7 @@ main.content-wrapper__content_profile
             label(for="password-new-repeat").label Повторение нового пароля
             .passwordNewRepeat-wrapper
             p.profile-cart__error.password-new-repeat-error.hidden Неверный пароль 
-        
+            .saveBtn-password-wrapper
         .actions
             if !edit && !changePassword
                 .actions__left
@@ -57,7 +58,6 @@ main.content-wrapper__content_profile
                 .actions__right
                     a.actions__link.logout Выйти
             else
-                .saveBtn-wrapper
                 a.actions__link.back Отмена
 `;
 export default class ProfileCart extends Block {
@@ -182,12 +182,24 @@ export default class ProfileCart extends Block {
 					component: Button,
 					props: {
 						buttonType: 'submit',
-						buttonId: 'saveBtn',
+						buttonId: 'saveData',
 						buttonText: 'Сохранить',
 						buttonName: 'saveBtn',
 						buttonClass: 'saveBtn',
 					},
-					rootQuery: '.saveBtn-wrapper',
+					rootQuery: '.saveBtn-data-wrapper',
+					selector: 'saveBtn',
+				},
+				{
+					component: Button,
+					props: {
+						buttonType: 'submit',
+						buttonId: 'savePassword',
+						buttonText: 'Сохранить',
+						buttonName: 'saveBtn',
+						buttonClass: 'saveBtn',
+					},
+					rootQuery: '.saveBtn-password-wrapper',
 					selector: 'saveBtn',
 				},
 			],

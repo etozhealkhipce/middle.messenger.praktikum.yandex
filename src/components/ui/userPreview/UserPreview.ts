@@ -7,14 +7,23 @@ if users
 	each user, id in users
 		.user-preview
 			.user-preview__first-wrapper
-				img(src=user.imgSrc).user-preview__image
+				img(src=user.avatar).user-preview__image
 			.user-preview__second-wrapper
-				span.user-preview__title=user.name
+				span.user-preview__title=user.first_name
 				p.user-preview__message=user.messagePreview
+else if chats
+	each chat, id in chats
+		.user-preview
+			.user-preview__first-wrapper
+				img(src=chat.avatar).user-preview__image
+			.user-preview__second-wrapper
+				span.user-preview__title=chat.title
+				p.user-preview__message=chat.last_message || 'Нет сообщений'
 			.user-preview__third-wrapper
-				time.user-preview__time=user.messageTime
-				.user-preview__counter-wrapper
-					span.user-preview__counter=user.messageCounter
+				time.user-preview__time=chat.messageTime
+				if chat.unread_count
+					.user-preview__counter-wrapper
+						span.user-preview__counter=chat.unread_count
 else
 	h3.empty Список чатов пуст`;
 
@@ -29,6 +38,7 @@ export default class UserPreview extends Block {
 	}
 
 	render(): string {
+		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

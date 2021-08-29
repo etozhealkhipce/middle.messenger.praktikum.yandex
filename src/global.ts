@@ -19,7 +19,15 @@ declare global {
 		email?: string;
 		password?: string;
 		phone?: string;
+		display_name?: string;
 	};
+
+	type UpdateUserPassword = {
+		oldPassword: string;
+		newPassword: string;
+	};
+
+	type ChatUsers = object[];
 
 	type LoginUserData = {
 		login: string;

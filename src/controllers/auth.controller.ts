@@ -12,7 +12,7 @@ const loginAPI = new LoginAPI();
 const logoutAPI = new LogoutAPI();
 
 class AuthController {
-	userData: LoginUserData | RegisterUserData | Boolean;
+	userData: LoginUserData | Boolean;
 
 	public async signUp() {
 		try {
@@ -49,7 +49,7 @@ class AuthController {
 
 				await loginAPI.create(this.userData);
 
-				Router.go('/inactivechat');
+				Router.go('/messenger', { notEmpty: false });
 			} else {
 				throw new Error('Неверный формат данных');
 			}
@@ -77,20 +77,23 @@ class AuthController {
 			const response: any = await userAPI.request();
 
 			if (response) {
+				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const { login, email, phone, first_name, second_name } = response;
 
-				Store.set('profileCart', {
-					children: {
-						login: { inputValue: login },
-						email: { inputValue: email },
-						phone: { inputValue: phone },
-						name: { inputValue: first_name },
-						surname: { inputValue: second_name },
-					},
-					main: {
-						name: first_name,
-						surname: second_name,
-					},
+				Store.set('login-profile', {
+					inputValue: login,
+				});
+				Store.set('email-profile', {
+					inputValue: email,
+				});
+				Store.set('phone-profile', {
+					inputValue: phone,
+				});
+				Store.set('first_name-profile', {
+					inputValue: first_name,
+				});
+				Store.set('second_name-profile', {
+					inputValue: second_name,
 				});
 			}
 		} catch (error) {

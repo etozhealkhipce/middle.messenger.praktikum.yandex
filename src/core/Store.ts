@@ -2,7 +2,6 @@ import set from '../utils/set';
 import get from '../utils/get';
 import EventBus from './EventBus';
 
-// TODO: сделать стор работающий с объектами
 class Store {
 	private eventBus: () => EventBus;
 

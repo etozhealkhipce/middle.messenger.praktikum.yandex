@@ -19,13 +19,13 @@ export default function (): void {
 
 	if (registerButton) {
 		registerButton.addEventListener('click', (): void => {
-			Router.go('/register');
+			Router.go('/sign-up');
 		});
 	}
 
 	if (forgetPassword) {
 		forgetPassword.addEventListener('click', (): void => {
-			Router.go('/inactivechat');
+			Router.go('/messenger', { notEmpty: false });
 		});
 	}
 }

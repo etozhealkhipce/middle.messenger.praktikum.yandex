@@ -1,21 +1,72 @@
-import AvatarAPI from '../api/user/avatar.api';
-import EditAPI from '../api/user/edit.api';
-import PasswordAPI from '../api/user/password.api';
-import UserAPI from '../api/user/user.api';
+import EditUserAPI from '../api/user/edit.api';
+import EditPasswordAPI from '../api/user/password.api';
+import SearchUserAPI from '../api/user/search.api';
+// import EditAvatarAPI from '../api/user/avatar.api';
+// import UserAPI from '../api/user/user.api';
 import Store from '../core/Store';
 import Router from '../core/Router/Router';
-import { registerValidate, loginValidate } from '../services/authValidate';
+import {
+	editUserValidate,
+	editPasswordValidate,
+} from '../services/userValidate';
 
-const avatarAPI = new AvatarAPI();
-const editAPI = new EditAPI();
-const passwordAPI = new PasswordAPI();
+const editUserAPI = new EditUserAPI();
+const editPasswordAPI = new EditPasswordAPI();
+const searchUserAPI = new SearchUserAPI();
+// const editAvatarAPI = new EditAvatarAPI();
 
 class UserController {
-	userData: LoginUserData | RegisterUserData | Boolean;
+	userData: UpdateUserData | Boolean;
 
-	public async getUserinfo() {
+	userPassword: UpdateUserPassword | Boolean;
+
+	public async editUser() {
 		try {
-			const response: any = await userAPI.request();
+			this.userData = editUserValidate();
+
+			await editUserAPI.update(this.userData);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			Router.go('/settings', {
+				profileCart: {
+					props: {
+						edit: false,
+						changePassword: false,
+					},
+				},
+			});
+		}
+	}
+
+	public async editPassword() {
+		try {
+			this.userPassword = editPasswordValidate();
+
+			await editPasswordAPI.update(this.userPassword);
+		} catch (error) {
+			console.log(error);
+		} finally {
+			Router.go('/settings', {
+				profileCart: {
+					props: {
+						edit: false,
+						changePassword: false,
+					},
+				},
+			});
+		}
+	}
+
+	public async searchUser(login: string) {
+		try {
+			const response = await searchUserAPI.request(login);
+
+			if (response) {
+				Store.set('sidebar-data', {
+					users: JSON.parse(response),
+				});
+			}
 		} catch (error) {
 			console.log(error);
 		}

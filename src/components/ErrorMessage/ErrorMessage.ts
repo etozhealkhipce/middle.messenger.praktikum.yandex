@@ -17,8 +17,6 @@ const template: string = `
 
 export default class ErrorMessage extends Block {
 	constructor(parentData: any) {
-		console.log(parentData);
-
 		const data: any = merge(parentData, {
 			tagName: 'template',
 			children: [

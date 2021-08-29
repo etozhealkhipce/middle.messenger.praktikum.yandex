@@ -3,26 +3,21 @@ import './styles/index.scss';
 
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
-import InactiveMessenger from './pages/InactiveMessenger';
-import ActiveMessenger from './pages/ActiveMessenger';
+import Messenger from './pages/Messenger';
 import Profile from './pages/Profile';
 import Error from './pages/Error';
 
 enum Paths {
 	index = '/',
-	register = '/register',
-	inactivechat = '/inactivechat',
-	activechat = '/activechat',
-	profile = '/profile',
-	profileEdit = '/profile-edit',
-	profileChangePassword = '/profile-change-password',
+	register = '/sign-up',
+	messenger = '/messenger',
+	settings = '/settings',
 	error = '/error',
 }
 
 Router.use(Paths.index, SignIn)
 	.use(Paths.register, SignUp)
-	.use(Paths.inactivechat, InactiveMessenger)
-	.use(Paths.activechat, ActiveMessenger)
-	.use(Paths.profile, Profile)
+	.use(Paths.messenger, Messenger)
+	.use(Paths.settings, Profile)
 	.use(Paths.error, Error)
 	.start();

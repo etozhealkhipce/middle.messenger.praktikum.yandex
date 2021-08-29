@@ -23,7 +23,7 @@ export default class Sidebar extends Block {
 					component: Input,
 					props: {
 						inputType: 'text',
-						inputId: '3',
+						inputId: 'search',
 						inputName: 'search',
 						inputPlaceholder: 'Поиск',
 						inputClass: 'search__input',
@@ -43,8 +43,9 @@ export default class Sidebar extends Block {
 				},
 				{
 					component: UserPreview,
-					props: { users: parentData.users },
+					props: { chats: parentData.chats, users: parentData.users },
 					rootQuery: '.user-preview-wrapper',
+					selector: 'sidebar-data',
 				},
 			],
 			events,
