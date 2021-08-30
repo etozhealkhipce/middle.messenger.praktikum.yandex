@@ -1,25 +1,21 @@
-const enum METHODS {
-	GET = "GET",
-	POST = "POST",
-	PUT = "PUT",
-	DELETE = "DELETE",
-	UPDATE = "UPDATE",
-	PATCH = "PATCH",
-}
+import queryStringify from '../utils/queryStringify';
 
-function queryStringify(data: Record<string, any>): string | null {
-	if (data) {
-		const params = Object.entries(data).reduce(
-			(acc, [key, value], index) =>
-				acc + (index ? `&${key}=${value}` : `${key}=${value}`),
-			"?"
-		);
-		return params;
-	}
-	return null;
+enum METHODS {
+	GET = 'GET',
+	POST = 'POST',
+	PUT = 'PUT',
+	DELETE = 'DELETE',
+	UPDATE = 'UPDATE',
+	PATCH = 'PATCH',
 }
 
 export default class HTTPTransport {
+	baseUrl: string;
+
+	constructor(baseUrl: string) {
+		this.baseUrl = process.env.API_URL + baseUrl;
+	}
+
 	get = (url: string, options: Record<string, any> = {}) =>
 		this.request(url, { ...options, method: METHODS.GET });
 
@@ -32,12 +28,13 @@ export default class HTTPTransport {
 	delete = (url: string, options: Record<string, any> = {}) =>
 		this.request(url, { ...options, method: METHODS.DELETE });
 
-	request = <T>(url: string, options: Record<string, any> = {}): Promise<T> => {
+	request = (url: string, options: Record<string, any> = {}) => {
 		const { method, data, timeout, headers = {} } = options;
+		url = this.baseUrl + url;
 
 		return new Promise((resolve, reject) => {
 			if (!method) {
-				reject(new Error("No method"));
+				reject(new Error('No method'));
 				return;
 			}
 
@@ -55,8 +52,7 @@ export default class HTTPTransport {
 
 			xhr.onload = function () {
 				if (xhr.status === 200) {
-					// TODO: при использовании исправить
-					resolve(new Promise(() => xhr));
+					resolve(xhr.response);
 				} else {
 					reject(new Error(xhr.status.toString()));
 				}
@@ -68,7 +64,9 @@ export default class HTTPTransport {
 			xhr.timeout = timeout;
 			xhr.ontimeout = reject;
 
-			xhr.send(data);
+			xhr.withCredentials = true;
+
+			xhr.send(JSON.stringify(data));
 		});
 	};
 }

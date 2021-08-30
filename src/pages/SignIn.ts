@@ -1,28 +1,24 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { Login } from "../components/Login";
+import { render } from 'pug';
+import Block from '../core/Block';
+import { Login } from '../components/Login';
 
-const template: string = `
-main.login
-	| !{login}
-`;
+const template: string = `main.login`;
 
 export default class SignIn extends Block {
-	constructor() {
-		const login = new Login();
-
+	constructor(props: any) {
 		super({
-			tagName: "template",
-			props: {
-				login: login.render(),
-			},
-			events: {
-				...login.getEvents(),
-			},
+			tagName: 'template',
+			children: [
+				{
+					component: Login,
+					rootQuery: '.login',
+				},
+			],
+			...props,
 		});
 	}
 
 	render(): string {
-		return compile(template)(this.props);
+		return render(template);
 	}
 }

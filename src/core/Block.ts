@@ -1,53 +1,68 @@
-import EventBus from "./EventBus";
+import EventBus from './EventBus';
+import Store from './Store';
+import merge from '../utils/merge';
+import isEqual from '../utils/isEqual';
+import cloneDeep from '../utils/cloneDeep';
+import render from '../services/render';
 
 type Constructor = {
 	tagName: string;
-	props: Record<string, any>;
-	events?: Record<string, Function>;
+	rootQuery: string;
+	props?: Record<string, any>;
+	events?: Function;
 	classes?: string[];
+	selector?: string;
+	children?: any[];
 };
 
 class Block {
-	protected props: Record<string, any>;
-
-	protected tagName: string;
-
-	protected events: Record<string, Function>;
-
-	protected classes: string[];
+	props: any;
 
 	protected eventBus: () => EventBus;
 
 	static EVENTS = {
-		INIT: "init",
-		FLOW_CDM: "flow:component-did-mount",
-		FLOW_CDU: "flow:component-did-update",
-		FLOW_RENDER: "flow:render",
+		INIT: 'init',
+		FLOW_CDM: 'flow:component-did-mount',
+		FLOW_CDU: 'flow:component-did-update',
+		FLOW_RENDER: 'flow:render',
 	};
 
-	_element: HTMLElement | null = null;
+	_element: HTMLElement;
 
-	_meta: Constructor | null = null;
+	_meta: Constructor;
 
-	constructor({ tagName, props, events, classes }: Constructor) {
+	constructor({
+		tagName,
+		props,
+		events,
+		classes,
+		selector,
+		rootQuery,
+		children,
+	}: Constructor) {
 		const eventBus = new EventBus();
 		this._meta = {
 			tagName,
 			props,
 			events,
 			classes,
+			selector,
+			rootQuery,
+			children,
 		};
 
-		this.events = events;
-		this.props = this._makePropsProxy(props);
+		this.props = this._makePropsProxy(props || {});
 
 		this.eventBus = () => eventBus;
-
 		this._registerEvents(eventBus);
+
 		eventBus.emit(Block.EVENTS.INIT);
 	}
 
 	private _registerEvents(eventBus: EventBus): void {
+		if (this._meta.selector) {
+			Store.init(this._meta.selector, this._updateState.bind(this));
+		}
 		eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
 		eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -55,8 +70,12 @@ class Block {
 	}
 
 	private _createResources(): void {
-		const { tagName } = this._meta;
-		this._element = this._createDocumentElement(tagName);
+		const { tagName, classes } = this._meta;
+		const element = this._createDocumentElement(tagName);
+		if (classes) {
+			element.classList.add(...classes);
+		}
+		this._element = element;
 	}
 
 	init() {
@@ -82,17 +101,52 @@ class Block {
 		return true;
 	}
 
+	private _updateState() {
+		const { selector } = this._meta;
+		if (selector) {
+			const nextProps = Store.get(selector);
+
+			const propsCopy = merge(cloneDeep(this.props), nextProps);
+			const equal = isEqual(this.props, propsCopy);
+
+			if (!equal) {
+				this.props = this._makePropsProxy(propsCopy);
+				this._componentDidUpdate();
+			}
+		}
+	}
+
 	get element() {
 		return this._element;
 	}
 
 	private _render(): void {
-		const block = this.render();
+		const block: any = this.render();
+		const { rootQuery, children, events } = this._meta;
 
-		this._element.innerHTML = block;
+		// TODO: подумать как можно убрать обертку над динамическими элементами в темплейте
+		// TODO: возможно использовать Shadow DOM
+		render(rootQuery, block);
 
-		if (this._element.content) {
-			this._element = this._element.content.cloneNode(true);
+		if (children && children.length) {
+			children.map((item) => {
+				const { component } = item;
+				// eslint-disable-next-line new-cap
+				return new component({
+					tagName: item.tagName,
+					props: item.props,
+					events: item.events,
+					classes: item.classes,
+					selector: item.selector,
+					rootQuery: item.rootQuery,
+					children: item.children,
+				});
+			});
+		}
+
+		// TODO: добавить уникальные события на каждый компонент
+		if (events) {
+			events();
 		}
 	}
 
@@ -103,7 +157,7 @@ class Block {
 	}
 
 	getEvents() {
-		return this.events;
+		return this._meta.events;
 	}
 
 	private _makePropsProxy(
@@ -111,7 +165,7 @@ class Block {
 	): Boolean | Record<string, any> {
 		if (props) {
 			const proxyData = new Proxy(props, {
-				set: (target, prop, value) => {
+				set: (target, prop: any, value) => {
 					const oldProp = target[prop];
 					target[prop] = value;
 					const newProp = target[prop];
@@ -120,32 +174,18 @@ class Block {
 					return true;
 				},
 				deleteProperty: () => {
-					throw new Error("Нет доступа!");
+					throw new Error('Нет доступа!');
 				},
 			});
 
 			return proxyData;
 		}
+
+		return false;
 	}
 
 	private _createDocumentElement(tagName: string): HTMLElement {
 		return document.createElement(tagName);
-	}
-
-	show() {
-		const element = this.getContent();
-
-		if (element) {
-			element.style.display = "block";
-		}
-	}
-
-	hidden() {
-		const element = this.getContent();
-
-		if (element) {
-			element.style.display = "none";
-		}
 	}
 }
 

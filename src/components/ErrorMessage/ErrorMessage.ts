@@ -1,37 +1,37 @@
-import { compile } from "pug";
-import Block from "../../core/Block";
-import { Button } from "../ui/Button";
-import "./_error.scss";
-import events from "./events";
-
-type Props = {
-	errorCode: string | number;
-};
+import { compile } from 'pug';
+import Block from '../../core/Block';
+import { Button } from '../ui/Button';
+import './_error.scss';
+import events from './events';
+import merge from '../../utils/merge';
 
 const template: string = `
 .error-cart
     h1.error-cart__title=errorCode
     p.error-message Страница не существует
-    | !{backButton}`;
+    .backButton-wrapper`;
 
 export default class ErrorMessage extends Block {
-	constructor(props: Props) {
-		super({
-			tagName: "template",
-			props: {
-				backButton: new Button({
-					buttonType: "button",
-					buttonId: "backButton",
-					buttonText: "Вернуться",
-					buttonName: "backButton",
-					buttonClass: "error-cart__button back",
-				}).render(),
-				...props,
-				events: {
-					events,
+	constructor(parentData: any) {
+		const data: any = merge(parentData, {
+			tagName: 'template',
+			children: [
+				{
+					component: Button,
+					props: {
+						buttonType: 'button',
+						buttonId: 'backButton',
+						buttonText: 'Вернуться',
+						buttonName: 'backButton',
+						buttonClass: 'error-cart__button back',
+					},
+					rootQuery: '.backButton-wrapper',
 				},
-			},
+			],
+			events,
 		});
+
+		super(data);
 	}
 
 	render(): string {

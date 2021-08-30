@@ -1,3 +1,5 @@
+@use './variables.scss' as *;
+
 // @import url("./_variables.scss");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Raleway:wght@500;600&display=swap");
 
@@ -62,6 +64,7 @@ label {
 	&__content_center {
 		align-items: center;
 		display: flex;
+		height: 80vh;
 		justify-content: center;
 	}
 }
@@ -70,4 +73,62 @@ label {
 	color: #999;
 	font-size: 1rem;
 	font-weight: 600;
+}
+
+.header {
+	background-color: $soft-gray;
+	box-sizing: border-box;
+	cursor: pointer;
+	display: flex;
+	justify-content: space-between;
+	padding: 22px;
+	position: sticky;
+	top: 0;
+	z-index: 999;
+
+	&__dropdown {
+		background-color: $soft-gray;
+		padding: 0.5rem 1rem;
+		position: absolute;
+		right: 0;
+		top: 3.9rem;
+		width: 15rem;
+
+		ul {
+			margin: 0;
+			padding: 0;
+			li {
+				cursor: pointer;
+				list-style: none;
+				padding: 12px 0;
+			}
+		}
+	}
+
+	&__title {
+		display: inline-block;
+		font-weight: 500;
+		margin: 0;
+	}
+
+	&__toggle {
+		background: none;
+		border: 0;
+		cursor: pointer;
+
+		img {
+			height: auto;
+			width: 1.2rem;
+		}
+	}
+}
+
+.create-wrapper,
+.add-user-wrapper,
+.remove-user-wrapper {
+	width: 50%;
+}
+
+.chat-wrapper {
+	width: 100%;
 }

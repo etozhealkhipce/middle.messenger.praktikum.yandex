@@ -1,0 +1,11 @@
+@use '../../styles/variables.scss' as *;
+
+.remove {
+	overflow-y: scroll;
+
+	&__button-wrapper,
+	&__users-wrapper,
+	&__added-users-wrapper {
+		margin-top: 40px;
+	}
+}

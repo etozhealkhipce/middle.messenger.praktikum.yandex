@@ -19,10 +19,12 @@
 		"class-methods-use-this": 0,
 		"no-underscore-dangle": 0,
 		"max-params": [2, 4],
+		"import/no-cycle": [2, { "maxDepth": 1 }],
 		"prettier/prettier": [
 			"error",
 			{
-				"endOfLine": "auto"
+				"endOfLine": "auto",
+				"singleQuote": true
 			}
 		]
 	}

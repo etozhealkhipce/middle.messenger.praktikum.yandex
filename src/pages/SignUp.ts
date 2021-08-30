@@ -1,28 +1,26 @@
-import { compile } from "pug";
-import Block from "../core/Block";
-import { Register } from "../components/Register";
+import { render } from 'pug';
+import Block from '../core/Block';
+import { Register } from '../components/Register';
 
 const template: string = `
 main.register
-	| !{register}
 `;
 
 export default class SignUp extends Block {
-	constructor() {
-		const register = new Register();
-
+	constructor(props: any) {
 		super({
-			tagName: "template",
-			props: {
-				register: register.render(),
-			},
-			events: {
-				...register.getEvents(),
-			},
+			tagName: 'template',
+			children: [
+				{
+					component: Register,
+					rootQuery: '.register',
+				},
+			],
+			...props,
 		});
 	}
 
 	render(): string {
-		return compile(template)(this.props);
+		return render(template);
 	}
 }

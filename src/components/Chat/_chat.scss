@@ -1,30 +1,10 @@
 @use '../../styles/variables.scss' as *;
 
 .chat {
-	.header {
-		background-color: $soft-gray;
-		box-sizing: border-box;
-		display: flex;
-		justify-content: space-between;
-		padding: 22px;
-		position: sticky;
-		top: 0;
-		z-index: 999;
-
-		&__title {
-			display: inline-block;
-			font-weight: 500;
-			margin: 0;
-		}
-
-		&__delete {
-			background: none;
-			border: 0;
-			cursor: pointer;
-		}
-	}
+	width: 100%;
 
 	.body {
+		height: 73vh;
 		width: 100%;
 
 		&__date {
@@ -68,6 +48,14 @@
 		position: sticky;
 		z-index: 999;
 
+		&-input-wrapper {
+			width: 100%;
+		}
+
+		&-button-wrapper {
+			width: 10%;
+		}
+
 		&__input {
 			background-color: $soft-gray;
 			border: 0;
@@ -76,7 +64,6 @@
 			font-family: "Raleway", sans-serif;
 			font-size: 1rem;
 			padding: 20px 50px 20px 20px;
-			width: 100%;
 
 			&:focus {
 				outline: none;
@@ -84,10 +71,9 @@
 		}
 
 		&__button {
+			height: 100%;
 			margin-top: 0;
-			padding: 20px;
 			position: relative;
-			width: 10%;
 
 			&::after {
 				background: url("../../assets/icons/triangle.svg") no-repeat;
