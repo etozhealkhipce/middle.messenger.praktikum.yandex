@@ -26,7 +26,7 @@ export default async function (): Promise<void> {
 				createChat: true,
 				notEmpty: false,
 				addUserLink: false,
-				chatName: null,
+				chat: null,
 			});
 		});
 	}
@@ -37,7 +37,7 @@ export default async function (): Promise<void> {
 				createChat: false,
 				notEmpty: false,
 				addUserLink: false,
-				chatName: null,
+				chat: null,
 				addUser: true,
 			});
 		});

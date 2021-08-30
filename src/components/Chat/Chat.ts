@@ -8,10 +8,6 @@ import events from './events';
 
 const template: string = `
 .chat
-    // .header
-    //     h3.header__title Иван
-    //     button(type="button" id="deleteBtn").header__delete
-    //         img(src=trashIcon)
     .body
         span.body__date 28 мая
             

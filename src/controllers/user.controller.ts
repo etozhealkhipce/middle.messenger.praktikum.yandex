@@ -60,13 +60,9 @@ class UserController {
 
 	public async searchUser(login: string) {
 		try {
-			const response = await searchUserAPI.request(login);
+			const response: string = await searchUserAPI.request(login);
 
-			if (response) {
-				Store.set('sidebar-data', {
-					users: JSON.parse(response),
-				});
-			}
+			return JSON.parse(response);
 		} catch (error) {
 			console.log(error);
 		}

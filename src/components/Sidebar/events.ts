@@ -20,22 +20,26 @@ export default function () {
 
 	if (sidebar) {
 		sidebar.addEventListener('click', (e: Event): void => {
-			if ((<HTMLElement>e.target).closest('.user-preview')) {
+			if ((<HTMLElement>e.target).matches('.user-preview')) {
 				Router.go('/messenger', {
 					addUserLink: true,
 					notEmpty: true,
-					chatName: (<HTMLElement>e.target)
-						?.closest('.user-preview')
-						?.querySelector('.user-preview__title')?.textContent,
+					chat: (<HTMLElement>e.target)?.dataset?.chat,
 				});
 			}
 		});
 	}
 
 	if (search) {
-		search.addEventListener('input', (e: Event): void => {
+		search.addEventListener('input', async (e: Event): Promise<void> => {
 			if (e.target.value) {
-				userController.searchUser(e.target.value);
+				const response = await userController.searchUser(e.target.value);
+
+				if (response) {
+					Store.set('sidebar-data', {
+						users: response,
+					});
+				}
 			} else {
 				Store.set('sidebar-data', {
 					users: null,

@@ -1,0 +1,25 @@
+@use '../../../styles/variables.scss' as *;
+
+.scroll-list {
+	&__user {
+		display: flex;
+		justify-content: space-between;
+		padding: 25px 0;
+		width: 100%;
+	}
+
+	&__action {
+		cursor: pointer;
+	}
+
+	&__list {
+		max-height: 200px;
+
+		overflow-y: scroll;
+		width: 100%;
+	}
+}
+
+.remove {
+	color: $red;
+}

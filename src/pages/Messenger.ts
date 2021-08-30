@@ -12,16 +12,17 @@ main.content-wrapper
 	.sidebar-wrapper
 
 	.content-wrapper__content
-		.header
-			h3.header__title #{chatName}
-			button(type="button" id="toggle").header__toggle
-				img(src=icon)
-			.header__dropdown.hidden
-				ul
-					li.create-link Создать чат
-				if addUserLink
+		if chat
+			.header
+				h3.header__title #{chat.title}
+				button(type="button" id="toggle").header__toggle
+					img(src=icon)
+				.header__dropdown.hidden
 					ul
-						li.add-user-link Добавить пользователя в чат
+						li.create-link Создать чат
+					if addUserLink
+						ul
+							li.add-user-link Добавить пользователя в чат
 		if notEmpty
 			.chat-wrapper
 		else if createChat
@@ -55,7 +56,9 @@ export default class Messenger extends Block {
 				{
 					component: AddUser,
 					rootQuery: '.add-user-wrapper',
-					props: {},
+					props: {
+						id: params.chat ? JSON.parse(params.chat).id : null,
+					},
 				},
 				{
 					component: Create,
@@ -69,7 +72,7 @@ export default class Messenger extends Block {
 				createChat: params.createChat,
 				addUserLink: params.addUserLink,
 				addUser: params.addUser,
-				chatName: params.chatName,
+				chat: params.chat ? JSON.parse(params.chat) : null,
 			},
 		});
 	}

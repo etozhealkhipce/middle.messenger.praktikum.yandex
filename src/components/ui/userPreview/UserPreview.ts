@@ -13,7 +13,7 @@ if users
 				p.user-preview__message=user.messagePreview
 else if chats
 	each chat, id in chats
-		.user-preview
+		div(data-chat=chat).user-preview#user
 			.user-preview__first-wrapper
 				img(src=chat.avatar).user-preview__image
 			.user-preview__second-wrapper
@@ -38,7 +38,6 @@ export default class UserPreview extends Block {
 	}
 
 	render(): string {
-		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

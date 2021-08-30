@@ -1,12 +1,9 @@
 import BaseAPI from './index';
 
 export default class Add extends BaseAPI {
-	async update(users: ChatUsers, chatId: string) {
+	async update(data: Record<string, any>) {
 		const response = await this.chatsAPIInstance.put('/users', {
-			data: {
-				users,
-				chatId,
-			},
+			data,
 			headers: {
 				'content-type': 'application/json',
 			},

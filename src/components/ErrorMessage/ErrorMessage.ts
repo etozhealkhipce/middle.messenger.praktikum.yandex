@@ -5,10 +5,6 @@ import './_error.scss';
 import events from './events';
 import merge from '../../utils/merge';
 
-// type Props = {
-// 	errorCode: string | number;
-// };
-
 const template: string = `
 .error-cart
     h1.error-cart__title=errorCode
