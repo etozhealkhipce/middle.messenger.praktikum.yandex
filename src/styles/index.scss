@@ -78,6 +78,7 @@ label {
 .header {
 	background-color: $soft-gray;
 	box-sizing: border-box;
+	cursor: pointer;
 	display: flex;
 	justify-content: space-between;
 	padding: 22px;
@@ -123,7 +124,8 @@ label {
 }
 
 .create-wrapper,
-.add-user-wrapper {
+.add-user-wrapper,
+.remove-user-wrapper {
 	width: 50%;
 }
 

@@ -8,41 +8,26 @@ import events from './events';
 
 const template: string = `
 .chat
-    .body
-        span.body__date 28 мая
-            
-        .body__left-message
-            .body__message-wrapper
-                .body__message
-                    | Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну.
-                    | Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.
-                    | Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.
-                        
-                span.body__time 09:49
+	.body
+		span.body__date #{new Date().toLocaleDateString()}
 
-        .body__right-message
-            .body__message-wrapper
-                .body__message ого!                    
-                span.body__time 10:02
-        .body__right-message
-            .body__message-wrapper
-                .body__message ого!                    
-                span.body__time 10:02
-        .body__right-message
-                .body__message-wrapper
-                .body__message ого!                    
-                span.body__time 10:02
-        .body__right-message
-            .body__message-wrapper
-                .body__message ого!                   
-                span.body__time 10:02
-        .body__right-message
-            .body__message-wrapper
-                .body__message ого!                    
-                span.body__time 10:02
-    form.type#messageForm
-        .type-input-wrapper
-        .type-button-wrapper`;
+		if messages
+			.body__left-message
+				.body__message-wrapper
+					.body__message #{messages}
+							
+					span.body__time 09:49
+
+			.body__right-message
+				.body__message-wrapper
+					.body__message ого!                    
+					span.body__time 10:02
+		else
+			span.body__date Нет сообщений
+
+	form.type#messageForm
+		.type-input-wrapper
+		.type-button-wrapper`;
 
 export default class Chat extends Block {
 	constructor(parentData: any) {
@@ -73,6 +58,7 @@ export default class Chat extends Block {
 				},
 			],
 			events,
+			selector: 'chat-data',
 		});
 
 		super(data);

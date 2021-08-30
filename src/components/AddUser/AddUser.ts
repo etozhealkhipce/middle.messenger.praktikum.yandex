@@ -18,6 +18,7 @@ div(data-id=id).add
 
 export default class AddUser extends Block {
 	constructor(parentData: any) {
+		console.log(parentData);
 		const data: any = merge(parentData, {
 			tagName: 'template',
 			children: [
@@ -57,7 +58,7 @@ export default class AddUser extends Block {
 					component: ScrollList,
 					props: {
 						actionName: 'Удалить',
-						actionClass: 'remove',
+						actionClass: 'remove-button',
 						actionId: 'removeUser',
 					},
 					rootQuery: '.add__added-users-wrapper',

@@ -5,6 +5,7 @@ import { Sidebar } from '../components/Sidebar';
 import { Chat } from '../components/Chat';
 import { Create } from '../components/Create';
 import { AddUser } from '../components/AddUser';
+import { RemoveUser } from '../components/RemoveUser';
 import * as users from '../mock/users.json';
 
 const template: string = `
@@ -13,13 +14,15 @@ main.content-wrapper
 
 	.content-wrapper__content
 		if chat
-			.header
+			nav(data-id=chat.id).header#header
 				h3.header__title #{chat.title}
 				button(type="button" id="toggle").header__toggle
 					img(src=icon)
 				.header__dropdown.hidden
 					ul
 						li.create-link Создать чат
+					ul
+						li.remove-link Удалить чат
 					if addUserLink
 						ul
 							li.add-user-link Добавить пользователя в чат
@@ -31,6 +34,9 @@ main.content-wrapper
 		else if addUser
 			.content-wrapper__content_center
 				.add-user-wrapper
+		else if removeUser
+			.content-wrapper__content_center
+				.remove-user-wrapper
 		else
 			.content-wrapper__content_center
 				h3.empty Выберите чат чтобы отправить сообщение	
@@ -61,6 +67,13 @@ export default class Messenger extends Block {
 					},
 				},
 				{
+					component: RemoveUser,
+					rootQuery: '.remove-user-wrapper',
+					props: {
+						id: params.chat ? JSON.parse(params.chat).id : null,
+					},
+				},
+				{
 					component: Create,
 					rootQuery: '.create-wrapper',
 				},
@@ -70,8 +83,10 @@ export default class Messenger extends Block {
 				icon,
 				notEmpty: params.notEmpty,
 				createChat: params.createChat,
+				removeChat: params.removeChat,
 				addUserLink: params.addUserLink,
 				addUser: params.addUser,
+				removeUser: params.removeUser,
 				chat: params.chat ? JSON.parse(params.chat) : null,
 			},
 		});

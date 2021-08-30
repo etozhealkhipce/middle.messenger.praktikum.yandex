@@ -20,11 +20,11 @@ export default function () {
 
 	if (sidebar) {
 		sidebar.addEventListener('click', (e: Event): void => {
-			if ((<HTMLElement>e.target).matches('.user-preview')) {
+			if ((<HTMLElement>e.target).closest('.user-preview')) {
 				Router.go('/messenger', {
 					addUserLink: true,
 					notEmpty: true,
-					chat: (<HTMLElement>e.target)?.dataset?.chat,
+					chat: (<HTMLElement>e.target).closest('.user-preview')?.dataset?.chat,
 				});
 			}
 		});

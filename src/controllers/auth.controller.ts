@@ -83,6 +83,7 @@ class AuthController {
 				Store.set('login-profile', {
 					inputValue: login,
 				});
+
 				Store.set('email-profile', {
 					inputValue: email,
 				});

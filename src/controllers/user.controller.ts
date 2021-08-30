@@ -2,8 +2,7 @@ import EditUserAPI from '../api/user/edit.api';
 import EditPasswordAPI from '../api/user/password.api';
 import SearchUserAPI from '../api/user/search.api';
 // import EditAvatarAPI from '../api/user/avatar.api';
-// import UserAPI from '../api/user/user.api';
-import Store from '../core/Store';
+
 import Router from '../core/Router/Router';
 import {
 	editUserValidate,

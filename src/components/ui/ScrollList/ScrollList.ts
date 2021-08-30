@@ -23,6 +23,7 @@ export default class ScrollList extends Block {
 	}
 
 	render(): string {
+		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

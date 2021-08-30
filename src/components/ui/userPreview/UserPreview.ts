@@ -18,7 +18,10 @@ else if chats
 				img(src=chat.avatar).user-preview__image
 			.user-preview__second-wrapper
 				span.user-preview__title=chat.title
-				p.user-preview__message=chat.last_message || 'Нет сообщений'
+				if chat.last_message
+					p.user-preview__message=chat.last_message.content
+				else
+					p.user-preview__message Нет сообщений
 			.user-preview__third-wrapper
 				time.user-preview__time=chat.messageTime
 				if chat.unread_count
