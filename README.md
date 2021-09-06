@@ -2,7 +2,7 @@
 
 ## Sprint 3
 
-- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/8
+- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/16
 
 ## Описание
 
