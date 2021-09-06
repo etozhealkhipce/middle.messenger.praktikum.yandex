@@ -17,16 +17,40 @@ export default class HTTPTransport {
 	}
 
 	get = (url: string, options: Record<string, any> = {}) =>
-		this.request(url, { ...options, method: METHODS.GET });
+		this.request(url, {
+			...options,
+			method: METHODS.GET,
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
 
 	post = (url: string, options: Record<string, any> = {}) =>
-		this.request(url, { ...options, method: METHODS.POST });
+		this.request(url, {
+			...options,
+			method: METHODS.POST,
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
 
 	put = (url: string, options: Record<string, any> = {}) =>
-		this.request(url, { ...options, method: METHODS.PUT });
+		this.request(url, {
+			...options,
+			method: METHODS.PUT,
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
 
 	delete = (url: string, options: Record<string, any> = {}) =>
-		this.request(url, { ...options, method: METHODS.DELETE });
+		this.request(url, {
+			...options,
+			method: METHODS.DELETE,
+			headers: {
+				'content-type': 'application/json',
+			},
+		});
 
 	request = (url: string, options: Record<string, any> = {}) => {
 		const { method, data, timeout, headers = {} } = options;
@@ -52,7 +76,11 @@ export default class HTTPTransport {
 
 			xhr.onload = function () {
 				if (xhr.status === 200) {
-					resolve(xhr.response);
+					try {
+						resolve(JSON.parse(xhr.response));
+					} catch (error) {
+						resolve(xhr.response);
+					}
 				} else {
 					reject(new Error(xhr.status.toString()));
 				}

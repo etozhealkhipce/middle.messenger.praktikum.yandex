@@ -4,8 +4,6 @@ import { Sidebar } from '../components/Sidebar';
 import { ProfileCart } from '../components/ProfileCart';
 import events from '../components/ProfileCart/events';
 
-// import * as users from '../mock/users.json';
-
 const template: string = `
 main.content-wrapper
 	.sidebar-wrapper
@@ -18,9 +16,6 @@ export default class Profile extends Block {
 			children: [
 				{
 					component: Sidebar,
-					// props: {
-					// 	users,
-					// },
 					rootQuery: '.sidebar-wrapper',
 				},
 				{

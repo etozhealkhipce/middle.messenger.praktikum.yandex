@@ -13,7 +13,6 @@ export default function () {
 			const remove = e.target.matches('#removeUser');
 
 			if (!add && !remove) return;
-
 			const { user } = e.target.dataset;
 			const added = Array.isArray(Store.get('added-user')?.users)
 				? Store.get('added-user').users
@@ -32,22 +31,18 @@ export default function () {
 				}
 			}
 
-			if (remove) {
-				if (user) {
-					const idx = added.findIndex(
-						(i: Record<string, any>) => i.id === JSON.parse(user).id
-					);
+			if (!remove && !user) return;
+			const idx = added.findIndex(
+				(i: Record<string, any>) => i.id === JSON.parse(user).id
+			);
 
-					if (idx !== -1) {
-						const cloned = cloneDeep(added);
-						cloned.splice(idx, 1);
+			if (idx === -1) return;
+			const cloned = cloneDeep(added);
+			cloned.splice(idx, 1);
 
-						Store.set('added-user', {
-							users: cloned,
-						});
-					}
-				}
-			}
+			Store.set('added-user', {
+				users: cloned,
+			});
 		});
 	}
 

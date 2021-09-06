@@ -1,12 +1,11 @@
-import BaseAPI from './index';
+import HTTP from '../../core/HTTP';
 
-export default class Edit extends BaseAPI {
+export default class Edit {
+	userAPIInstance = new HTTP('/user');
+
 	async update(data: UpdateUserData | Boolean) {
 		const response = await this.userAPIInstance.put('/profile', {
 			data,
-			headers: {
-				'content-type': 'application/json',
-			},
 		});
 		return response;
 	}

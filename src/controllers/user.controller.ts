@@ -59,9 +59,9 @@ class UserController {
 
 	public async searchUser(login: string) {
 		try {
-			const response: string = await searchUserAPI.request(login);
+			const response = await searchUserAPI.request(login);
 
-			return JSON.parse(response);
+			return response;
 		} catch (error) {
 			console.log(error);
 		}

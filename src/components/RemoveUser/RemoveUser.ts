@@ -15,7 +15,6 @@ div(data-id=id).remove
 
 export default class RemoveUser extends Block {
 	constructor(parentData: any) {
-		console.log(parentData);
 		const data: any = merge(parentData, {
 			tagName: 'template',
 			children: [

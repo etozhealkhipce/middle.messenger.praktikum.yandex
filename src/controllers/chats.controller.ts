@@ -30,7 +30,7 @@ class ChatsController {
 
 			if (response) {
 				Store.set('sidebar-data', {
-					chats: JSON.parse(response),
+					chats: response,
 				});
 			}
 		} catch (error) {
@@ -44,7 +44,7 @@ class ChatsController {
 
 			if (response) {
 				Store.set('current-users', {
-					users: JSON.parse(response),
+					users: response,
 				});
 			}
 		} catch (error) {

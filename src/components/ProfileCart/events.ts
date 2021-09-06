@@ -16,6 +16,7 @@ export default async function (): Promise<any> {
 	);
 	const profileBackLink = <HTMLButtonElement>document.querySelector('.back');
 	const logoutLink = <HTMLElement>document.querySelector('.logout');
+	const backLink = <HTMLElement>document.querySelector('.profile-back');
 	const saveData = <HTMLElement>document.getElementById('saveData');
 	const savePassword = <HTMLElement>document.getElementById('savePassword');
 
@@ -34,6 +35,12 @@ export default async function (): Promise<any> {
 		logoutLink.addEventListener('click', () => {
 			authController.logout();
 			Router.go('/');
+		});
+	}
+
+	if (backLink) {
+		backLink.addEventListener('click', () => {
+			Router.back();
 		});
 	}
 

@@ -55,6 +55,7 @@ main.content-wrapper__content_profile
                 .actions__left
                     a.actions__link.profile-edit Изменить даннные
                     a.actions__link.profile-change-password Изменить пароль
+                    a.actions__link.profile-back Назад
                 .actions__right
                     a.actions__link.logout Выйти
             else
