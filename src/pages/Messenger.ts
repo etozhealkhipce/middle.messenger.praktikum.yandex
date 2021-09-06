@@ -3,7 +3,7 @@ import icon from 'url:../assets/icons/squares.svg';
 import Block from '../core/Block';
 import { Sidebar } from '../components/Sidebar';
 import { Chat } from '../components/Chat';
-import { Create } from '../components/Create';
+import { ChatForm } from '../components/ChatForm';
 import { AddUser } from '../components/AddUser';
 import { RemoveUser } from '../components/RemoveUser';
 import * as users from '../mock/users.json';
@@ -26,6 +26,14 @@ main.content-wrapper
 					if addUserLink
 						ul
 							li.add-user-link Добавить пользователя в чат
+		else
+			nav.header#header
+				h3.header__title
+				button(type="button" id="toggle").header__toggle
+					img(src=icon)
+				.header__dropdown.hidden
+					ul
+						li.create-link Создать чат
 		if notEmpty
 			.chat-wrapper
 		else if createChat
@@ -63,18 +71,18 @@ export default class Messenger extends Block {
 					component: AddUser,
 					rootQuery: '.add-user-wrapper',
 					props: {
-						id: params.chat ? JSON.parse(params.chat).id : null,
+						id: params.chat ? params.chat.id : null,
 					},
 				},
 				{
 					component: RemoveUser,
 					rootQuery: '.remove-user-wrapper',
 					props: {
-						id: params.chat ? JSON.parse(params.chat).id : null,
+						id: params.chat ? params.chat.id : null,
 					},
 				},
 				{
-					component: Create,
+					component: ChatForm,
 					rootQuery: '.create-wrapper',
 				},
 			],

@@ -1,12 +1,11 @@
-import BaseAPI from './index';
+import HTTP from '../../core/HTTP';
 
-export default class Password extends BaseAPI {
-	async update(data: UserData) {
+export default class Password {
+	userAPIInstance = new HTTP('/user');
+
+	async update(data: UpdateUserPassword) {
 		const response = await this.userAPIInstance.put('/password', {
 			data,
-			headers: {
-				'content-type': 'application/json',
-			},
 		});
 		return response;
 	}

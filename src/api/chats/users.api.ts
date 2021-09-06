@@ -1,6 +1,8 @@
-import BaseAPI from './index';
+import HTTP from '../../core/HTTP';
 
-export default class Users extends BaseAPI {
+export default class Users {
+	chatsAPIInstance = new HTTP('/chats');
+
 	async request(id: string) {
 		const response = await this.chatsAPIInstance.get(`/${id}/users`);
 		return response;
@@ -9,9 +11,6 @@ export default class Users extends BaseAPI {
 	async update(data: Record<string, any>) {
 		const response = await this.chatsAPIInstance.put('/users', {
 			data,
-			headers: {
-				'content-type': 'application/json',
-			},
 		});
 		return response;
 	}
@@ -19,9 +18,6 @@ export default class Users extends BaseAPI {
 	async delete(data: string) {
 		const response = await this.chatsAPIInstance.delete('/users', {
 			data,
-			headers: {
-				'content-type': 'application/json',
-			},
 		});
 		return response;
 	}

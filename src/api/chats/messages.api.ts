@@ -1,11 +1,13 @@
-import BaseAPI from './index';
+import HTTP from '../../core/HTTP';
 
-export default class Create extends BaseAPI {
+export default class Create {
+	chatsAPIInstance = new HTTP('/chats');
+
 	socket: WebSocket;
 
 	async create(id: string) {
 		const response = await this.chatsAPIInstance.post(`/token/${id}`);
-		return JSON.parse(response).token;
+		return response.token;
 	}
 
 	async request(data: { userId: string; chatId: string; token: string }) {

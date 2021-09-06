@@ -18,7 +18,6 @@ div(data-id=id).add
 
 export default class AddUser extends Block {
 	constructor(parentData: any) {
-		console.log(parentData);
 		const data: any = merge(parentData, {
 			tagName: 'template',
 			children: [
@@ -72,7 +71,6 @@ export default class AddUser extends Block {
 	}
 
 	render() {
-		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

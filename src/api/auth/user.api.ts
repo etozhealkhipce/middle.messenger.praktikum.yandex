@@ -1,9 +1,11 @@
-import BaseAPI from './index';
+import HTTP from '../../core/HTTP';
 
-export default class User extends BaseAPI {
+export default class User {
+	authAPIInstance = new HTTP('/auth');
+
 	async request() {
 		const response: any = await this.authAPIInstance.get('/user');
-		return JSON.parse(response);
+		return response;
 	}
 
 	async update(data: UpdateUserData) {
@@ -13,6 +15,6 @@ export default class User extends BaseAPI {
 				'content-type': 'application/json',
 			},
 		});
-		return JSON.parse(response);
+		return response;
 	}
 }
