@@ -41,7 +41,7 @@ class Router {
 	}
 
 	_onRoute(pathname: string, params?: Record<string, any>) {
-		const route = this.getRoute(pathname);
+		const route = this.getRoute(pathname) || this.getRoute('/error');
 
 		route.render(params);
 

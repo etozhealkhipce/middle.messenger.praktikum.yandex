@@ -14,7 +14,7 @@ export default class Error extends Block {
 					component: ErrorMessage,
 					rootQuery: '.error',
 					props: {
-						errorCode: 500,
+						errorCode: 404,
 					},
 				},
 			],
