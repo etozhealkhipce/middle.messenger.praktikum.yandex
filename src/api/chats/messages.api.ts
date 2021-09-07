@@ -1,6 +1,6 @@
 import HTTP from '../../core/HTTP';
 
-export default class Create {
+export default class Messages {
 	chatsAPIInstance = new HTTP('/chats');
 
 	socket: WebSocket;
@@ -29,6 +29,10 @@ export default class Create {
 			}
 
 			console.log(`Код: ${event.code} | Причина: ${event.reason}`);
+
+			if (event.code === '1006') {
+				this.request({ userId, chatId, token });
+			}
 		});
 
 		this.socket.addEventListener('error', (event) => {
@@ -36,12 +40,23 @@ export default class Create {
 		});
 	}
 
-	async update(message: string) {
-		this.socket.send(
-			JSON.stringify({
-				content: message,
-				type: 'message',
-			})
-		);
+	async update(message?: string | null, number?: number | null) {
+		if (message !== null) {
+			this.socket.send(
+				JSON.stringify({
+					content: message,
+					type: 'message',
+				})
+			);
+		}
+
+		if (number !== null) {
+			this.socket.send(
+				JSON.stringify({
+					content: number,
+					type: 'get old',
+				})
+			);
+		}
 	}
 }

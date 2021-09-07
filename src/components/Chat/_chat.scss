@@ -45,15 +45,16 @@
 		bottom: 0;
 		display: flex;
 		margin-top: 20px;
-		position: sticky;
+		position: fixed;
+		width: 100%;
 		z-index: 999;
 
 		&-input-wrapper {
-			width: 100%;
+			width: 65%;
 		}
 
 		&-button-wrapper {
-			width: 10%;
+			width: 5%;
 		}
 
 		&__input {

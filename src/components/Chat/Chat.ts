@@ -12,16 +12,20 @@ const template: string = `
 		span.body__date #{new Date().toLocaleDateString()}
 
 		if messages
-			.body__left-message
-				.body__message-wrapper
-					.body__message #{messages}
-							
-					span.body__time 09:49
+			each message in messages
+				if message.content
+					.body__left-message
+						.body__message-wrapper
+							.body__name #{message.user_id}
+							.body__message #{message.content}
+									
+							span.body__time 09:49
 
-			.body__right-message
-				.body__message-wrapper
-					.body__message ого!                    
-					span.body__time 10:02
+					.body__right-message
+						.body__message-wrapper
+							.body__name #{message.id}
+							.body__message #{message.content}             
+							span.body__time 10:02
 		else
 			span.body__date Нет сообщений
 
@@ -65,6 +69,7 @@ export default class Chat extends Block {
 	}
 
 	render() {
+		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

@@ -71,14 +71,14 @@ export default class Messenger extends Block {
 					component: AddUser,
 					rootQuery: '.add-user-wrapper',
 					props: {
-						id: params.chat ? params.chat.id : null,
+						id: params.chat ? JSON.parse(params.chat).id : null,
 					},
 				},
 				{
 					component: RemoveUser,
 					rootQuery: '.remove-user-wrapper',
 					props: {
-						id: params.chat ? params.chat.id : null,
+						id: params.chat ? JSON.parse(params.chat).id : null,
 					},
 				},
 				{

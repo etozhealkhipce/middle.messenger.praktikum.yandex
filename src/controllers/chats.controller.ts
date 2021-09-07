@@ -113,7 +113,20 @@ class ChatsController {
 
 	public async sendMessage(message: string) {
 		try {
-			messagesAPI.update(message);
+			messagesAPI.update(message, 0);
+
+			messagesAPI.socket.addEventListener('message', (event) => {
+				const data = JSON.parse(event.data);
+
+				console.log(data);
+
+				if (Array.isArray(data)) {
+					console.log('ttest');
+					Store.set('chat-data', {
+						messages: data,
+					});
+				}
+			});
 		} catch (error) {
 			console.log(error);
 		}

@@ -1,6 +1,6 @@
 import HTTP from '../../core/HTTP';
 
-export default class Create {
+export default class Chats {
 	chatsAPIInstance = new HTTP('/chats');
 
 	async request() {
