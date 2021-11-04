@@ -9,7 +9,7 @@ export default async function (): Promise<void> {
 	const removeChat = <HTMLElement>document.querySelector('.remove-link');
 	const addUser = <HTMLElement>document.querySelector('.add-user-link');
 	const header = <HTMLElement>document.getElementById('header');
-	const chatId: string = header?.dataset?.id;
+	const chatId: string | undefined = header?.dataset?.id;
 
 	if (header && chatId) {
 		chatsController.connectToChat(chatId);
@@ -54,7 +54,7 @@ export default async function (): Promise<void> {
 		removeChat.addEventListener('click', (e: Event): void => {
 			e.stopImmediatePropagation();
 
-			if (window.confirm('Удалить чат?')) {
+			if (typeof chatId === 'string' && window.confirm('Удалить чат?')) {
 				chatsController.removeChat(chatId);
 			}
 		});

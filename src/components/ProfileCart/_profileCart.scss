@@ -29,6 +29,11 @@
 		margin-bottom: 40px;
 	}
 
+	&__input_file {
+		width: 0px;
+		visibility: hidden;
+	}
+
 	&__button_gray {
 		background-color: $gray;
 		margin-top: 20px;
@@ -66,6 +71,7 @@
 
 			&_edit {
 				&::after {
+					pointer-events: none;
 					background: url("../../assets/icons/camera.svg") no-repeat;
 					content: "";
 					cursor: pointer;

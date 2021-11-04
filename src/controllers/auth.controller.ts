@@ -1,5 +1,5 @@
 import RegisterAPI from '../api/auth/register.api';
-import UserAPI from '../api/auth/user.api';
+import UserAPI from '../api/auth/authority.api';
 import LoginAPI from '../api/auth/login.api';
 import LogoutAPI from '../api/auth/logout.api';
 import Store from '../core/Store';
@@ -41,15 +41,24 @@ class AuthController {
 	public async signIn() {
 		try {
 			this.userData = loginValidate();
+			const autorizeError = <HTMLParagraphElement>(
+				document.querySelector('.autorize-error')
+			);
+			autorizeError.classList.add('hidden');
 
 			if (this.userData) {
 				Store.set('loginBtn', {
 					buttonDisabled: true,
 				});
 
-				await loginAPI.create(this.userData);
-
-				Router.go('/messenger', { notEmpty: false });
+				try {
+					await loginAPI.create(this.userData);
+					Router.go('/messenger', { notEmpty: false });
+				} catch (error) {
+					if (autorizeError) {
+						autorizeError.classList.remove('hidden');
+					}
+				}
 			} else {
 				throw new Error('Неверный формат данных');
 			}
@@ -77,6 +86,7 @@ class AuthController {
 			const response: any = await userAPI.request();
 
 			if (response) {
+				localStorage.setItem('authority', JSON.stringify(response));
 				// eslint-disable-next-line @typescript-eslint/naming-convention
 				const { login, email, phone, first_name, second_name } = response;
 

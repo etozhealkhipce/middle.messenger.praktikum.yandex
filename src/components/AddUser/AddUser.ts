@@ -71,7 +71,6 @@ export default class AddUser extends Block {
 	}
 
 	render() {
-		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

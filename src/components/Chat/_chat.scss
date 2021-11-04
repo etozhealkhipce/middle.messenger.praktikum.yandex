@@ -7,6 +7,10 @@
 		height: 73vh;
 		width: 100%;
 
+		&__name {
+			margin-bottom: 0.5rem;
+		}
+
 		&__date {
 			color: $gray;
 			display: block;
@@ -37,6 +41,7 @@
 			color: $gray;
 			display: block;
 			font-size: 14px;
+			margin-top: 0.5rem;
 			text-align: right;
 		}
 	}

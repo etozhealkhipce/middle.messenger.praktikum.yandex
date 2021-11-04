@@ -19,6 +19,7 @@ export default class Messages {
 
 		this.socket.addEventListener('open', () => {
 			console.log('Соединение установлено');
+			this.update(null, 0);
 		});
 
 		this.socket.addEventListener('close', (event) => {
@@ -30,17 +31,19 @@ export default class Messages {
 
 			console.log(`Код: ${event.code} | Причина: ${event.reason}`);
 
-			if (event.code === '1006') {
+			if (event.code === 1006) {
 				this.request({ userId, chatId, token });
 			}
 		});
 
-		this.socket.addEventListener('error', (event) => {
+		this.socket.addEventListener('error', (event: Record<string, any>) => {
 			console.log('Ошибка', event.message);
 		});
 	}
 
 	async update(message?: string | null, number?: number | null) {
+		if (this.socket.readyState !== 1) return;
+
 		if (message !== null) {
 			this.socket.send(
 				JSON.stringify({

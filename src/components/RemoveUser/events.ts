@@ -7,7 +7,7 @@ export default async function (): Promise<void> {
 	);
 	const chatId: string = document.querySelector('.remove')?.dataset?.id;
 
-	chatsController.getChatUsers(chatId);
+	if (chatId) chatsController.getChatUsers(chatId);
 
 	if (removeButton) {
 		removeButton.addEventListener('click', (): Promise<void> => {

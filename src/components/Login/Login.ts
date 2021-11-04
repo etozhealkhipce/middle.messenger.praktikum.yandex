@@ -16,6 +16,7 @@ form.login-cart#loginForm
 	.password-wrapper
 	p.login-cart__error.password-error.hidden Минимум восемь символов
 	.loginBtn-wrapper
+	p.login-cart__error.autorize-error.hidden Неверный логин или пароль
 	a.login-cart__link Забыли пароль?
 	.registerBtn-wrapper`;
 

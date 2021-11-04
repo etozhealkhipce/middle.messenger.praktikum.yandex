@@ -14,18 +14,19 @@ const template: string = `
 		if messages
 			each message in messages
 				if message.content
-					.body__left-message
-						.body__message-wrapper
-							.body__name #{message.user_id}
-							.body__message #{message.content}
-									
-							span.body__time 09:49
-
-					.body__right-message
-						.body__message-wrapper
-							.body__name #{message.id}
-							.body__message #{message.content}             
-							span.body__time 10:02
+					if message.self
+						.body__left-message
+							.body__message-wrapper
+								.body__name #{message.name}
+								.body__message #{message.content}
+										
+								span.body__time #{message.time}
+					else
+						.body__right-message
+							.body__message-wrapper
+								.body__name #{message.name}
+								.body__message #{message.content}             
+								span.body__time 10:02
 		else
 			span.body__date Нет сообщений
 
@@ -69,7 +70,6 @@ export default class Chat extends Block {
 	}
 
 	render() {
-		console.log(this.props);
 		return compile(template)(this.props);
 	}
 }

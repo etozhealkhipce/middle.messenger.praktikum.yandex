@@ -7,6 +7,7 @@ export function editUserValidate(): Boolean | UpdateUserData {
 	const phoneInput = <HTMLInputElement>document.getElementById('phone');
 	const nameInput = <HTMLInputElement>document.getElementById('name');
 	const surnameInput = <HTMLInputElement>document.getElementById('surname');
+	const avatarInput = <HTMLInputElement>document.getElementById('avatar-input');
 
 	const loginError = <HTMLParagraphElement>(
 		document.querySelector('.login-error')
@@ -36,6 +37,7 @@ export function editUserValidate(): Boolean | UpdateUserData {
 
 	if (loginValidated && emailValidated && phoneValidated) {
 		return {
+			avatar: avatarInput.files[0] || avatarInput.value,
 			email: emailInput.value,
 			login: loginInput.value,
 			first_name: nameInput.value,

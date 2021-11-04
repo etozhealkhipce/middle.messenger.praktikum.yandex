@@ -38,4 +38,6 @@ export default class Route {
 
 		this._block = new this._blockClass(this._params);
 	}
+
+	
 }

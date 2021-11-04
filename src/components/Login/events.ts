@@ -11,9 +11,10 @@ export default function (): void {
 	);
 
 	if (loginForm) {
-		loginForm.addEventListener('submit', (e: Event): void => {
+		loginForm.addEventListener('submit', async (e: Event): Promise<void> => {
 			e.preventDefault();
-			authController.signIn();
+			await authController.signIn();
+			authController.getUserinfo();
 		});
 	}
 
