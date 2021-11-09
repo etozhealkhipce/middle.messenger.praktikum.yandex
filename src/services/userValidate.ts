@@ -1,6 +1,6 @@
 import { Test, validate, toggle, multipleListener } from '../utils/validate';
 
-export function editAvatarValidate(): Boolean | File {
+export function editAvatarValidate(): false | File {
 	const avatarInput = <HTMLInputElement>document.getElementById('avatar-input');
 
 	if (avatarInput.files?.length) {
@@ -10,7 +10,7 @@ export function editAvatarValidate(): Boolean | File {
 	return false;
 }
 
-export function editUserValidate(): Boolean | UpdateUserData {
+export function editUserValidate(): false | Partial<UpdateUserData> {
 	// TODO: переписать валидацию (вынести флаги в store или template)
 	const loginInput = <HTMLInputElement>document.getElementById('login');
 	const emailInput = <HTMLInputElement>document.getElementById('email');
@@ -58,7 +58,7 @@ export function editUserValidate(): Boolean | UpdateUserData {
 	return false;
 }
 
-export function editPasswordValidate(): Boolean | UpdateUserPassword {
+export function editPasswordValidate(): false | UpdateUserPassword {
 	const passwordInput = <HTMLInputElement>document.getElementById('password');
 	const passwordNewInput = <HTMLInputElement>(
 		document.getElementById('password-new')

@@ -16,19 +16,13 @@ const searchUserAPI = new SearchUserAPI();
 const editAvatarAPI = new EditAvatarAPI();
 
 class UserController {
-	userData: UpdateUserData | Boolean;
-
-	avatar: File | Boolean;
-
-	userPassword: UpdateUserPassword | Boolean;
-
 	public async editUser() {
 		try {
-			this.userData = editUserValidate();
-			this.avatar = editAvatarValidate();
+			const userData = editUserValidate();
+			const avatar = editAvatarValidate();
 
-			if (this.avatar) await editAvatarAPI.update(this.avatar);
-			await editUserAPI.update(this.userData);
+			if (avatar) await editAvatarAPI.update(avatar);
+			if (userData) await editUserAPI.update(userData);
 		} catch (error) {
 			console.log(error);
 		} finally {
@@ -45,9 +39,9 @@ class UserController {
 
 	public async editPassword() {
 		try {
-			this.userPassword = editPasswordValidate();
+			const userPassword = editPasswordValidate();
 
-			await editPasswordAPI.update(this.userPassword);
+			if (userPassword) await editPasswordAPI.update(userPassword);
 		} catch (error) {
 			console.log(error);
 		} finally {

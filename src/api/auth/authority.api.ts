@@ -8,7 +8,7 @@ export default class User {
 		return response;
 	}
 
-	async update(data: UpdateUserData) {
+	async update(data: Partial<UpdateUserData>) {
 		const response: any = await this.authAPIInstance.put('/user/profile', {
 			data,
 		});

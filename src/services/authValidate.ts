@@ -1,6 +1,6 @@
 import { Test, validate, toggle, multipleListener } from '../utils/validate';
 
-export function registerValidate(): Boolean | RegisterUserData {
+export function registerValidate(): false | RegisterUserData {
 	// TODO: переписать валидацию (вынести флаги в store или template)
 	const loginInput = <HTMLInputElement>document.getElementById('login');
 	const passwordInput = <HTMLInputElement>document.getElementById('password');
@@ -75,7 +75,7 @@ export function registerValidate(): Boolean | RegisterUserData {
 	return false;
 }
 
-export function loginValidate(): Boolean | LoginUserData {
+export function loginValidate(): false | LoginUserData {
 	const loginInput = <HTMLInputElement>document.getElementById('login');
 	const passwordInput = <HTMLInputElement>document.getElementById('password');
 

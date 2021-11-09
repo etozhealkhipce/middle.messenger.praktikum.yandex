@@ -16,6 +16,23 @@ const messagesAPI = new MessagesAPI();
 class ChatsController {
 	messagesCounter: 0;
 
+	private async getUsers(data: Record<string, any>[]) {
+		const promises = data.map((item: Record<string, any>) =>
+			userAPI.request(item.user_id)
+		);
+
+		const users: unknown = await Promise.all(promises);
+
+		if (Array.isArray(users)) {
+			return data.map((item: Record<string, any>, index) => ({
+				...item,
+				user: users[index],
+			}));
+		}
+
+		return [];
+	}
+
 	public async createChat(title: string) {
 		try {
 			await chatsAPI.create(title);
@@ -104,38 +121,26 @@ class ChatsController {
 		}
 	}
 
-	public async connectToChat(id: string) {
+	public async connectToChat(chatId: string) {
 		try {
-			const token = await messagesAPI.create(id);
+			const token = await messagesAPI.create(chatId);
 			const user = await authorityAPI.request();
 
-			messagesAPI.request({ userId: user.id, chatId: id, token });
+			messagesAPI.request({ userId: user.id, chatId, token });
 
 			messagesAPI.socket.addEventListener('message', async (event) => {
 				if (event.type === 'error') return;
 
+				const authority: string = localStorage.getItem('authority') || '{}';
 				// eslint-disable-next-line @typescript-eslint/naming-convention
-				const { id, first_name } = JSON.parse(
-					localStorage.getItem('authority')
-				);
+				const { id, first_name } = JSON.parse(authority);
 				const data = JSON.parse(event.data);
 
 				if (Array.isArray(data)) {
-					const messages: Array = [];
-
-					const getUsers = async () => {
-						for (const item of data) {
-							const user = await userAPI.request(item.user_id);
-							messages.push({ ...item, user });
-						}
-					};
-
-					await getUsers();
+					const messages: Record<string, any>[] = await this.getUsers(data);
 
 					const result = messages.map((item: Record<string, any>) => {
 						if (item.user_id !== id) {
-							console.log(user);
-
 							return {
 								...item,
 								time: new Date(item.time).toLocaleString('ru-RU').slice(12),
@@ -160,7 +165,7 @@ class ChatsController {
 						: [];
 
 					Store.set('chat-data', {
-						users: [...messages, data],
+						messages: [...messages, data],
 					});
 				}
 

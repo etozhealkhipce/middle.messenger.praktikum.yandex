@@ -15,18 +15,16 @@ const logoutAPI = new LogoutAPI();
 const avatarAPI = new AvatarAPI();
 
 class AuthController {
-	userData: LoginUserData | Boolean;
-
 	public async signUp() {
 		try {
-			this.userData = registerValidate();
+			const userData = registerValidate();
 
-			if (this.userData) {
+			if (userData) {
 				Store.set('registerBtn', {
 					buttonDisabled: true,
 				});
 
-				await registerAPI.create(this.userData);
+				await registerAPI.create(userData);
 
 				Router.go('/');
 			} else {
@@ -43,19 +41,19 @@ class AuthController {
 
 	public async signIn() {
 		try {
-			this.userData = loginValidate();
+			const userData = loginValidate();
 			const autorizeError = <HTMLParagraphElement>(
 				document.querySelector('.autorize-error')
 			);
 			autorizeError.classList.add('hidden');
 
-			if (this.userData) {
+			if (userData) {
 				Store.set('loginBtn', {
 					buttonDisabled: true,
 				});
 
 				try {
-					await loginAPI.create(this.userData);
+					await loginAPI.create(userData);
 					Router.go('/messenger', { notEmpty: false });
 				} catch (error) {
 					if (autorizeError) {
