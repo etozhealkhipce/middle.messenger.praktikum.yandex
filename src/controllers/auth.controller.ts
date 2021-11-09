@@ -2,14 +2,17 @@ import RegisterAPI from '../api/auth/register.api';
 import UserAPI from '../api/auth/authority.api';
 import LoginAPI from '../api/auth/login.api';
 import LogoutAPI from '../api/auth/logout.api';
+import AvatarAPI from '../api/user/avatar.api';
 import Store from '../core/Store';
 import Router from '../core/Router/Router';
 import { registerValidate, loginValidate } from '../services/authValidate';
+import bufferToBase64 from '../utils/bufferToBase64';
 
 const registerAPI = new RegisterAPI();
 const userAPI = new UserAPI();
 const loginAPI = new LoginAPI();
 const logoutAPI = new LogoutAPI();
+const avatarAPI = new AvatarAPI();
 
 class AuthController {
 	userData: LoginUserData | Boolean;
@@ -88,7 +91,16 @@ class AuthController {
 			if (response) {
 				localStorage.setItem('authority', JSON.stringify(response));
 				// eslint-disable-next-line @typescript-eslint/naming-convention
-				const { login, email, phone, first_name, second_name } = response;
+				const { login, avatar, email, phone, first_name, second_name } =
+					response;
+
+				const buffer: unknown = await avatarAPI.request(avatar);
+
+				let b64;
+
+				if (buffer instanceof ArrayBuffer) {
+					b64 = bufferToBase64(buffer);
+				}
 
 				Store.set('login-profile', {
 					inputValue: login,
@@ -105,6 +117,9 @@ class AuthController {
 				});
 				Store.set('second_name-profile', {
 					inputValue: second_name,
+				});
+				Store.set('main-profile', {
+					avatar: `data:image;base64,${b64}`,
 				});
 			}
 		} catch (error) {

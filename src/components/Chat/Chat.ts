@@ -26,7 +26,7 @@ const template: string = `
 							.body__message-wrapper
 								.body__name #{message.name}
 								.body__message #{message.content}             
-								span.body__time 10:02
+								span.body__time #{message.time}
 		else
 			span.body__date Нет сообщений
 

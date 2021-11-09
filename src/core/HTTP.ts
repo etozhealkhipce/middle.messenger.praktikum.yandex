@@ -18,42 +18,43 @@ export default class HTTPTransport {
 
 	get = (url: string, options: Record<string, any> = {}) =>
 		this.request(url, {
-			...options,
 			method: METHODS.GET,
 			headers: {
 				'content-type': 'application/json',
 			},
+			...options,
 		});
 
 	post = (url: string, options: Record<string, any> = {}) =>
 		this.request(url, {
-			...options,
 			method: METHODS.POST,
 			headers: {
 				'content-type': 'application/json',
 			},
+			...options,
 		});
 
 	put = (url: string, options: Record<string, any> = {}) =>
 		this.request(url, {
-			...options,
 			method: METHODS.PUT,
 			headers: {
 				'content-type': 'application/json',
 			},
+			...options,
 		});
 
 	delete = (url: string, options: Record<string, any> = {}) =>
 		this.request(url, {
-			...options,
 			method: METHODS.DELETE,
 			headers: {
 				'content-type': 'application/json',
 			},
+			...options,
 		});
 
 	request = (url: string, options: Record<string, any> = {}) => {
-		const { method, data, timeout, headers = {} } = options;
+		const { method, data, timeout, responseType, headers = {} } = options;
+
 		url = this.baseUrl + url;
 
 		return new Promise((resolve, reject) => {
@@ -63,6 +64,10 @@ export default class HTTPTransport {
 			}
 
 			const xhr = new XMLHttpRequest();
+
+			if (responseType) {
+				xhr.responseType = responseType;
+			}
 
 			if (method === METHODS.GET && !!data) {
 				xhr.open(method, url + queryStringify(data));
@@ -94,7 +99,7 @@ export default class HTTPTransport {
 
 			xhr.withCredentials = true;
 
-			xhr.send(JSON.stringify(data));
+			xhr.send(data instanceof FormData ? data : JSON.stringify(data));
 		});
 	};
 }

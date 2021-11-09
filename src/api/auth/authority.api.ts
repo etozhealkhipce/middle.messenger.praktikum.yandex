@@ -11,9 +11,6 @@ export default class User {
 	async update(data: UpdateUserData) {
 		const response: any = await this.authAPIInstance.put('/user/profile', {
 			data,
-			headers: {
-				'content-type': 'application/json',
-			},
 		});
 		return response;
 	}

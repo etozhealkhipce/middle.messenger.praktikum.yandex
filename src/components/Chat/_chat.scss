@@ -4,7 +4,8 @@
 	width: 100%;
 
 	.body {
-		height: 73vh;
+		overflow-y: scroll;
+		height: 84vh;
 		width: 100%;
 
 		&__name {

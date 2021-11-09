@@ -12,11 +12,17 @@ main.content-wrapper__content_profile
             if edit
                 .user__first-wrapper.user__first-wrapper_edit
                     label(for="avatar-input").user__avatar-input
-                        img(src=avatar).user__image
+                        if avatar
+                            img(src=avatar).user__image
+                        else
+                            img.user__image
                     .avatar-wrapper
             else
                 .user__first-wrapper
-                    img(src=avatar).user__image
+                    if avatar
+                        img(src=avatar).user__image
+                    else
+                        mg.user__image
 
             .user__second-wrapper
                 span.user__title !{name}
@@ -207,9 +213,7 @@ export default class ProfileCart extends Block {
 			props: {
 				name: '',
 				surname: '',
-				// TODO: не могу загрузить аватар ни напрямую (ругается CORS несмотря на cookies), ни через base64 в auth.controller
-				avatar:
-					'https://ya-praktikum.tech/api/v2/resources/7bfc05ab-de97-48cb-b4e6-97d207879f19/53bb8631-d926-447d-85f5-adf3ceccd6b8_image.png',
+				avatar: '',
 			},
 			selector: 'main-profile',
 		});
