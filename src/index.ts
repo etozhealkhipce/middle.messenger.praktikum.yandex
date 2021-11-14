@@ -19,10 +19,16 @@ Router.guard = (to: string) => {
 	switch (to) {
 		case '/':
 		case 'register':
-			return (() => !localStorage.getItem('login'))();
+			return (() => ({
+				access: !localStorage.getItem('login'),
+				redirect: '/messenger',
+			}))();
 		case '/messenger':
 		case '/settings':
-			return (() => !!localStorage.getItem('login'))();
+			return (() => ({
+				access: !!localStorage.getItem('login'),
+				redirect: '/',
+			}))();
 
 		default:
 			return true;

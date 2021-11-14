@@ -49,9 +49,13 @@ class Router {
 	_onRoute(pathname: string, params?: Record<string, any>) {
 		const route = this.getRoute(pathname) || this.getRoute('/error');
 
-		if (this._guard(pathname)) {
+		const { access, redirect } = this._guard(pathname);
+
+		if (this._guard(pathname) === true || access) {
 			route.render(params);
 			this._currentRoute = route;
+		} else if (redirect) {
+			this.go(redirect);
 		} else {
 			this.back();
 		}
