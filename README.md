@@ -4,6 +4,7 @@
 
 - https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/17
 
+
 ## Описание
 
 - Мессенджер на JavaScript.
