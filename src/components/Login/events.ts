@@ -1,4 +1,5 @@
 import authController from '../../controllers/auth.controller';
+import userController from '../../controllers/user.controller';
 import Router from '../../core/Router/Router';
 
 export default function (): void {
@@ -14,7 +15,7 @@ export default function (): void {
 		loginForm.addEventListener('submit', async (e: Event): Promise<void> => {
 			e.preventDefault();
 			await authController.signIn();
-			authController.getUserinfo();
+			await userController.getUserinfo();
 		});
 	}
 

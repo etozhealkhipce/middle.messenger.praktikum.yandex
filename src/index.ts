@@ -15,6 +15,20 @@ enum Paths {
 	error = '/error',
 }
 
+Router.guard = (to: string) => {
+	switch (to) {
+		case '/':
+		case 'register':
+			return (() => !localStorage.getItem('login'))();
+		case '/messenger':
+		case '/settings':
+			return (() => !!localStorage.getItem('login'))();
+
+		default:
+			return true;
+	}
+};
+
 Router.use(Paths.index, SignIn)
 	.use(Paths.register, SignUp)
 	.use(Paths.messenger, Messenger)

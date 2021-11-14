@@ -16,14 +16,15 @@ form.login-cart#loginForm
 	.password-wrapper
 	p.login-cart__error.password-error.hidden Минимум восемь символов
 	.loginBtn-wrapper
-	p.login-cart__error.autorize-error.hidden Неверный логин или пароль
+	if authError
+		p.login-cart__error.autorize-error #{authError}
 	a.login-cart__link Забыли пароль?
 	.registerBtn-wrapper`;
 
 export default class Login extends Block {
 	constructor(parentData: any) {
 		const data: any = merge(parentData, {
-			tagName: 'form',
+			tagName: 'template',
 			children: [
 				{
 					component: Input,
@@ -73,7 +74,7 @@ export default class Login extends Block {
 				},
 			],
 			events,
-			classes: ['form', 'login-cart#loginForm'],
+			selector: 'login-data',
 		});
 
 		super(data);

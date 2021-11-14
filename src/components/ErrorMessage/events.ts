@@ -5,7 +5,7 @@ export default function () {
 
 	if (backButton) {
 		backButton.addEventListener('click', (): void => {
-			Router.back();
+			Router.go('/');
 		});
 	}
 }

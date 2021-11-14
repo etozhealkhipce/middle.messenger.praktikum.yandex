@@ -87,7 +87,7 @@ export default class HTTPTransport {
 						resolve(xhr.response);
 					}
 				} else {
-					reject(new Error(xhr.status.toString()));
+					reject(JSON.parse(xhr.response));
 				}
 			};
 

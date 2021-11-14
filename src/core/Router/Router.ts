@@ -5,6 +5,8 @@ class Router {
 
 	protected _rootQuery: string;
 
+	private _guard: Function = () => true;
+
 	routes: Record<string, any>;
 
 	history: any;
@@ -20,6 +22,10 @@ class Router {
 		this._rootQuery = rootQuery;
 
 		(Router as any).__instance = this;
+	}
+
+	set guard(value: Function) {
+		this._guard = value;
 	}
 
 	use(pathname: string, block: any, params?: any) {
@@ -43,9 +49,12 @@ class Router {
 	_onRoute(pathname: string, params?: Record<string, any>) {
 		const route = this.getRoute(pathname) || this.getRoute('/error');
 
-		route.render(params);
-
-		this._currentRoute = route;
+		if (this._guard(pathname)) {
+			route.render(params);
+			this._currentRoute = route;
+		} else {
+			this.back();
+		}
 	}
 
 	go(pathname: string, params?: Record<string, any>) {
