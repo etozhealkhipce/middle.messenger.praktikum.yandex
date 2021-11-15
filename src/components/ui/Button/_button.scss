@@ -20,4 +20,13 @@
 		color: #fff;
 		transition: 0.3s;
 	}
+
+	&:disabled {
+		background-color: $light-gray;
+		cursor: not-allowed;
+
+		&:hover {
+			background-color: $light-gray;
+		}
+	}
 }

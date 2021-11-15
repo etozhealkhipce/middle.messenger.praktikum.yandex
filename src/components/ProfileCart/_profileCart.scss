@@ -7,6 +7,10 @@
 	padding: 50px;
 	width: 500px;
 
+	a {
+		cursor: pointer;
+	}
+
 	&__title {
 		color: #000;
 		font-family: "Montserrat", sans-serif;
@@ -23,6 +27,11 @@
 
 	&__input {
 		margin-bottom: 40px;
+	}
+
+	&__input_file {
+		width: 0px;
+		visibility: hidden;
 	}
 
 	&__button_gray {
@@ -62,6 +71,7 @@
 
 			&_edit {
 				&::after {
+					pointer-events: none;
 					background: url("../../assets/icons/camera.svg") no-repeat;
 					content: "";
 					cursor: pointer;
@@ -104,6 +114,7 @@
 
 	.actions {
 		display: flex;
+		flex-direction: column;
 		justify-content: space-between;
 		margin-top: 40px;
 

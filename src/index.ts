@@ -1,52 +1,43 @@
-import render from "./services/render";
-import "./styles/index.scss";
+import Router from './core/Router/Router';
+import './styles/index.scss';
 
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import InactiveMessenger from "./pages/InactiveMessenger";
-import ActiveMessenger from "./pages/ActiveMessenger";
-import Profile from "./pages/Profile";
-import Error from "./pages/Error";
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+import Messenger from './pages/Messenger';
+import Profile from './pages/Profile';
+import Error from './pages/Error';
 
-const enum Paths {
-	index = "/",
-	register = "/register",
-	inactivechat = "/inactivechat",
-	activechat = "/activechat",
-	profile = "/profile",
-	profileEdit = "/profile-edit",
-	profileChangePassword = "/profile-change-password",
-	error = "/error",
+enum Paths {
+	index = '/',
+	register = '/sign-up',
+	messenger = '/messenger',
+	settings = '/settings',
+	error = '/error',
 }
 
-const path: string = window.location.pathname;
+Router.guard = (to: string) => {
+	switch (to) {
+		case '/':
+		case 'register':
+			return (() => ({
+				access: !localStorage.getItem('login'),
+				redirect: '/messenger',
+			}))();
+		case '/messenger':
+		case '/settings':
+			return (() => ({
+				access: !!localStorage.getItem('login'),
+				redirect: '/',
+			}))();
 
-switch (path) {
-	case Paths.index:
-		render("#app", new SignIn());
-		break;
-	case Paths.register:
-		render("#app", new SignUp());
-		break;
-	case Paths.inactivechat:
-		render("#app", new InactiveMessenger());
-		break;
-	case Paths.activechat:
-		render("#app", new ActiveMessenger());
-		break;
-	case Paths.profile:
-		render("#app", new Profile({ edit: false, changePassword: false }));
-		break;
-	case Paths.profileEdit:
-		render("#app", new Profile({ edit: true, changePassword: false }));
-		break;
-	case Paths.profileChangePassword:
-		render("#app", new Profile({ edit: false, changePassword: true }));
-		break;
-	case Paths.error:
-		render("#app", new Error({ errorCode: 404 }));
-		break;
+		default:
+			return true;
+	}
+};
 
-	default:
-		break;
-}
+Router.use(Paths.index, SignIn)
+	.use(Paths.register, SignUp)
+	.use(Paths.messenger, Messenger)
+	.use(Paths.settings, Profile)
+	.use(Paths.error, Error)
+	.start();

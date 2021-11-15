@@ -1,0 +1,7 @@
+@use '../../styles/variables.scss' as *;
+
+.chat-form {
+	&__input-wrapper {
+		margin-bottom: 40px;
+	}
+}

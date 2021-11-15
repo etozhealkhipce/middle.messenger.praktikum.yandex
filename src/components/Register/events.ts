@@ -1,90 +1,22 @@
-import {
-	Test,
-	validate,
-	toggle,
-	multipleListener,
-} from "../../services/validate";
+import authController from '../../controllers/auth.controller';
+import Router from '../../core/Router/Router';
 
 export default function (): void {
-	const registerForm = <HTMLFormElement>document.getElementById("registerForm");
-
-	const loginInput = <HTMLInputElement>document.getElementById("login");
-	const passwordInput = <HTMLInputElement>document.getElementById("password");
-	const passwordRepeatInput = <HTMLInputElement>(
-		document.getElementById("password-repeat")
-	);
-	const emailInput = <HTMLInputElement>document.getElementById("email");
-	const phoneInput = <HTMLInputElement>document.getElementById("phone");
-
-	const loginError = <HTMLParagraphElement>(
-		document.querySelector(".login-error")
-	);
-	const passwordError = <HTMLParagraphElement>(
-		document.querySelector(".password-error")
-	);
-	const passwordRepeatError = <HTMLParagraphElement>(
-		document.querySelector(".password-repeat-error")
-	);
-	const emailError = <HTMLParagraphElement>(
-		document.querySelector(".email-error")
-	);
-	const phoneError = <HTMLParagraphElement>(
-		document.querySelector(".phone-error")
+	const registerForm = <HTMLFormElement>document.getElementById('registerForm');
+	const loginLink = <HTMLFormElement>(
+		document.querySelector('.register-cart__link')
 	);
 
-	const loginTest = () =>
-		toggle(!validate(loginInput.value, Test.login), loginError);
-	multipleListener(loginInput, "blur, focus", loginTest);
-
-	const passwordTest = () =>
-		toggle(!validate(passwordInput.value, Test.password), passwordError);
-	multipleListener(passwordInput, "blur, focus", passwordTest);
-
-	const passwordRepeatTest = () =>
-		toggle(
-			passwordRepeatInput.value !== passwordInput.value,
-			passwordRepeatError
-		);
-	multipleListener(passwordRepeatInput, "blur, focus", passwordRepeatTest);
-
-	const emailTest = () =>
-		toggle(!validate(emailInput.value, Test.email), emailError);
-	multipleListener(emailInput, "blur, focus", emailTest);
-
-	const phoneTest = () =>
-		toggle(!validate(phoneInput.value, Test.phone), phoneError);
-	multipleListener(phoneInput, "blur, focus", phoneTest);
+	if (loginLink) {
+		loginLink.addEventListener('click', () => {
+			Router.go('/');
+		});
+	}
 
 	if (registerForm) {
-		registerForm.addEventListener("submit", (e: Event): void => {
+		registerForm.addEventListener('submit', (e: Event) => {
 			e.preventDefault();
-
-			const response = {
-				email: (<HTMLInputElement>document.getElementById("email")).value,
-				login: (<HTMLInputElement>document.getElementById("login")).value,
-				name: (<HTMLInputElement>document.getElementById("name")).value,
-				surname: (<HTMLInputElement>document.getElementById("surname")).value,
-				phone: (<HTMLInputElement>document.getElementById("phone")).value,
-				passwordRepeat: (<HTMLInputElement>(
-					document.getElementById("password-repeat")
-				)).value,
-			};
-
-			const passwordValidate = passwordTest();
-			const loginValidate = loginTest();
-			const passwordRepeatvalidate = passwordRepeatTest();
-			const emailValidate = emailTest();
-			const phoneValidate = phoneTest();
-
-			if (
-				passwordValidate &&
-				loginValidate &&
-				passwordRepeatvalidate &&
-				emailValidate &&
-				phoneValidate
-			) {
-				console.log(response);
-			}
+			authController.signUp();
 		});
 	}
 }
