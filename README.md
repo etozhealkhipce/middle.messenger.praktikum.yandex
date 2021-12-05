@@ -2,7 +2,7 @@
 
 ## Sprint 4 PR
 
-- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/17
+- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/18
 
 
 ## Описание
