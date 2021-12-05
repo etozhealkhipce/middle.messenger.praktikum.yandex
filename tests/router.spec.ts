@@ -21,6 +21,7 @@ const { window } = new JSDOM(
 	{ url: 'http://localhost' }
 );
 
+// @ts-ignore
 global.window = window;
 global.document = window.document;
 

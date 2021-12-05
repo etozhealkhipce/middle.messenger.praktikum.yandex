@@ -1,5 +1,6 @@
 import { compile } from 'pug';
-import icon from 'url:../assets/icons/squares.svg';
+// @ts-ignore
+import icon from '../assets/icons/squares.svg';
 import Block from '../core/Block';
 import { Sidebar } from '../components/Sidebar';
 import { Chat } from '../components/Chat';
