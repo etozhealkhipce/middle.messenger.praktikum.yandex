@@ -1,4 +1,4 @@
-![Heroku](https://heroku-badge.herokuapp.com/?app=alkhipce-messenger)
+[![Heroku](http://heroku-badge.herokuapp.com/?app=alkhipce-messenger&style=flat&svg=1)](https://alkhipce-messenger.herokuapp.com/)
 
 ## Sprint 4 PR
 
