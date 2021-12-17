@@ -7,6 +7,7 @@ export default class Messages {
 
 	async create(id: string) {
 		const response = await this.chatsAPIInstance.post(`/token/${id}`);
+
 		return response.token;
 	}
 

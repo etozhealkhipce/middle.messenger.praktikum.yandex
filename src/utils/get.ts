@@ -4,6 +4,7 @@ type Indexed<T = unknown> = {
 
 function get(object: Indexed | unknown, path: string, value?: unknown) {
 	const newPath = path.split('.');
+	// @ts-ignore
 	let newObj = { ...object };
 
 	for (let i = 0; i < newPath.length; i += 1) {
@@ -15,9 +16,8 @@ function get(object: Indexed | unknown, path: string, value?: unknown) {
 	if (newObj) {
 		return newObj;
 	}
-	if (value) {
-		return value;
-	}
+
+	return value;
 }
 
 export default get;
