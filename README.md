@@ -1,8 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/724e793a-213c-442e-b94d-65fc4a27d4fa/deploy-status)](https://app.netlify.com/sites/stupefied-franklin-e43062/deploys)
 
-## Sprint 3 PR
+## Sprint 4 PR
 
-- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/16
+- https://github.com/etozhealkhipce/middle.messenger.praktikum.yandex/pull/18
 
 
 ## Описание
@@ -21,3 +21,6 @@
 - `npm run express` — запуск Express сервера
 - `npm run lint` — запуск линтеров
 - `npm run test` — запуск тестов
+- `npm run build:container` - билд контейнера
+- `npm run heroku:push` - пуш на Heroku
+- `npm run heroku:release` - релиз на Heroku
