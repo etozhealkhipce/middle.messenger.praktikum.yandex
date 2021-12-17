@@ -17,17 +17,17 @@ enum Paths {
 
 Router.guard = (to: string) => {
 	switch (to) {
-		case '/':
-		case 'register':
+		case Paths.index:
+		case Paths.register:
 			return (() => ({
 				access: !localStorage.getItem('login'),
-				redirect: '/messenger',
+				redirect: Paths.messenger,
 			}))();
-		case '/messenger':
-		case '/settings':
+		case Paths.messenger:
+		case Paths.settings:
 			return (() => ({
 				access: !!localStorage.getItem('login'),
-				redirect: '/',
+				redirect: Paths.index,
 			}))();
 
 		default:

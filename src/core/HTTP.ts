@@ -13,6 +13,7 @@ export default class HTTPTransport {
 	baseUrl: string;
 
 	constructor(baseUrl: string) {
+		console.log(process);
 		this.baseUrl = process.env.API_URL + baseUrl;
 	}
 
@@ -52,7 +53,10 @@ export default class HTTPTransport {
 			...options,
 		});
 
-	request = (url: string, options: Record<string, any> = {}) => {
+	request = (
+		url: string,
+		options: Record<string, any> = {}
+	): Promise<Record<string, any>> => {
 		const { method, data, timeout, responseType, headers = {} } = options;
 
 		url = this.baseUrl + url;

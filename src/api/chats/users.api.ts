@@ -15,7 +15,7 @@ export default class Users {
 		return response;
 	}
 
-	async delete(data: string) {
+	async delete(data: Record<string, any>) {
 		const response = await this.chatsAPIInstance.delete('/users', {
 			data,
 		});

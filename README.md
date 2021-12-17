@@ -21,3 +21,6 @@
 - `npm run express` — запуск Express сервера
 - `npm run lint` — запуск линтеров
 - `npm run test` — запуск тестов
+- `npm run build:container` - билд контейнера
+- `npm run heroku:push` - пуш на Heroku
+- `npm run heroku:release` - релиз на Heroku

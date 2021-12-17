@@ -20,11 +20,13 @@ export default function () {
 
 	if (sidebar) {
 		sidebar.addEventListener('click', (e: Event): void => {
-			if ((<HTMLElement>e.target).closest('.user-preview')) {
+			const target = e.target as HTMLElement;
+
+			if (target.closest('.user-preview')) {
 				Router.go('/messenger', {
 					addUserLink: true,
 					notEmpty: true,
-					chat: (<HTMLElement>e.target).closest('.user-preview')?.dataset?.chat,
+					chat: (<HTMLElement>target.closest('.user-preview'))?.dataset?.chat,
 				});
 			}
 		});
@@ -32,8 +34,10 @@ export default function () {
 
 	if (search) {
 		search.addEventListener('input', async (e: Event): Promise<void> => {
-			if (e.target.value) {
-				const response = await userController.searchUser(e.target.value);
+			const target = e.target as HTMLInputElement;
+
+			if (target.value) {
+				const response = await userController.searchUser(target.value);
 
 				if (response) {
 					Store.set('sidebar-data', {

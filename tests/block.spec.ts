@@ -3,19 +3,36 @@ import Block from '../src/core/Block';
 
 let block: Block;
 
+type Constructor = {
+	tagName: string;
+	rootQuery: string;
+	props?: Record<string, any>;
+	events?: Function;
+	classes?: string[];
+	selector?: string;
+	children?: any[];
+};
+
 describe('Block', () => {
 	beforeEach(() => {
 		class TestBlock extends Block {
-			constructor(
-				props: Record<string, any>,
-				classes: string[],
-				events: Record<string, Function>
-			) {
+			constructor({
+				tagName,
+				props,
+				events,
+				classes,
+				selector,
+				rootQuery,
+				children,
+			}: Constructor) {
 				super({
-					tagName: 'div',
+					tagName,
 					props,
 					classes,
 					events,
+					selector,
+					rootQuery,
+					children,
 				});
 			}
 
@@ -24,7 +41,12 @@ describe('Block', () => {
 			}
 		}
 
-		block = new TestBlock({ text: 'test' }, ['test'], { test: () => 'hello' });
+		block = new TestBlock({
+			tagName: 'div',
+			rootQuery: 'test',
+			classes: ['test'],
+			events: () => 'test',
+		});
 	});
 
 	it('Created element to equal "DIV"', () => {
@@ -39,6 +61,8 @@ describe('Block', () => {
 
 	it('Component event function return "hello" string', () => {
 		const events = block.getEvents();
-		expect(events.test()).to.be.a('string').and.to.equal('hello');
+		expect(events && events())
+			.to.be.a('string')
+			.and.to.equal('hello');
 	});
 });

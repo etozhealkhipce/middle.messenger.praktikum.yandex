@@ -33,10 +33,12 @@ function isEqual(lhs: PlainObject, rhs: PlainObject) {
 		return false;
 	}
 
+	// eslint-disable-next-line no-restricted-syntax
 	for (const [key, value] of Object.entries(lhs)) {
-		const rightValue = rhs[key];
+		const rightValue = rhs ? rhs[key] : false;
 		if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
 			if (isEqual(value, rightValue)) {
+				// eslint-disable-next-line no-continue
 				continue;
 			}
 			return false;

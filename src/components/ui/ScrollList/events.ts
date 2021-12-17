@@ -7,13 +7,14 @@ export default function () {
 
 	if (addWrapper && !removeWrapper) {
 		addWrapper.addEventListener('click', (e: Event) => {
+			const target = e.target as HTMLButtonElement;
 			e.stopImmediatePropagation();
 
-			const add = e.target.matches('#addUser');
-			const remove = e.target.matches('#removeUser');
+			const add = target.matches('#addUser');
+			const remove = target.matches('#removeUser');
 
 			if (!add && !remove) return;
-			const { user } = e.target.dataset;
+			const { user } = target.dataset;
 			const added = Array.isArray(Store.get('added-user')?.users)
 				? Store.get('added-user').users
 				: [];
@@ -31,9 +32,14 @@ export default function () {
 			}
 
 			if (!remove && !user) return;
-			const idx = added.findIndex(
-				(i: Record<string, any>) => i.id === JSON.parse(user).id
-			);
+
+			let idx;
+
+			if (user) {
+				idx = added.findIndex(
+					(i: Record<string, any>) => i.id === JSON.parse(user).id
+				);
+			}
 
 			if (idx === -1) return;
 			const cloned = cloneDeep(added);
@@ -47,23 +53,17 @@ export default function () {
 
 	if (removeWrapper && !addWrapper) {
 		removeWrapper.addEventListener('click', (e: Event) => {
+			const target = e.target as HTMLButtonElement;
 			e.stopImmediatePropagation();
 
-			const add = e.target.matches('#addUser');
-			const remove = e.target.matches('#removeUser');
+			const add = target.matches('#addUser');
+			const remove = target.matches('#removeUser');
 
 			if (!add && !remove) return;
-			const { user } = e.target.dataset;
+			const { user } = target.dataset;
 			const added = Array.isArray(Store.get('remove-users')?.users)
 				? Store.get('remove-users').users
 				: [];
-
-			console.log(
-				'pio',
-				added.findIndex(
-					(i: Record<string, any>) => i.id === JSON.parse(user).id
-				) === -1
-			);
 
 			if (
 				add &&
@@ -78,9 +78,13 @@ export default function () {
 			}
 
 			if (!remove && !user) return;
-			const idx = added.findIndex(
-				(i: Record<string, any>) => i.id === JSON.parse(user).id
-			);
+			let idx;
+
+			if (user) {
+				idx = added.findIndex(
+					(i: Record<string, any>) => i.id === JSON.parse(user).id
+				);
+			}
 
 			if (idx === -1) return;
 			const cloned = cloneDeep(added);
