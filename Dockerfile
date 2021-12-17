@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:16.13-alpine
 WORKDIR /var/www
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -7,7 +7,6 @@ COPY package*.json ./
 
 # Disable Husky https://typicode.github.io/husky/#/?id=disable-husky-in-cidocker
 RUN npm set-script prepare ""
-
 RUN npm install
 
 # Bundle app source
